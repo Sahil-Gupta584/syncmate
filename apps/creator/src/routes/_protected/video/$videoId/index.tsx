@@ -32,7 +32,7 @@ type TPlaylists = youtube_v3.Schema$Playlist[] | undefined;
 export type TVideoDetails = TBackendOutput["db"]["getVideoDetails"]["result"];
 
 export default function Page() {
-  const [playlists, setPlaylists] = useState<TPlaylists>();
+  // const [playlists, setPlaylists] = useState<TPlaylists>();
   const [isEditing, setIsEditing] = useState(false);
   const { videoId } = Route.useParams();
   const videoDetailsQuery = backend.db.getVideoDetails.useQuery({ videoId });
@@ -51,7 +51,7 @@ export default function Page() {
       {videoDetailsQuery.data?.result ? (
         <VideoPage
           previousData={videoDetailsQuery.data.result}
-          playlists={playlists}
+          playlists={[]}
           isEditing={isEditing}
           setIsEditing={setIsEditing}
         />
@@ -61,7 +61,6 @@ export default function Page() {
     </>
   );
 }
-// export type TVideoDetailsForm = NonNullable<TVideoDetails>;
 
 const updateVideoDetailsZodSchema =
   serverZodSchemas.dbActionsZodSchema.updateVideoDetails;

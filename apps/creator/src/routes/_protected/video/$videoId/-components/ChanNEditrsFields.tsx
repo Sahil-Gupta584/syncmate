@@ -65,7 +65,7 @@ export default function ChanNEditrsFields({
             defaultValue={previousData.editors.map((e: any) => e.editor.id)}
             className="gap-[35px]"
           >
-            {userEditors.map(({ editor }) => (
+            {userEditors.map(({ editor }: { editor: any }) => (
               <Checkbox key={editor.id} value={editor.id}>
                 <div className="flex items-center gap-3">
                   <Avatar
