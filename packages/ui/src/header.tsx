@@ -20,7 +20,7 @@ export default function Header({
       <nav className="flex items-center justify-between p-2 md:text-2xl px-4 py-2 text-xl">
         <LinkComponent to="/">
           <span className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
-            S
+            Syncly
           </span>
         </LinkComponent>
         <HeaderChild />
