@@ -9,15 +9,16 @@ import {
   useDisclosure,
 } from "@heroui/react";
 import { trpcErrorHandler } from "@repo/lib/utils";
-import { backend } from "@repo/trpc2/react";
+import { backend } from "@repo/trpc/react";
 import { MdDelete } from "react-icons/md";
-import type { User } from "../../../lib/authActions";
 
 export function DeleteEditor({
-  editor,
+  editorEmail,
+  editorId,
   creatorId,
 }: {
-  editor: User;
+  editorId: string;
+  editorEmail: string;
   creatorId: string;
 }) {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -26,12 +27,12 @@ export function DeleteEditor({
   const onDelete = async () => {
     try {
       const res = await removeEditorMutation.mutateAsync({
-        editorId: editor.id,
+        editorId: editorId,
         creatorId,
       });
       if (res.ok) {
         addToast({
-          description: `Editor ${editor.email} removed successfully`,
+          description: `Editor ${editorEmail} removed successfully`,
           color: "success",
         });
         onClose();
@@ -66,7 +67,7 @@ export function DeleteEditor({
                   Are you sure you want to remove editor{" "}
                   <span className="font-semibold text-gray-500">
                     {" "}
-                    {editor.email}
+                    {editorEmail}
                   </span>{" "}
                   ?
                 </p>

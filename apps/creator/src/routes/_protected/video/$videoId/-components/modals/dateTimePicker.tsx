@@ -9,7 +9,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@heroui/react";
-import { backend } from "@repo/trpc2/react";
+import { backend } from "@repo/trpc/react";
 import axios from "axios";
 import moment from "moment";
 import { useForm } from "react-hook-form";

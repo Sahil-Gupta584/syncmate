@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@heroui/react";
-import { TRole } from "@repo/lib/constants";
+import type { TRole } from "@repo/lib/constants";
 import { FcGoogle } from "react-icons/fc";
 
 type TAuthPageProps = { role: TRole; onClick: () => void };

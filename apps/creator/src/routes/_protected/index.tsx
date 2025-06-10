@@ -1,7 +1,7 @@
 import { addToast, Progress, Skeleton } from "@heroui/react";
 import type { TRole } from "@repo/lib/constants";
 import { trpcErrorHandler } from "@repo/lib/utils";
-import { backend } from "@repo/trpc2/react";
+import { backend } from "@repo/trpc/react";
 import { VideoCard, VideosNotFound } from "@repo/ui";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSession } from "../../lib/authActions";

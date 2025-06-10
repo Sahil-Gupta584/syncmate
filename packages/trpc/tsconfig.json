@@ -1,0 +1,12 @@
+{
+  "extends": "@repo/typescript-config/react-library.json",
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": true,
+    "baseUrl": ".",
+    "paths": {
+      "@repo/lib/*": ["../lib/src/*"]
+    }
+  },
+  "exclude": ["dist", "build", "node_modules"]
+}

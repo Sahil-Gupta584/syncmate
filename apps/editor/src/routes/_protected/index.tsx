@@ -1,6 +1,6 @@
 import { Progress, Skeleton } from "@heroui/react";
 import type { TRole } from "@repo/lib/constants";
-import { backend } from "@repo/trpc2/react";
+import { backend } from "@repo/trpc/react";
 import { VideoCard, VideosNotFound } from "@repo/ui";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSession } from "../../lib/authActions";
@@ -57,12 +57,12 @@ function VideosPage() {
                 />
               </div>
             ))}
-          {userDetails &&
-            userDetails.result &&
-            userDetails.result.accessibleVideos.length === 0 && (
-              <VideosNotFound />
-            )}
         </div>
+        {userDetails &&
+          userDetails.result &&
+          userDetails.result.accessibleVideos.length === 0 && (
+            <VideosNotFound />
+          )}
       </div>
     </>
   );

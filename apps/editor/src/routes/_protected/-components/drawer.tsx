@@ -7,9 +7,9 @@ import {
   DrawerHeader,
 } from "@heroui/drawer";
 import { Avatar, Button, useDisclosure } from "@heroui/react";
-import { backend } from "@repo/trpc2/react";
+import { backend } from "@repo/trpc/react";
 import { DrawerProfileHeader } from "@repo/ui";
-import { signOut, useSession } from "../../../lib/authActions";
+import { signOut, useSession, type User } from "../../../lib/authActions";
 
 export default function DrawerComponent() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -18,27 +18,14 @@ export default function DrawerComponent() {
 
   const getCreatorsQuery = backend.db.getEditorCreators.useQuery(
     {
-      editorId: user?.id || "", // fallback empty string
+      editorId: user?.id || "",
     },
     {
-      enabled: !!user, // ✅ Only runs when user is truthy
+      enabled: !!user,
     }
   );
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const { result, error } = await getEditorCreators(
-  //       session.user.id as string
-  //     );
-  //     if (result) setCreators(result.creators);
-  //     if (error instanceof Error) {
-  //       addToast({
-  //         description: "Error fetching creators.",
-  //         color: "danger",
-  //       });
-  //     }
-  //   })();
-  // }, [session.user.id]);
+  const creators =
+    getCreatorsQuery.data && getCreatorsQuery.data.result?.creators;
 
   return (
     <>
@@ -87,19 +74,16 @@ export default function DrawerComponent() {
                     }
                   />
                 )}
-                {getCreatorsQuery.data &&
-                  getCreatorsQuery.data.result &&
-                  getCreatorsQuery.data.result.creators.length === 0 && (
-                    <p className="text-sm text-gray-500 text-center">
-                      No Creators joined yet
-                    </p>
-                  )}
+                {creators && creators.length === 0 && (
+                  <p className="text-sm text-gray-500 text-center">
+                    No Creators joined yet
+                  </p>
+                )}
                 <div className="flex gap-4 items-center flex-wrap p-4">
-                  {getCreatorsQuery.data &&
-                    getCreatorsQuery.data.result &&
-                    getCreatorsQuery.data.result.creators &&
-                    getCreatorsQuery.data.result.creators.map(
-                      ({ creator }, i) => (
+                  {creators &&
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    (creators as any).map(
+                      ({ creator }: { creator: User }, i: number) => (
                         <div key={creator.id}>
                           <div className="flex justify-between items-center w-full ">
                             <div

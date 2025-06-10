@@ -1,4 +1,4 @@
-import { backend } from "@repo/trpc2/react";
+import { backend } from "@repo/trpc/react";
 import { VideoComponent } from "@repo/ui";
 import { createFileRoute } from "@tanstack/react-router";
 

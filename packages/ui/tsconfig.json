@@ -7,12 +7,11 @@
     "baseUrl": ".",
     "paths": {
       "@repo/lib": ["packages/lib/src/index.ts"],
-      "@repo/db": ["packages/src/index.ts"],
       "@repo/lib/actions": ["packages/lib/src/actions.ts"],
       "@repo/lib/utils": ["packages/lib/src/utils.ts"],
       "@repo/lib/constants": ["packages/lib/src/constants.ts"],
       "@repo/lib/assets/*": ["packages/lib/src/assets/*"],
-      "@repo/trpc2/*": ["../trpc2/*"]
+      "@repo/trpc/*": ["../trpc2/*"]
     }
   },
 

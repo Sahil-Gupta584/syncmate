@@ -1,5 +1,5 @@
 import { prisma } from "@repo/db";
-import { appRouter } from "@repo/trpc2/server/router";
+import { appRouter } from "@repo/trpc/server/router";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import { toNodeHandler } from "better-auth/node";
 import cors from "cors";

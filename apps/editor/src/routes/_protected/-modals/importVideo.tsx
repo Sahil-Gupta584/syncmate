@@ -13,7 +13,7 @@ import {
   useDisclosure,
 } from "@heroui/react";
 import { getVideoDuration, trpcErrorHandler } from "@repo/lib/utils";
-import type { TBackendOutput } from "@repo/trpc2/react";
+import type { TBackendOutput } from "@repo/trpc/react";
 import { ImportButton } from "@repo/ui";
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -149,6 +149,8 @@ export default function ImportVideo({
                     },
                   }}
                   renderValue={(creators) => {
+                    console.log({ creators });
+
                     return creators.map((creator) => (
                       <div
                         key={creator.key}

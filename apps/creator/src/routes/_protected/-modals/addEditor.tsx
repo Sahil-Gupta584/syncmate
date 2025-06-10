@@ -10,7 +10,7 @@ import {
   useDisclosure,
 } from "@heroui/react";
 import { trpcErrorHandler } from "@repo/lib/utils";
-import { backend } from "@repo/trpc2/react";
+import { backend } from "@repo/trpc/react";
 import { type FormEvent } from "react";
 import { MdAdd } from "react-icons/md";
 import type { User } from "../../../lib/authActions";

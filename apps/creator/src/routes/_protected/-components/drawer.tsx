@@ -16,7 +16,7 @@ import {
   Skeleton,
   useDisclosure,
 } from "@heroui/react";
-import { backend } from "@repo/trpc2/react";
+import { backend, type TBackendOutput } from "@repo/trpc/react";
 import { DrawerProfileHeader } from "@repo/ui";
 import { imageInputPlaceholder } from "@repo/ui/assets";
 import axios from "axios";
@@ -33,13 +33,14 @@ export default function DrawerComponent() {
 
   const userDetailsQuery = backend.db.getUserWithEditors.useQuery(
     {
-      userId: user?.id || "", // fallback empty string
+      userId: user?.id || "",
     },
     {
-      enabled: !!user, // ✅ Only runs when user is truthy
+      enabled: !!user,
     }
   );
-  const userDetails = userDetailsQuery.data?.result;
+  type TData = TBackendOutput["db"]["getUserWithEditors"]["result"];
+  const userDetails: TData = userDetailsQuery.data?.result;
   async function handleAddChannel() {
     try {
       const res = await axios.get(
@@ -151,7 +152,8 @@ export default function DrawerComponent() {
                                   </ul>
                                 </div>
                                 <DeleteEditor
-                                  editor={editor}
+                                  editorEmail={editor.email}
+                                  editorId={editor.id}
                                   creatorId={user.id}
                                 />
                               </div>

@@ -8,7 +8,6 @@ export const Route = createFileRoute("/auth")({
 });
 
 export default function RouteComponent() {
-
   return (
     <AuthPage
       role="CREATOR"

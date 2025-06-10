@@ -9,8 +9,8 @@ import {
 } from "@heroui/react";
 import type { TRole } from "@repo/lib/constants";
 import { trpcErrorHandler } from "@repo/lib/utils";
-import { backend, type TBackendOutput } from "@repo/trpc2/react";
-import { serverZodSchemas } from "@repo/trpc2/server/zodSchemas.ts";
+import { backend, type TBackendOutput } from "@repo/trpc/react";
+import { serverZodSchemas } from "@repo/trpc/server/zodSchemas.ts";
 import { Tag, VideoComponent, VideoDropdown } from "@repo/ui";
 import { createFileRoute } from "@tanstack/react-router";
 import type { youtube_v3 } from "googleapis/build/src/apis/youtube";

@@ -1,5 +1,5 @@
 import { addToast, Avatar, Button, Skeleton } from "@heroui/react";
-import { backend } from "@repo/trpc2/react";
+import { backend } from "@repo/trpc/react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { signIn, useSession } from "../../../../lib/authActions";

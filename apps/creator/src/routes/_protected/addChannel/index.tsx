@@ -1,5 +1,5 @@
 import { addToast } from "@heroui/react";
-import { backend } from "@repo/trpc2/react";
+import { backend } from "@repo/trpc/react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { z } from "zod";

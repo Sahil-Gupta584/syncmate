@@ -187,8 +187,7 @@ function DeleteVideoModal({
   isDeleting,
   videoId,
 }: TVideoDropdownProps & { videoId: string }) {
-  const [isLoading, setIsLoading] = useState(false);
-  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <>

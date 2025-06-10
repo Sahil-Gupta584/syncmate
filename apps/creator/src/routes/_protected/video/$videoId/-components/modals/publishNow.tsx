@@ -10,7 +10,7 @@ import {
   useDisclosure,
 } from "@heroui/react";
 import { trpcErrorHandler } from "@repo/lib/utils";
-import { backend } from "@repo/trpc2/react";
+import { backend } from "@repo/trpc/react";
 import axios from "axios";
 import { useState } from "react";
 import { MdOutlineFileUpload } from "react-icons/md";

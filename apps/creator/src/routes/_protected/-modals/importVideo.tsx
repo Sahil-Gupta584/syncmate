@@ -14,7 +14,7 @@ import {
   useDisclosure,
 } from "@heroui/react";
 import { getVideoDuration } from "@repo/lib/utils";
-import { backend, type TBackendOutput } from "@repo/trpc2/react";
+import { backend, type TBackendOutput } from "@repo/trpc/react";
 import { ImportButton } from "@repo/ui";
 import { imageInputPlaceholder } from "@repo/ui/assets";
 import axios from "axios";
@@ -73,7 +73,7 @@ export default function ImportVideo({
         formData.append(
           "selectedEditorEmails",
           JSON.stringify(
-            userDetails.editors
+            (userDetails.editors as { editor: { id: string; email: string } }[])
               .filter((e) => selectedEditors?.includes(e.editor.id))
               .map((e) => e.editor.email)
           )

@@ -21,11 +21,16 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-    "composite": true,
     "allowSyntheticDefaultImports": true,
 
     /* Optional: tsbuild info location */
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo"
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
+
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "baseUrl": "."
   },
+
   "include": ["src", "vite.config.ts"]
 }

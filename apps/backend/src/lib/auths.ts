@@ -1,11 +1,12 @@
 import { prisma } from "@repo/db";
-import { getGoogleServices } from "@repo/trpc2/helpers";
+import { getGoogleServices } from "@repo/trpc/helpers";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import moment from "moment";
 dotenv.config();
+console.log("process.env.BACKEND_URL", process.env.BACKEND_URL);
 
 export const creatorAuth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -27,7 +28,7 @@ export const creatorAuth = betterAuth({
       ],
       accessType: "offline", // This is crucial for refresh tokens
       prompt: "consent",
-      redirectURI: "http://localhost:3000/creator/api/auth/callback/google",
+      redirectURI: `${process.env.BACKEND_URL}/creator/api/auth/callback/google`,
     },
   },
   user: {
@@ -155,7 +156,7 @@ export const editorAuth = betterAuth({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       scope: ["openid", "profile", "email"],
-      redirectURI: "http://localhost:3000/editor/api/auth/callback/google",
+      redirectURI: `${process.env.BACKEND_URL}/editor/api/auth/callback/google`,
     },
   },
   user: {
@@ -163,6 +164,20 @@ export const editorAuth = betterAuth({
       role: {
         type: ["CREATOR", "EDITOR"],
         required: true,
+      },
+    },
+  },
+  databaseHooks: {
+    user: {
+      create: {
+        before: async (user, context) => {
+          return {
+            data: {
+              ...user,
+              role: "EDITOR",
+            },
+          };
+        },
       },
     },
   },
