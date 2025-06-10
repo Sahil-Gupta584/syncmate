@@ -128,36 +128,43 @@ export default function DrawerComponent() {
                         </div>
                         <div className="flex gap-4 items-center flex-wrap p-4">
                           {userDetails &&
-                            userDetails.editors.map(({ editor }) => (
-                              <div
-                                className="flex justify-between items-center w-full"
-                                key={editor.id}
-                              >
-                                <div
-                                  className="flex gap-4 items-center pl-10"
-                                  key={editor.id}
-                                >
-                                  <Avatar
-                                    className="h-20 w-20"
-                                    src={editor.image || imageInputPlaceholder}
-                                    fallback
-                                  />
-                                  <ul>
-                                    <span className="capitalize text-xl">
-                                      {editor.name}
-                                    </span>
-                                    <p className="text-sm text-gray-500">
-                                      {editor.email}
-                                    </p>
-                                  </ul>
-                                </div>
-                                <DeleteEditor
-                                  editorEmail={editor.email}
-                                  editorId={editor.id}
-                                  creatorId={user.id}
-                                />
-                              </div>
-                            ))}
+                            userDetails.editors.map(
+                              (editorObj: { editor: any }) => {
+                                const editor = editorObj.editor;
+                                return (
+                                  <div
+                                    className="flex justify-between items-center w-full"
+                                    key={editor.id}
+                                  >
+                                    <div
+                                      className="flex gap-4 items-center pl-10"
+                                      key={editor.id}
+                                    >
+                                      <Avatar
+                                        className="h-20 w-20"
+                                        src={
+                                          editor.image || imageInputPlaceholder
+                                        }
+                                        fallback
+                                      />
+                                      <ul>
+                                        <span className="capitalize text-xl">
+                                          {editor.name}
+                                        </span>
+                                        <p className="text-sm text-gray-500">
+                                          {editor.email}
+                                        </p>
+                                      </ul>
+                                    </div>
+                                    <DeleteEditor
+                                      editorEmail={editor.email}
+                                      editorId={editor.id}
+                                      creatorId={user.id}
+                                    />
+                                  </div>
+                                );
+                              }
+                            )}
                         </div>
                       </AccordionItem>
                       <AccordionItem

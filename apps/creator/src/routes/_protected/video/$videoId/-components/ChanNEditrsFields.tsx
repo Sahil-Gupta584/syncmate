@@ -62,7 +62,7 @@ export default function ChanNEditrsFields({
             }}
             isDisabled={!isEditing}
             orientation="horizontal"
-            defaultValue={previousData.editors.map((e) => e.editor.id)}
+            defaultValue={previousData.editors.map((e: any) => e.editor.id)}
             className="gap-[35px]"
           >
             {userEditors.map(({ editor }) => (

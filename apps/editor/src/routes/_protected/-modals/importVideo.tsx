@@ -149,8 +149,6 @@ export default function ImportVideo({
                     },
                   }}
                   renderValue={(creators) => {
-                    console.log({ creators });
-
                     return creators.map((creator) => (
                       <div
                         key={creator.key}

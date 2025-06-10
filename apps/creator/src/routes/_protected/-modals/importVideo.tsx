@@ -178,17 +178,22 @@ export default function ImportVideo({
                       onValueChange={(val) => setValue("editorsId", val)}
                     >
                       {userDetails &&
-                        userDetails.editors.map(({ editor }) => (
-                          <Checkbox key={editor.id} value={editor.id}>
-                            <div className="flex items-center gap-3">
-                              <Avatar
-                                src={editor.image || imageInputPlaceholder}
-                                className="w-7 h-7 ml-3"
-                              />
-                              <span className="mt-1">{editor.name}</span>
-                            </div>
-                          </Checkbox>
-                        ))}
+                        userDetails.editors.map(
+                          (editorAssignment: { editor: any }) => {
+                            const { editor } = editorAssignment;
+                            return (
+                              <Checkbox key={editor.id} value={editor.id}>
+                                <div className="flex items-center gap-3">
+                                  <Avatar
+                                    src={editor.image || imageInputPlaceholder}
+                                    className="w-7 h-7 ml-3"
+                                  />
+                                  <span className="mt-1">{editor.name}</span>
+                                </div>
+                              </Checkbox>
+                            );
+                          }
+                        )}
                     </CheckboxGroup>
                   </div>
                 )}
