@@ -1,8 +1,21 @@
 {
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": true,
+    "baseUrl": ".",
+    "paths": {
+      "@repo/lib": ["packages/lib/src/index.ts"],
+      "@repo/db": ["packages/src/index.ts"],
+      "@repo/lib/actions": ["packages/lib/src/actions.ts"],
+      "@repo/lib/utils": ["packages/lib/src/utils.ts"],
+      "@repo/lib/constants": ["packages/lib/src/constants.ts"],
+      "@repo/lib/assets/*": ["packages/lib/src/assets/*"],
+      "@repo/trpc2/*": ["../trpc2/*"]
+    }
   },
-  "include": ["src"],
+
+  "include": ["src", "vite-env.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

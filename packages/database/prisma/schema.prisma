@@ -1,0 +1,206 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../generated/client"
+  moduleFormat = "esm"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CREATOR
+  EDITOR
+}
+
+enum PlanType {
+  TRIAL
+  BASE
+  PRO
+  GROWTH
+  ENTERPRISE
+}
+
+enum VideoStatus {
+  DRAFT
+  SCHEDULED
+  SCHEDULING
+  PUBLISHING
+  PROCESSING
+  PUBLISHED
+}
+
+enum PrivacyStatus {
+  Private
+  Public
+  Unlisted
+}
+
+enum InviteStatus {
+  PENDING
+  ACCEPTED
+  EXPIRED
+}
+
+enum subscriptionStatus {
+  active
+  cancelled
+  completed
+  failed
+}
+
+model User {
+  id             String   @id @default(uuid())
+  email          String   @unique
+  name           String
+  image          String?
+  emailVerified  Boolean
+  role           Role
+  plan           PlanType @default(TRIAL)
+  ownedVideos    Video[]  @relation("VideoOwner")
+  importedVideos Video[]  @relation("VideoImporter")
+
+  channels         Channel[]
+  editors          CreatorEditor[] @relation("UserCreators")
+  creators         CreatorEditor[] @relation("UserEditors")
+  sentInvites      Invite[]        @relation("InviteCreators")
+  receivedInvites  Invite[]        @relation("InviteEditors")
+  accessibleVideos VideoEditor[] // New field: videos this user can access as an editor
+
+  account       Account[]
+  sessions      Session[]
+  subscriptions Subscription[]
+  trialEndAt    Json?
+  createdAt     Json
+  updatedAt     Json
+
+  @@map("user")
+}
+
+model CreatorEditor {
+  creatorId String
+  editorId  String
+  creator   User   @relation("UserCreators", fields: [creatorId], references: [id], onDelete: Cascade)
+  editor    User   @relation("UserEditors", fields: [editorId], references: [id], onDelete: Cascade)
+
+  assignedAt String
+
+  @@id([creatorId, editorId])
+}
+
+model Video {
+  id            String        @id @default(uuid())
+  gDriveId      String
+  title         String?
+  description   String?
+  duration      Int
+  thumbnailUrl  String?
+  scheduledAt   Int?
+  videoStatus   VideoStatus   @default(DRAFT)
+  privacyStatus PrivacyStatus @default(Private)
+  playlistIds   String[]
+  tags          String
+  categoryId    String
+  ownerId       String
+  owner         User          @relation("VideoOwner", fields: [ownerId], references: [id])
+  importedById  String
+  importedBy    User          @relation("VideoImporter", fields: [importedById], references: [id])
+  editors       VideoEditor[] // New field: list of editors for the video
+  channelId     String?
+  channel       Channel?      @relation(fields: [channelId], references: [id])
+  createdAt     String
+}
+
+model Channel {
+  id            String  @id @default(uuid())
+  userId        String
+  name          String
+  ytChannelId   String  @unique
+  logoUrl       String
+  description   String
+  refresh_token String
+  access_token  String
+  video         Video[] @relation(fields: [])
+  user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VideoEditor {
+  videoId     String
+  editorEmail String
+
+  video  Video @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  editor User  @relation(fields: [editorEmail], references: [email], onDelete: Cascade)
+
+  assignedAt String
+
+  @@id([videoId, editorEmail])
+}
+
+model Invite {
+  id          String       @id @unique @default(uuid())
+  creatorId   String
+  editorId    String?
+  editorEmail String
+  creator     User         @relation("InviteCreators", fields: [creatorId], references: [id], onDelete: Cascade)
+  editor      User?        @relation("InviteEditors", fields: [editorId], references: [id], onDelete: Cascade)
+  status      InviteStatus @default(PENDING)
+  createdAt   String
+  expiresAt   String
+}
+
+model Session {
+  id        String  @id
+  expiresAt Json
+  token     String
+  createdAt Json
+  updatedAt Json
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("session")
+}
+
+model Account {
+  id                    String  @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  Json?
+  refreshTokenExpiresAt Json?
+  scope                 String?
+  password              String?
+  createdAt             Json
+  updatedAt             Json
+
+  @@map("account")
+}
+
+model Verification {
+  id         String @id
+  identifier String
+  value      String
+  expiresAt  Json
+  createdAt  Json?
+  updatedAt  Json?
+
+  @@map("verification")
+}
+
+model Subscription {
+  id             String             @id @default(uuid())
+  razorpaySubId  String             @unique // Razorpay subscription ID
+  razorpayCustId String
+  status         subscriptionStatus
+  userId         String             @unique
+  user           User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+}

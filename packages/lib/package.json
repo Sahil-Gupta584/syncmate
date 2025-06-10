@@ -1,0 +1,17 @@
+{
+  "name": "@repo/lib",
+  "version": "1.0.0",
+  "exports": {
+    "./actions": "./src/actions.ts",
+    "./utils": "./src/utils.ts",
+    "./assets/*": "./src/assets/*",
+    "./constants": "./src/constants.ts"
+  },
+  "dependencies": {
+    "@repo/db": "*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

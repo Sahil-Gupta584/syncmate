@@ -1,6 +1,6 @@
 {
   "$schema": "https://turborepo.com/schema.json",
-  "ui": "tui",
+  "ui": "stream",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -17,5 +17,15 @@
       "cache": false,
       "persistent": true
     }
-  }
+  },
+  "globalEnv": [
+    "NODEMAILER_USER",
+    "NODEMAILER_PASS",
+    "CREATOR_BASE_URL",
+    "EDITOR_BASE_URL",
+    "WEB_BASE_URL",
+    "GOOGLE_CLIENT_SECRET",
+    "GOOGLE_CLIENT_ID",
+    "AUTH_SECRET"
+  ]
 }
