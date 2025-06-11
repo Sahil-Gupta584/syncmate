@@ -7,17 +7,16 @@ import dotenv from "dotenv";
 import express from "express";
 import moment from "moment";
 import multer from "multer";
-import path, { dirname } from "path";
+import path, { dirname, resolve } from "path";
 import { validateWebhookSignature } from "razorpay/dist/utils/razorpay-utils.js";
 import { fileURLToPath } from "url";
 import { importVideo } from "./controllers/importVideo.js";
 import { scheduleVideo } from "./controllers/scheduleVideo.js";
 import { creatorAuth, editorAuth } from "./lib/auths.js";
 
-dotenv.config({ path: "../../../" });
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+dotenv.config({ path: resolve(__dirname, "../../../.env") });
 
 const storage = multer.diskStorage({
   destination: path.join(__dirname, "../uploads"),

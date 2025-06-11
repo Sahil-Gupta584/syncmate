@@ -5,8 +5,12 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 import moment from "moment";
-dotenv.config();
-console.log("process.env.BACKEND_URL", process.env.BACKEND_URL);
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+dotenv.config({ path: resolve(__dirname, "../../../../.env") });
 
 export const creatorAuth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -28,7 +32,7 @@ export const creatorAuth = betterAuth({
       ],
       accessType: "offline", // This is crucial for refresh tokens
       prompt: "consent",
-      redirectURI: `${process.env.BACKEND_URL}/creator/api/auth/callback/google`,
+      redirectURI: `${process.env.VITE_BACKEND_URL}/creator/api/auth/callback/google`,
     },
   },
   user: {

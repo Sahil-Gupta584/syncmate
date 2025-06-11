@@ -33,7 +33,6 @@ export default function Home() {
       return;
     }
 
-    console.log("user", data);
   }, [isPending, data, pathname]);
 
   return (
