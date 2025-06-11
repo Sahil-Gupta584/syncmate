@@ -1,5 +1,5 @@
 import { prisma } from "@repo/db";
-import { getFileFromDrive, getGoogleServices } from "@repo/trpc/helpers";
+import { getFileFromDrive, getGoogleServices } from "@repo/trpc";
 import axios from "axios";
 import { Worker } from "bullmq";
 import dotenv from "dotenv";

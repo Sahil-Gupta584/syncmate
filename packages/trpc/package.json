@@ -2,7 +2,13 @@
   "name": "@repo/trpc",
   "version": "1.0.0",
   "type": "module",
-  "main": "./index.ts",
+  "main": "./index.js",
+  "scripts": {
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "build": "npm run  trpc:generate || true",
+    "trpc:generate": " tsc --project tsconfig.json"
+  },
   "types": "./index.ts",
   "keywords": [],
   "author": "",
@@ -14,10 +20,5 @@
     "googleapis": "^149.0.0",
     "zod": "^3.25.28",
     "@repo/db": "*"
-  },
-  "references": [
-    {
-      "path": "../database"
-    }
-  ]
+  }
 }

@@ -1,10 +1,9 @@
-import { actionsRoutes } from "./actions/actions.ts";
-import { dbActionsRoutes } from "./dbActions/dbActions.ts";
-import { trpcRouter } from "./trpc.ts";
+import { actionsRoutes } from "./actions/actions";
+import { dbActionsRoutes } from "./dbActions/dbActions";
+import { trpcRouter } from "./trpc";
 
 export const appRouter = trpcRouter({
   db: dbActionsRoutes,
   action: actionsRoutes,
 });
-
 export type AppRouter = typeof appRouter;

@@ -1,5 +1,5 @@
-import { actionsZodSchema } from "./actions/schema.ts";
-import { dbActionsZodSchema } from "./dbActions/schema.ts";
+import { actionsZodSchema } from "./actions/schema";
+import { dbActionsZodSchema } from "./dbActions/schema";
 
 export const serverZodSchemas = {
   actionsZodSchema,

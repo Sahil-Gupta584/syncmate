@@ -5,9 +5,9 @@ import {
   getGoogleServices,
   updateGoogleDrivePermissions,
   updateThumbnails,
-} from "../../helpers.ts";
-import { trpcProcedure, trpcRouter } from "../../server/trpc.ts";
-import { dbActionsZodSchema } from "./schema.ts";
+} from "../../helpers";
+import { trpcProcedure, trpcRouter } from "../trpc";
+import { dbActionsZodSchema } from "./schema";
 
 export const dbActionsRoutes = trpcRouter({
   addChannel: trpcProcedure

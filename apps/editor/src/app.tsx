@@ -24,7 +24,7 @@ export function App() {
     return backend.createClient({
       links: [
         httpBatchLink({
-          url: import.meta.env.VITE_BACKEND_URL+'/trpc',
+          url: import.meta.env.VITE_BACKEND_URL + "/trpc",
         }),
       ],
     });

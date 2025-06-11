@@ -1,9 +1,9 @@
 import { prisma } from "@repo/db";
 import moment from "moment";
 import nodemailer from "nodemailer";
-import { backendRes, getGoogleServices } from "../../helpers.ts";
-import { trpcProcedure, trpcRouter } from "../trpc.ts";
-import { actionsZodSchema } from "./schema.ts";
+import { backendRes, getGoogleServices } from "../../helpers.js";
+import { trpcProcedure, trpcRouter } from "../trpc.js";
+import { actionsZodSchema } from "./schema.js";
 
 export const actionsRoutes = trpcRouter({
   getVideoLink: trpcProcedure

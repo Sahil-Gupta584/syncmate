@@ -4,7 +4,7 @@ import {
   getOrCreateFolder,
   updateGoogleDrivePermissions,
   updateThumbnails,
-} from "@repo/trpc/helpers";
+} from "@repo/trpc";
 
 import { Worker } from "bullmq";
 import dotenv from "dotenv";

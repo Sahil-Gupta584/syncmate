@@ -1,23 +1,16 @@
 {
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "emitDeclarationOnly": true,
-    "allowImportingTsExtensions": true,
-    "composite": true,
-    "declaration": true,
-    "declarationMap": true,
-    "baseUrl": ".",
-    "paths": {
-      "@repo/lib": ["packages/lib/src/index.ts"],
-      "@repo/lib/actions": ["packages/lib/src/actions.ts"],
-      "@repo/lib/utils": ["packages/lib/src/utils.ts"],
-      "@repo/lib/constants": ["packages/lib/src/constants.ts"],
-      "@repo/lib/assets/*": ["packages/lib/src/assets/*"],
-      "@repo/trpc/*": ["../trpc2/*"]
-    }
+    "composite": false,
+    "incremental": true,
+    "target": "ES2020",
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "strict": true,
+    "moduleResolution": "bundler",
+    "outDir": "./dist",
+    "rootDir": "./src"
   },
 
-  "include": ["src", "vite-env.d.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src"]
 }

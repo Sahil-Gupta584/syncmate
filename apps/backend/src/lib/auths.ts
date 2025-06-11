@@ -1,5 +1,5 @@
 import { prisma } from "@repo/db";
-import { getGoogleServices } from "@repo/trpc/helpers";
+import { getGoogleServices } from "@repo/trpc";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import dotenv from "dotenv";

@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"nodemon --watch src --ext ts --exec tsx ./src/server.ts\" \"nodemon --watch src --ext ts --exec tsx ./src/workers/importVideoWorker.ts\" \"nodemon --watch src --ext ts --exec tsx ./src/workers/scheduleVideoWorker.ts\""
+    "dev": "concurrently \"nodemon --watch src --ext ts --exec tsx ./src/server.ts\" \"nodemon --watch src --ext ts --exec tsx ./src/workers/importVideoWorker.ts\" \"nodemon --watch src --ext ts --exec tsx ./src/workers/scheduleVideoWorker.ts\"",
+    "build": "tsc",
+    "start": "concurrently \"node dist/server.js\" \"node dist/workers/importVideoWorker.js\" \"node dist/workers/scheduleVideoWorker.js "
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@repo/trpc": "*",
-    "@repo/db": "*",
     "@trpc/server": "^11.1.2",
     "axios": "^1.9.0",
     "better-auth": "^1.2.8",
@@ -30,6 +30,9 @@
     "@types/cors": "^2.8.18",
     "@types/express": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.9",
-    "@types/multer": "^1.4.12"
+    "@types/multer": "^1.4.12",
+    "esbuild": "^0.25.5",
+    "tsc-alias": "^1.8.16",
+    "tsup": "^8.5.0"
   }
 }

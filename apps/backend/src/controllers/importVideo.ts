@@ -1,13 +1,10 @@
 import { prisma } from "@repo/db";
 import { Request, Response } from "express";
 import moment from "moment";
-import { uploadQueue } from "../queues";
+import { uploadQueue } from "../queues.js";
 
 export async function importVideo(req: Request, res: Response) {
   try {
-    console.log("body", req.body);
-    console.log("file", req.file);
-
     const { channelId, importerId, ownerId, duration } = req.body;
     let { selectedEditorEmails } = req.body;
 

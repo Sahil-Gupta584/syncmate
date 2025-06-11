@@ -1,5 +1,5 @@
 import { prisma } from "@repo/db";
-import { appRouter } from "@repo/trpc/server/router";
+import { appRouter } from "@repo/trpc";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import { toNodeHandler } from "better-auth/node";
 import cors from "cors";
@@ -8,7 +8,7 @@ import express from "express";
 import moment from "moment";
 import multer from "multer";
 import path, { dirname } from "path";
-import { validateWebhookSignature } from "razorpay/dist/utils/razorpay-utils";
+import { validateWebhookSignature } from "razorpay/dist/utils/razorpay-utils.js";
 import { fileURLToPath } from "url";
 import { importVideo } from "./controllers/importVideo.js";
 import { scheduleVideo } from "./controllers/scheduleVideo.js";
