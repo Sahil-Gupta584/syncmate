@@ -144,13 +144,14 @@ export const creatorAuth = betterAuth({
       },
     },
   },
+  secret: process.env.AUTH_SECRET!,
 });
 export const editorAuth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
   trustedOrigins: ["http://localhost:5175"],
-
+  secret: process.env.AUTH_SECRET!,
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID!,

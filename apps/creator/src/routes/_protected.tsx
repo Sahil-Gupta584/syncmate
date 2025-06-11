@@ -44,8 +44,6 @@ export default function Home() {
       pathname !== "/blocked/trial-expired" &&
       pathname !== "/checkout"
     ) {
-      console.log("changing");
-
       navigate({ to: "/blocked/trial-expired" });
       return;
     }

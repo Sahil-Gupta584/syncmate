@@ -7,12 +7,9 @@ import {
 } from "@repo/trpc";
 
 import { Worker } from "bullmq";
-import dotenv from "dotenv";
 import { createReadStream, unlink } from "fs";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-dotenv.config();
-dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

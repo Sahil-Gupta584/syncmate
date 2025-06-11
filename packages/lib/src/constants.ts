@@ -1,9 +1,3 @@
-import moment from "moment";
-
-export const defaultVideoTitle = moment()
-  .format("YYYY-MM-DD hh:mm A")
-  .replaceAll("-", "/");
-export const defaultVideoDesc = "No description added.";
 export type TRole = "CREATOR" | "EDITOR";
 export type PlanType = "TRIAL" | "BASE" | "PRO" | "GROWTH" | "ENTERPRISE";
 export type TPlan = {
@@ -20,7 +14,8 @@ export type TPlan = {
   monthlySubscriptionId: string;
   yearlySubscriptionId: string;
 };
-export const plans: TPlan[] = [
+
+export const plans = [
   {
     name: "BASE",
     price: "$9",
@@ -31,7 +26,7 @@ export const plans: TPlan[] = [
       { included: true, text: "Up to 3 editors" },
       { included: true, text: "Use your own Google Drive for storage" },
       { included: false, text: "Cloud storage included" },
-      { included: false, text: "Priority support" },
+      { included: true, text: "Priority support" },
     ],
     cta: "Get Started",
     popular: false,
@@ -47,7 +42,7 @@ export const plans: TPlan[] = [
       { included: true, text: "Up to 5 YouTube channels" },
       { included: true, text: "Up to 10 editors" },
       { included: true, text: "50GB cloud storage included" },
-      { included: true, text: "Basic analytics" },
+      // { included: true, text: "Basic analytics" },
       { included: false, text: "Priority support" },
     ],
     cta: "Get Started",
@@ -64,7 +59,7 @@ export const plans: TPlan[] = [
       { included: true, text: "Up to 10 YouTube channels" },
       { included: true, text: "Up to 20 editors" },
       { included: true, text: "200GB cloud storage included" },
-      { included: true, text: "Advanced analytics" },
+      // { included: true, text: "Advanced analytics" },
       { included: true, text: "Priority support" },
     ],
     cta: "Get Started",

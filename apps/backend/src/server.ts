@@ -14,7 +14,7 @@ import { importVideo } from "./controllers/importVideo.js";
 import { scheduleVideo } from "./controllers/scheduleVideo.js";
 import { creatorAuth, editorAuth } from "./lib/auths.js";
 
-dotenv.config();
+dotenv.config({ path: "../../../" });
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

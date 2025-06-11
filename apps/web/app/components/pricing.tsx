@@ -209,7 +209,7 @@ export default function Pricing() {
                   </ul>
 
                   <Link
-                    href={`${process.env.NEXT_PUBLIC_CREATOR_BASE_URL}/checkout?planType=${plan.name}`}
+                    href={`${process.env.VITE_CREATOR_BASE_URL}/checkout?planType=${plan.name}`}
                     className="w-full"
                   >
                     <Button
