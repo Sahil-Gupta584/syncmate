@@ -10,159 +10,159 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as AuthImport } from './routes/auth'
-import { Route as ProtectedImport } from './routes/_protected'
-import { Route as ProtectedIndexImport } from './routes/_protected/index'
-import { Route as ProtectedVideoVideoIdIndexImport } from './routes/_protected/video/$videoId/index'
-import { Route as ProtectedInviteInviteIdIndexImport } from './routes/_protected/invite/$inviteId/index'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as AuthImport } from "./routes/auth";
+import { Route as ProtectedImport } from "./routes/_protected";
+import { Route as ProtectedIndexImport } from "./routes/_protected/index";
+import { Route as ProtectedVideoVideoIdIndexImport } from "./routes/_protected/video/$videoId/index";
+import { Route as ProtectedInviteInviteIdIndexImport } from "./routes/_protected/invite/$inviteId/index";
 
 // Create/Update Routes
 
 const AuthRoute = AuthImport.update({
-  id: '/auth',
-  path: '/auth',
+  id: "/auth",
+  path: "/auth",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ProtectedRoute = ProtectedImport.update({
-  id: '/_protected',
+  id: "/_protected",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ProtectedIndexRoute = ProtectedIndexImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => ProtectedRoute,
-} as any)
+} as any);
 
 const ProtectedVideoVideoIdIndexRoute = ProtectedVideoVideoIdIndexImport.update(
   {
-    id: '/video/$videoId/',
-    path: '/video/$videoId/',
+    id: "/video/$videoId/",
+    path: "/video/$videoId/",
     getParentRoute: () => ProtectedRoute,
   } as any,
-)
+);
 
 const ProtectedInviteInviteIdIndexRoute =
   ProtectedInviteInviteIdIndexImport.update({
-    id: '/invite/$inviteId/',
-    path: '/invite/$inviteId/',
+    id: "/invite/$inviteId/",
+    path: "/invite/$inviteId/",
     getParentRoute: () => ProtectedRoute,
-  } as any)
+  } as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/_protected': {
-      id: '/_protected'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof ProtectedImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthImport
-      parentRoute: typeof rootRoute
-    }
-    '/_protected/': {
-      id: '/_protected/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof ProtectedIndexImport
-      parentRoute: typeof ProtectedImport
-    }
-    '/_protected/invite/$inviteId/': {
-      id: '/_protected/invite/$inviteId/'
-      path: '/invite/$inviteId'
-      fullPath: '/invite/$inviteId'
-      preLoaderRoute: typeof ProtectedInviteInviteIdIndexImport
-      parentRoute: typeof ProtectedImport
-    }
-    '/_protected/video/$videoId/': {
-      id: '/_protected/video/$videoId/'
-      path: '/video/$videoId'
-      fullPath: '/video/$videoId'
-      preLoaderRoute: typeof ProtectedVideoVideoIdIndexImport
-      parentRoute: typeof ProtectedImport
-    }
+    "/_protected": {
+      id: "/_protected";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof ProtectedImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/auth": {
+      id: "/auth";
+      path: "/auth";
+      fullPath: "/auth";
+      preLoaderRoute: typeof AuthImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/_protected/": {
+      id: "/_protected/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof ProtectedIndexImport;
+      parentRoute: typeof ProtectedImport;
+    };
+    "/_protected/invite/$inviteId/": {
+      id: "/_protected/invite/$inviteId/";
+      path: "/invite/$inviteId";
+      fullPath: "/invite/$inviteId";
+      preLoaderRoute: typeof ProtectedInviteInviteIdIndexImport;
+      parentRoute: typeof ProtectedImport;
+    };
+    "/_protected/video/$videoId/": {
+      id: "/_protected/video/$videoId/";
+      path: "/video/$videoId";
+      fullPath: "/video/$videoId";
+      preLoaderRoute: typeof ProtectedVideoVideoIdIndexImport;
+      parentRoute: typeof ProtectedImport;
+    };
   }
 }
 
 // Create and export the route tree
 
 interface ProtectedRouteChildren {
-  ProtectedIndexRoute: typeof ProtectedIndexRoute
-  ProtectedInviteInviteIdIndexRoute: typeof ProtectedInviteInviteIdIndexRoute
-  ProtectedVideoVideoIdIndexRoute: typeof ProtectedVideoVideoIdIndexRoute
+  ProtectedIndexRoute: typeof ProtectedIndexRoute;
+  ProtectedInviteInviteIdIndexRoute: typeof ProtectedInviteInviteIdIndexRoute;
+  ProtectedVideoVideoIdIndexRoute: typeof ProtectedVideoVideoIdIndexRoute;
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedIndexRoute: ProtectedIndexRoute,
   ProtectedInviteInviteIdIndexRoute: ProtectedInviteInviteIdIndexRoute,
   ProtectedVideoVideoIdIndexRoute: ProtectedVideoVideoIdIndexRoute,
-}
+};
 
 const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
   ProtectedRouteChildren,
-)
+);
 
 export interface FileRoutesByFullPath {
-  '': typeof ProtectedRouteWithChildren
-  '/auth': typeof AuthRoute
-  '/': typeof ProtectedIndexRoute
-  '/invite/$inviteId': typeof ProtectedInviteInviteIdIndexRoute
-  '/video/$videoId': typeof ProtectedVideoVideoIdIndexRoute
+  "": typeof ProtectedRouteWithChildren;
+  "/auth": typeof AuthRoute;
+  "/": typeof ProtectedIndexRoute;
+  "/invite/$inviteId": typeof ProtectedInviteInviteIdIndexRoute;
+  "/video/$videoId": typeof ProtectedVideoVideoIdIndexRoute;
 }
 
 export interface FileRoutesByTo {
-  '/auth': typeof AuthRoute
-  '/': typeof ProtectedIndexRoute
-  '/invite/$inviteId': typeof ProtectedInviteInviteIdIndexRoute
-  '/video/$videoId': typeof ProtectedVideoVideoIdIndexRoute
+  "/auth": typeof AuthRoute;
+  "/": typeof ProtectedIndexRoute;
+  "/invite/$inviteId": typeof ProtectedInviteInviteIdIndexRoute;
+  "/video/$videoId": typeof ProtectedVideoVideoIdIndexRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/_protected': typeof ProtectedRouteWithChildren
-  '/auth': typeof AuthRoute
-  '/_protected/': typeof ProtectedIndexRoute
-  '/_protected/invite/$inviteId/': typeof ProtectedInviteInviteIdIndexRoute
-  '/_protected/video/$videoId/': typeof ProtectedVideoVideoIdIndexRoute
+  __root__: typeof rootRoute;
+  "/_protected": typeof ProtectedRouteWithChildren;
+  "/auth": typeof AuthRoute;
+  "/_protected/": typeof ProtectedIndexRoute;
+  "/_protected/invite/$inviteId/": typeof ProtectedInviteInviteIdIndexRoute;
+  "/_protected/video/$videoId/": typeof ProtectedVideoVideoIdIndexRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/auth' | '/' | '/invite/$inviteId' | '/video/$videoId'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/auth' | '/' | '/invite/$inviteId' | '/video/$videoId'
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: "" | "/auth" | "/" | "/invite/$inviteId" | "/video/$videoId";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/auth" | "/" | "/invite/$inviteId" | "/video/$videoId";
   id:
-    | '__root__'
-    | '/_protected'
-    | '/auth'
-    | '/_protected/'
-    | '/_protected/invite/$inviteId/'
-    | '/_protected/video/$videoId/'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/_protected"
+    | "/auth"
+    | "/_protected/"
+    | "/_protected/invite/$inviteId/"
+    | "/_protected/video/$videoId/";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  ProtectedRoute: typeof ProtectedRouteWithChildren
-  AuthRoute: typeof AuthRoute
+  ProtectedRoute: typeof ProtectedRouteWithChildren;
+  AuthRoute: typeof AuthRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   ProtectedRoute: ProtectedRouteWithChildren,
   AuthRoute: AuthRoute,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {

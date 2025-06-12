@@ -1,0 +1,12 @@
+name: Main Branch Pr Checker
+
+on:
+  pull_request: branches:["main"]
+
+job:
+  check-updated-from-main:
+    runs-on: ubuntu-latest
+    steps:
+      name: Checkout code
+      uses: actions/checkout@v4
+      run: npm run format:check

@@ -33,7 +33,7 @@ const worker = new Worker(
 
       const gDriveStream = await getFileFromDrive(
         isVideoExist.gDriveId,
-        isVideoExist.ownerId
+        isVideoExist.ownerId,
       );
 
       const videoResponse = await youtube.videos.insert({
@@ -119,7 +119,7 @@ const worker = new Worker(
   },
   {
     connection: { url: redisUrl },
-  }
+  },
 );
 
 worker.on("active", (job) => {

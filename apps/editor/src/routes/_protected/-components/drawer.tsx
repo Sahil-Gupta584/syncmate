@@ -22,7 +22,7 @@ export default function DrawerComponent() {
     },
     {
       enabled: !!user,
-    }
+    },
   );
   const creators =
     getCreatorsQuery.data && getCreatorsQuery.data.result?.creators;
@@ -109,7 +109,7 @@ export default function DrawerComponent() {
                             <div className="h-[1px] bg-gray-300 w-full my-4" />
                           )}
                         </div>
-                      )
+                      ),
                     )}
                 </div>
               </DrawerBody>

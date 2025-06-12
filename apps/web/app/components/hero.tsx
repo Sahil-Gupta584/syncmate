@@ -13,7 +13,7 @@ export default function Hero() {
         <div className="absolute -top-40 -right-32 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-40 -left-32 w-80 h-80 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"></div>
       </div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
           <motion.div
@@ -23,7 +23,7 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
           >
             {/* Trust indicator */}
-            <motion.div 
+            <motion.div
               className="inline-flex items-center bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-4 py-2 rounded-full text-sm font-medium mb-6"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -43,18 +43,22 @@ export default function Hero() {
                 Nightmare
               </span>
             </h1>
-            
+
             <p className="mt-6 text-xl text-gray-600 dark:text-gray-300 max-w-3xl leading-relaxed">
-              The <strong>first collaboration platform</strong> built specifically for content creators. 
-              Upload once, collaborate seamlessly, publish directly to YouTube. 
-              <span className="text-primary font-semibold">No more file chaos.</span>
+              The <strong>first collaboration platform</strong> built
+              specifically for content creators. Upload once, collaborate
+              seamlessly, publish directly to YouTube.
+              <span className="text-primary font-semibold">
+                No more file chaos.
+              </span>
             </p>
 
             {/* Pain point callout */}
             <div className="mt-6 p-4 bg-red-50 dark:bg-red-900/20 border-l-4 border-red-400 rounded-r-lg">
               <p className="text-red-700 dark:text-red-300 text-sm">
-                <strong>Tired of:</strong> Google Drive links, WhatsApp file sharing, endless downloads, 
-                version confusion, and manual YouTube uploads?
+                <strong>Tired of:</strong> Google Drive links, WhatsApp file
+                sharing, endless downloads, version confusion, and manual
+                YouTube uploads?
               </p>
             </div>
 
@@ -113,15 +117,15 @@ export default function Hero() {
           >
             <div className="relative">
               {/* Floating elements */}
-              <motion.div 
+              <motion.div
                 className="absolute -top-4 -left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg z-10"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
                 ✅ No Downloads
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="absolute -top-4 -right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg z-10"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
@@ -149,12 +153,13 @@ export default function Hero() {
                         See Syncmate in Action
                       </h3>
                       <p className="text-white/90 drop-shadow font-medium">
-                        Watch how creators are saving 5+ hours per video with our streamlined workflow
+                        Watch how creators are saving 5+ hours per video with
+                        our streamlined workflow
                       </p>
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="p-8 bg-white dark:bg-gray-800 relative">
                   <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full p-4 shadow-lg">
                     <svg
@@ -176,26 +181,33 @@ export default function Hero() {
                     Upload → Collaborate → Publish
                   </h3>
                   <p className="text-center text-gray-600 dark:text-gray-300 mt-2">
-                    The only platform that connects your entire video workflow in one place
+                    The only platform that connects your entire video workflow
+                    in one place
                   </p>
-                  
+
                   {/* Mini workflow steps */}
                   <div className="flex justify-center space-x-4 mt-6">
                     <div className="text-center">
                       <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-1">
-                        <span className="text-blue-600 dark:text-blue-400 text-sm font-bold">1</span>
+                        <span className="text-blue-600 dark:text-blue-400 text-sm font-bold">
+                          1
+                        </span>
                       </div>
                       <span className="text-xs text-gray-500">Upload</span>
                     </div>
                     <div className="text-center">
                       <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-1">
-                        <span className="text-purple-600 dark:text-purple-400 text-sm font-bold">2</span>
+                        <span className="text-purple-600 dark:text-purple-400 text-sm font-bold">
+                          2
+                        </span>
                       </div>
                       <span className="text-xs text-gray-500">Edit</span>
                     </div>
                     <div className="text-center">
                       <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-1">
-                        <span className="text-green-600 dark:text-green-400 text-sm font-bold">3</span>
+                        <span className="text-green-600 dark:text-green-400 text-sm font-bold">
+                          3
+                        </span>
                       </div>
                       <span className="text-xs text-gray-500">Publish</span>
                     </div>
@@ -204,7 +216,7 @@ export default function Hero() {
               </div>
 
               {/* Floating testimonial */}
-              <motion.div 
+              <motion.div
                 className="absolute -bottom-6 -left-6 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 max-w-xs"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -215,7 +227,9 @@ export default function Hero() {
                 </p>
                 <div className="flex items-center mt-2">
                   <div className="w-6 h-6 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-2"></div>
-                  <span className="text-xs font-medium text-gray-500">Tech Creator, 2M subs</span>
+                  <span className="text-xs font-medium text-gray-500">
+                    Tech Creator, 2M subs
+                  </span>
                 </div>
               </motion.div>
             </div>

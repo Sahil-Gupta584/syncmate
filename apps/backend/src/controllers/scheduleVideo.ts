@@ -19,7 +19,7 @@ export async function scheduleVideo(req: Request, res: Response) {
         scheduleAt,
         isPublishNow,
       },
-      { jobId: req.params.videoId }
+      { jobId: req.params.videoId },
     );
     console.log("job", jobRes.id, "added");
     await prisma.video.update({

@@ -30,7 +30,7 @@ export async function UploadImgGetUrl({ imgFile }: { imgFile: File }) {
 
     const res = await axios.post(
       "https://api.imgbb.com/1/upload?key=b10b7ca5ecd048d6a0ed9f9751cebbdc",
-      form
+      form,
     );
 
     return {

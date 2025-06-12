@@ -1,5 +1,10 @@
 import { motion } from "framer-motion";
-import { FaArrowRight, FaCheckCircle, FaClock, FaExclamationTriangle } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaCheckCircle,
+  FaClock,
+  FaExclamationTriangle,
+} from "react-icons/fa";
 
 const painPoints = [
   { text: "Record and download the video", icon: "📹", time: "5 min" },
@@ -13,33 +18,57 @@ const painPoints = [
 const ourSolution = [
   { text: "Upload video to your workspace", icon: "🚀", time: "2 min" },
   { text: "Assign editor(s) with one click", icon: "👥", time: "10 sec" },
-  { text: "Editor downloads and re-uploads edited version", icon: "⚡", time: "5 min" },
+  {
+    text: "Editor downloads and re-uploads edited version",
+    icon: "⚡",
+    time: "5 min",
+  },
   { text: "You review and approve", icon: "👀", time: "5 min" },
   { text: "Directly publish to YouTube", icon: "🎯", time: "30 sec" },
 ];
 
 const stats = [
-  { value: "Hours", label: "Saved per video", color: "from-green-400 to-green-600" },
-  { value: "80%", label: "Faster publishing", color: "from-blue-400 to-blue-600" },
-  { value: "Zero", label: "File management stress", color: "from-purple-400 to-purple-600" },
+  {
+    value: "Hours",
+    label: "Saved per video",
+    color: "from-green-400 to-green-600",
+  },
+  {
+    value: "80%",
+    label: "Faster publishing",
+    color: "from-blue-400 to-blue-600",
+  },
+  {
+    value: "Zero",
+    label: "File management stress",
+    color: "from-purple-400 to-purple-600",
+  },
 ];
 
 export default function WhyUs() {
   const oldWorkflowTime = painPoints.reduce((total, point) => {
-    const minutes = parseInt(point.time.split(' ')[0]) * (point.time.includes('hour') ? 60 : 1);
+    const minutes =
+      parseInt(point.time.split(" ")[0]) *
+      (point.time.includes("hour") ? 60 : 1);
     return total + minutes;
   }, 0);
 
   const newWorkflowTime = ourSolution.reduce((total, point) => {
-    const timeStr = point.time.split(' ')[0];
-    const minutes = timeStr === '10' && point.time.includes('sec') ? 0.17 : 
-                   timeStr === '30' && point.time.includes('sec') ? 0.5 : 
-                   parseInt(timeStr);
+    const timeStr = point.time.split(" ")[0];
+    const minutes =
+      timeStr === "10" && point.time.includes("sec")
+        ? 0.17
+        : timeStr === "30" && point.time.includes("sec")
+          ? 0.5
+          : parseInt(timeStr);
     return total + minutes;
   }, 0);
 
   return (
-    <section id="whyUs" className="bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-20 px-4 md:px-20">
+    <section
+      id="whyUs"
+      className="bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-20 px-4 md:px-20"
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -59,11 +88,10 @@ export default function WhyUs() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            See exactly how we transform the chaotic creator workflow into a streamlined, 
-            professional collaboration experience
+            See exactly how we transform the chaotic creator workflow into a
+            streamlined, professional collaboration experience
           </p>
         </motion.div>
-        
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Old Workflow */}
@@ -83,7 +111,7 @@ export default function WhyUs() {
                   What every creator deals with daily...
                 </p>
               </div>
-              
+
               <div className="space-y-4">
                 {painPoints.map((point, i) => (
                   <motion.div
@@ -96,17 +124,22 @@ export default function WhyUs() {
                   >
                     <div className="text-2xl">{point.icon}</div>
                     <div className="flex-1">
-                      <p className="text-gray-700 dark:text-gray-300 font-medium">{point.text}</p>
-                      <span className="text-red-500 text-sm font-semibold">⏱️ {point.time}</span>
+                      <p className="text-gray-700 dark:text-gray-300 font-medium">
+                        {point.text}
+                      </p>
+                      <span className="text-red-500 text-sm font-semibold">
+                        ⏱️ {point.time}
+                      </span>
                     </div>
                     <FaArrowRight className="text-red-400 mt-2 flex-shrink-0" />
                   </motion.div>
                 ))}
               </div>
-              
+
               <div className="mt-6 p-4 bg-red-100 dark:bg-red-900/40 rounded-lg border border-red-300 dark:border-red-700">
                 <p className="text-red-800 dark:text-red-200 font-semibold text-center">
-                  😩 Result: Stressed creators, confused editors, missed deadlines
+                  😩 Result: Stressed creators, confused editors, missed
+                  deadlines
                 </p>
               </div>
             </div>
@@ -129,7 +162,7 @@ export default function WhyUs() {
                   How successful creators work now...
                 </p>
               </div>
-              
+
               <div className="space-y-4">
                 {ourSolution.map((point, i) => (
                   <motion.div
@@ -142,17 +175,22 @@ export default function WhyUs() {
                   >
                     <div className="text-2xl">{point.icon}</div>
                     <div className="flex-1">
-                      <p className="text-gray-700 dark:text-gray-300 font-medium">{point.text}</p>
-                      <span className="text-green-500 text-sm font-semibold">⚡ {point.time}</span>
+                      <p className="text-gray-700 dark:text-gray-300 font-medium">
+                        {point.text}
+                      </p>
+                      <span className="text-green-500 text-sm font-semibold">
+                        ⚡ {point.time}
+                      </span>
                     </div>
                     <FaCheckCircle className="text-green-400 mt-2 flex-shrink-0" />
                   </motion.div>
                 ))}
               </div>
-              
+
               <div className="mt-6 p-4 bg-green-100 dark:bg-green-900/40 rounded-lg border border-green-300 dark:border-green-700">
                 <p className="text-green-800 dark:text-green-200 font-semibold text-center">
-                  🚀 Result: Happy creators, efficient editors, consistent uploads
+                  🚀 Result: Happy creators, efficient editors, consistent
+                  uploads
                 </p>
               </div>
             </div>
@@ -175,7 +213,7 @@ export default function WhyUs() {
                 Real results from creators who made the switch
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-3 gap-8">
               {stats.map((stat, index) => (
                 <motion.div
@@ -186,17 +224,20 @@ export default function WhyUs() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div className={`text-4xl font-bold mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                  <div
+                    className={`text-4xl font-bold mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}
+                  >
                     {stat.value}
                   </div>
                   <div className="text-blue-100 font-medium">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
-            
+
             <div className="text-center mt-8">
               <p className="text-blue-100 text-lg">
-                <strong>Join 500+ creators</strong> who've already transformed their workflow
+                <strong>Join 500+ creators</strong> who've already transformed
+                their workflow
               </p>
             </div>
           </div>

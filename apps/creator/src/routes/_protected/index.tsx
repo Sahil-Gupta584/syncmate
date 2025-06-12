@@ -24,7 +24,7 @@ function VideosPage() {
   async function handleDeleteVideo(
     e: React.FormEvent<HTMLFormElement>,
     onClose: () => void,
-    videoId: string
+    videoId: string,
   ) {
     try {
       e.preventDefault();

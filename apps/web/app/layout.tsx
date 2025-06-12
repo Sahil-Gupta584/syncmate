@@ -15,7 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Syncmate - Stop the Download-Upload Nightmare",
-  description: "The first collaboration platform built specifically for content creators. Upload once, collaborate seamlessly, publish directly to YouTube.No more file chaos.",
+  description:
+    "The first collaboration platform built specifically for content creators. Upload once, collaborate seamlessly, publish directly to YouTube.No more file chaos.",
 };
 
 export default function RootLayout({
@@ -24,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" >
+    <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Providers>{children}</Providers>
       </body>

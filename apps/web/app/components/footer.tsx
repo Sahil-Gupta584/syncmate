@@ -1,5 +1,11 @@
 import { Divider } from "@heroui/react";
-import { FaInstagram, FaLinkedin, FaTwitter, FaYoutube, FaHeart } from "react-icons/fa";
+import {
+  FaInstagram,
+  FaLinkedin,
+  FaTwitter,
+  FaYoutube,
+  FaHeart,
+} from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -11,7 +17,7 @@ export default function Footer() {
               Syncmate
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
-              The collaboration platform that content creators actually love. 
+              The collaboration platform that content creators actually love.
               Stop the file chaos, start creating more.
             </p>
             <div className="flex space-x-4">
@@ -45,11 +51,9 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          
+
           <div>
-            <h3 className="font-semibold mb-4 text-white">
-              For Creators
-            </h3>
+            <h3 className="font-semibold mb-4 text-white">For Creators</h3>
             <ul className="space-y-3">
               <li>
                 <a
@@ -85,11 +89,9 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          
+
           <div>
-            <h3 className="font-semibold mb-4 text-white">
-              Support
-            </h3>
+            <h3 className="font-semibold mb-4 text-white">Support</h3>
             <ul className="space-y-3">
               <li>
                 <a
@@ -126,14 +128,14 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        
+
         <Divider className="my-8 bg-gray-700" />
-        
+
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="text-gray-400 text-sm mb-4 md:mb-0">
             <p>© {new Date().getFullYear()} Syncmate. All rights reserved.</p>
           </div>
-          
+
           <div className="flex space-x-6 text-sm">
             <a
               href="/privacy-policy"
@@ -155,10 +157,11 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        
+
         <div className="mt-8 text-center">
           <p className="text-gray-400 text-sm flex items-center justify-center">
-            Made with <FaHeart className="text-red-500 mx-1" /> for content creators worldwide
+            Made with <FaHeart className="text-red-500 mx-1" /> for content
+            creators worldwide
           </p>
         </div>
       </div>

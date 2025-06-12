@@ -71,11 +71,11 @@ export const creatorAuth = betterAuth({
           if (account.accessToken && account.refreshToken) {
             account.accessToken = jwt.sign(
               account.accessToken,
-              process.env.AUTH_SECRET!
+              process.env.AUTH_SECRET!,
             );
             account.refreshToken = jwt.sign(
               account.refreshToken,
-              process.env.AUTH_SECRET!
+              process.env.AUTH_SECRET!,
             );
           }
           return { data: account };
@@ -84,7 +84,7 @@ export const creatorAuth = betterAuth({
           try {
             console.log(
               "Account:",
-              JSON.stringify({ userId, refreshToken, accessToken })
+              JSON.stringify({ userId, refreshToken, accessToken }),
             );
 
             if (!refreshToken) {
@@ -94,7 +94,7 @@ export const creatorAuth = betterAuth({
             const { result, error } = await getGoogleServices(userId);
             if (!result) {
               throw new Error(
-                "Failed to get Google services: " + error?.message
+                "Failed to get Google services: " + error?.message,
               );
             }
             const { youtube } = result;
@@ -136,11 +136,11 @@ export const creatorAuth = betterAuth({
           if (account.accessToken && account.refreshToken) {
             account.accessToken = jwt.sign(
               account.accessToken,
-              process.env.AUTH_SECRET!
+              process.env.AUTH_SECRET!,
             );
             account.refreshToken = jwt.sign(
               account.refreshToken,
-              process.env.AUTH_SECRET!
+              process.env.AUTH_SECRET!,
             );
           }
           return { data: account };

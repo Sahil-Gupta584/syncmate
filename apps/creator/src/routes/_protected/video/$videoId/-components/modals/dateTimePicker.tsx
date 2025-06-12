@@ -88,7 +88,7 @@ export function DateTimePicker({ isEditing, videoDetails }: TDateTimePicker) {
           if (videoDetails.scheduledAt) {
             setValue(
               "scheduledAt",
-              moment.unix(videoDetails.scheduledAt).format("YYYY-MM-DDTHH:mm")
+              moment.unix(videoDetails.scheduledAt).format("YYYY-MM-DDTHH:mm"),
             );
           }
           onOpen();

@@ -33,7 +33,7 @@ const worker = new Worker(
       const { drive } = result;
       const folderId = await getOrCreateFolder(drive, "Syncly");
       const stream = createReadStream(
-        path.join(__dirname, "../../uploads", fileName)
+        path.join(__dirname, "../../uploads", fileName),
       );
       console.log("Uploading to drive...");
 
@@ -86,7 +86,7 @@ const worker = new Worker(
     connection: {
       url: redisUrl,
     },
-  }
+  },
 );
 worker.on("active", (job) => {
   console.log(`Upload Job ${job.id} active`);

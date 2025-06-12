@@ -60,7 +60,7 @@ export default function ImportVideo({
       formData.append("duration", duration);
       formData.append(
         "selectedEditorEmails",
-        JSON.stringify([userDetails.email])
+        JSON.stringify([userDetails.email]),
       );
       const res = await axiosInstance.post(`/import-video`, formData);
 

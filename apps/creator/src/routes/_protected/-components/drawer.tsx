@@ -37,7 +37,7 @@ export default function DrawerComponent() {
     },
     {
       enabled: !!user,
-    }
+    },
   );
   type TData = TBackendOutput["db"]["getUserWithEditors"]["result"];
   const userDetails: TData = userDetailsQuery.data?.result;
@@ -161,7 +161,7 @@ export default function DrawerComponent() {
                                     />
                                   </div>
                                 );
-                              }
+                              },
                             )}
                         </div>
                       </AccordionItem>

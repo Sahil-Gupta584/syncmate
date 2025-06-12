@@ -16,10 +16,6 @@ import { creatorAuth, editorAuth } from "./lib/auths.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 dotenv.config({ path: resolve(__dirname, "../../../.env") });
-console.log(
-  "process.env.VITE_CREATOR_BASE_URL",
-  process.env.VITE_CREATOR_BASE_URL
-);
 
 const storage = multer.diskStorage({
   destination: path.join(__dirname, "../uploads"),
@@ -38,7 +34,7 @@ app.use(
       process.env.VITE_EDITOR_BASE_URL!,
     ],
     credentials: true,
-  })
+  }),
 );
 
 app.use((req, res, next) => {
@@ -59,7 +55,7 @@ app.post("/api/webhook", express.raw({ type: "*/*" }), async (req, res) => {
     const isValid = validateWebhookSignature(
       rawBody.toString(),
       signature! as string,
-      process.env.RAZORPAY_WEBHOOK_SECRET!
+      process.env.RAZORPAY_WEBHOOK_SECRET!,
     );
     console.log({ isValid });
 
@@ -143,7 +139,7 @@ app.use(
   trpcExpress.createExpressMiddleware({
     router: appRouter,
     createContext: () => ({}),
-  })
+  }),
 );
 
 app.post("/api/import-video", upload.single("videoFile"), importVideo);
@@ -175,7 +171,7 @@ app.post("/api/isPaymentActive", async (req, res) => {
 app.get("/api/getAuthUrl", async (req, res) => {
   try {
     const clientId = process.env.GOOGLE_CLIENT_ID;
-    console.log("VITE_CREATOR_BASE_URL", process.env.VITE_CREATOR_BASE_URL);
+
     const redirectUri = `${process.env.VITE_CREATOR_BASE_URL}/addChannel`;
     if (!clientId) {
       throw new Error("GOOGLE_CLIENT_ID is not defined");
@@ -196,5 +192,5 @@ app.get("/api/getAuthUrl", async (req, res) => {
 });
 
 app.listen(3000, () =>
-  console.log("Server is running on http://localhost:3000")
+  console.log("Server is running on http://localhost:3000"),
 );

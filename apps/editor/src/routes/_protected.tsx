@@ -32,7 +32,6 @@ export default function Home() {
       navigate({ to: "/" });
       return;
     }
-
   }, [isPending, data, pathname]);
 
   return (

@@ -10,141 +10,141 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as AuthImport } from './routes/auth'
-import { Route as ProtectedImport } from './routes/_protected'
-import { Route as ProtectedIndexImport } from './routes/_protected/index'
-import { Route as ProtectedCheckoutImport } from './routes/_protected/checkout'
-import { Route as ProtectedAddChannelIndexImport } from './routes/_protected/addChannel/index'
-import { Route as ProtectedVideoVideoIdIndexImport } from './routes/_protected/video/$videoId/index'
-import { Route as ProtectedBlockedTrialExpiredIndexImport } from './routes/_protected/blocked/trial-expired/index'
-import { Route as ProtectedBlockedPaymentFailedIndexImport } from './routes/_protected/blocked/payment-failed/index'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as AuthImport } from "./routes/auth";
+import { Route as ProtectedImport } from "./routes/_protected";
+import { Route as ProtectedIndexImport } from "./routes/_protected/index";
+import { Route as ProtectedCheckoutImport } from "./routes/_protected/checkout";
+import { Route as ProtectedAddChannelIndexImport } from "./routes/_protected/addChannel/index";
+import { Route as ProtectedVideoVideoIdIndexImport } from "./routes/_protected/video/$videoId/index";
+import { Route as ProtectedBlockedTrialExpiredIndexImport } from "./routes/_protected/blocked/trial-expired/index";
+import { Route as ProtectedBlockedPaymentFailedIndexImport } from "./routes/_protected/blocked/payment-failed/index";
 
 // Create/Update Routes
 
 const AuthRoute = AuthImport.update({
-  id: '/auth',
-  path: '/auth',
+  id: "/auth",
+  path: "/auth",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ProtectedRoute = ProtectedImport.update({
-  id: '/_protected',
+  id: "/_protected",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ProtectedIndexRoute = ProtectedIndexImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => ProtectedRoute,
-} as any)
+} as any);
 
 const ProtectedCheckoutRoute = ProtectedCheckoutImport.update({
-  id: '/checkout',
-  path: '/checkout',
+  id: "/checkout",
+  path: "/checkout",
   getParentRoute: () => ProtectedRoute,
-} as any)
+} as any);
 
 const ProtectedAddChannelIndexRoute = ProtectedAddChannelIndexImport.update({
-  id: '/addChannel/',
-  path: '/addChannel/',
+  id: "/addChannel/",
+  path: "/addChannel/",
   getParentRoute: () => ProtectedRoute,
-} as any)
+} as any);
 
 const ProtectedVideoVideoIdIndexRoute = ProtectedVideoVideoIdIndexImport.update(
   {
-    id: '/video/$videoId/',
-    path: '/video/$videoId/',
+    id: "/video/$videoId/",
+    path: "/video/$videoId/",
     getParentRoute: () => ProtectedRoute,
   } as any,
-)
+);
 
 const ProtectedBlockedTrialExpiredIndexRoute =
   ProtectedBlockedTrialExpiredIndexImport.update({
-    id: '/blocked/trial-expired/',
-    path: '/blocked/trial-expired/',
+    id: "/blocked/trial-expired/",
+    path: "/blocked/trial-expired/",
     getParentRoute: () => ProtectedRoute,
-  } as any)
+  } as any);
 
 const ProtectedBlockedPaymentFailedIndexRoute =
   ProtectedBlockedPaymentFailedIndexImport.update({
-    id: '/blocked/payment-failed/',
-    path: '/blocked/payment-failed/',
+    id: "/blocked/payment-failed/",
+    path: "/blocked/payment-failed/",
     getParentRoute: () => ProtectedRoute,
-  } as any)
+  } as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/_protected': {
-      id: '/_protected'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof ProtectedImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthImport
-      parentRoute: typeof rootRoute
-    }
-    '/_protected/checkout': {
-      id: '/_protected/checkout'
-      path: '/checkout'
-      fullPath: '/checkout'
-      preLoaderRoute: typeof ProtectedCheckoutImport
-      parentRoute: typeof ProtectedImport
-    }
-    '/_protected/': {
-      id: '/_protected/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof ProtectedIndexImport
-      parentRoute: typeof ProtectedImport
-    }
-    '/_protected/addChannel/': {
-      id: '/_protected/addChannel/'
-      path: '/addChannel'
-      fullPath: '/addChannel'
-      preLoaderRoute: typeof ProtectedAddChannelIndexImport
-      parentRoute: typeof ProtectedImport
-    }
-    '/_protected/blocked/payment-failed/': {
-      id: '/_protected/blocked/payment-failed/'
-      path: '/blocked/payment-failed'
-      fullPath: '/blocked/payment-failed'
-      preLoaderRoute: typeof ProtectedBlockedPaymentFailedIndexImport
-      parentRoute: typeof ProtectedImport
-    }
-    '/_protected/blocked/trial-expired/': {
-      id: '/_protected/blocked/trial-expired/'
-      path: '/blocked/trial-expired'
-      fullPath: '/blocked/trial-expired'
-      preLoaderRoute: typeof ProtectedBlockedTrialExpiredIndexImport
-      parentRoute: typeof ProtectedImport
-    }
-    '/_protected/video/$videoId/': {
-      id: '/_protected/video/$videoId/'
-      path: '/video/$videoId'
-      fullPath: '/video/$videoId'
-      preLoaderRoute: typeof ProtectedVideoVideoIdIndexImport
-      parentRoute: typeof ProtectedImport
-    }
+    "/_protected": {
+      id: "/_protected";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof ProtectedImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/auth": {
+      id: "/auth";
+      path: "/auth";
+      fullPath: "/auth";
+      preLoaderRoute: typeof AuthImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/_protected/checkout": {
+      id: "/_protected/checkout";
+      path: "/checkout";
+      fullPath: "/checkout";
+      preLoaderRoute: typeof ProtectedCheckoutImport;
+      parentRoute: typeof ProtectedImport;
+    };
+    "/_protected/": {
+      id: "/_protected/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof ProtectedIndexImport;
+      parentRoute: typeof ProtectedImport;
+    };
+    "/_protected/addChannel/": {
+      id: "/_protected/addChannel/";
+      path: "/addChannel";
+      fullPath: "/addChannel";
+      preLoaderRoute: typeof ProtectedAddChannelIndexImport;
+      parentRoute: typeof ProtectedImport;
+    };
+    "/_protected/blocked/payment-failed/": {
+      id: "/_protected/blocked/payment-failed/";
+      path: "/blocked/payment-failed";
+      fullPath: "/blocked/payment-failed";
+      preLoaderRoute: typeof ProtectedBlockedPaymentFailedIndexImport;
+      parentRoute: typeof ProtectedImport;
+    };
+    "/_protected/blocked/trial-expired/": {
+      id: "/_protected/blocked/trial-expired/";
+      path: "/blocked/trial-expired";
+      fullPath: "/blocked/trial-expired";
+      preLoaderRoute: typeof ProtectedBlockedTrialExpiredIndexImport;
+      parentRoute: typeof ProtectedImport;
+    };
+    "/_protected/video/$videoId/": {
+      id: "/_protected/video/$videoId/";
+      path: "/video/$videoId";
+      fullPath: "/video/$videoId";
+      preLoaderRoute: typeof ProtectedVideoVideoIdIndexImport;
+      parentRoute: typeof ProtectedImport;
+    };
   }
 }
 
 // Create and export the route tree
 
 interface ProtectedRouteChildren {
-  ProtectedCheckoutRoute: typeof ProtectedCheckoutRoute
-  ProtectedIndexRoute: typeof ProtectedIndexRoute
-  ProtectedAddChannelIndexRoute: typeof ProtectedAddChannelIndexRoute
-  ProtectedBlockedPaymentFailedIndexRoute: typeof ProtectedBlockedPaymentFailedIndexRoute
-  ProtectedBlockedTrialExpiredIndexRoute: typeof ProtectedBlockedTrialExpiredIndexRoute
-  ProtectedVideoVideoIdIndexRoute: typeof ProtectedVideoVideoIdIndexRoute
+  ProtectedCheckoutRoute: typeof ProtectedCheckoutRoute;
+  ProtectedIndexRoute: typeof ProtectedIndexRoute;
+  ProtectedAddChannelIndexRoute: typeof ProtectedAddChannelIndexRoute;
+  ProtectedBlockedPaymentFailedIndexRoute: typeof ProtectedBlockedPaymentFailedIndexRoute;
+  ProtectedBlockedTrialExpiredIndexRoute: typeof ProtectedBlockedTrialExpiredIndexRoute;
+  ProtectedVideoVideoIdIndexRoute: typeof ProtectedVideoVideoIdIndexRoute;
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
@@ -156,91 +156,91 @@ const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedBlockedTrialExpiredIndexRoute:
     ProtectedBlockedTrialExpiredIndexRoute,
   ProtectedVideoVideoIdIndexRoute: ProtectedVideoVideoIdIndexRoute,
-}
+};
 
 const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
   ProtectedRouteChildren,
-)
+);
 
 export interface FileRoutesByFullPath {
-  '': typeof ProtectedRouteWithChildren
-  '/auth': typeof AuthRoute
-  '/checkout': typeof ProtectedCheckoutRoute
-  '/': typeof ProtectedIndexRoute
-  '/addChannel': typeof ProtectedAddChannelIndexRoute
-  '/blocked/payment-failed': typeof ProtectedBlockedPaymentFailedIndexRoute
-  '/blocked/trial-expired': typeof ProtectedBlockedTrialExpiredIndexRoute
-  '/video/$videoId': typeof ProtectedVideoVideoIdIndexRoute
+  "": typeof ProtectedRouteWithChildren;
+  "/auth": typeof AuthRoute;
+  "/checkout": typeof ProtectedCheckoutRoute;
+  "/": typeof ProtectedIndexRoute;
+  "/addChannel": typeof ProtectedAddChannelIndexRoute;
+  "/blocked/payment-failed": typeof ProtectedBlockedPaymentFailedIndexRoute;
+  "/blocked/trial-expired": typeof ProtectedBlockedTrialExpiredIndexRoute;
+  "/video/$videoId": typeof ProtectedVideoVideoIdIndexRoute;
 }
 
 export interface FileRoutesByTo {
-  '/auth': typeof AuthRoute
-  '/checkout': typeof ProtectedCheckoutRoute
-  '/': typeof ProtectedIndexRoute
-  '/addChannel': typeof ProtectedAddChannelIndexRoute
-  '/blocked/payment-failed': typeof ProtectedBlockedPaymentFailedIndexRoute
-  '/blocked/trial-expired': typeof ProtectedBlockedTrialExpiredIndexRoute
-  '/video/$videoId': typeof ProtectedVideoVideoIdIndexRoute
+  "/auth": typeof AuthRoute;
+  "/checkout": typeof ProtectedCheckoutRoute;
+  "/": typeof ProtectedIndexRoute;
+  "/addChannel": typeof ProtectedAddChannelIndexRoute;
+  "/blocked/payment-failed": typeof ProtectedBlockedPaymentFailedIndexRoute;
+  "/blocked/trial-expired": typeof ProtectedBlockedTrialExpiredIndexRoute;
+  "/video/$videoId": typeof ProtectedVideoVideoIdIndexRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/_protected': typeof ProtectedRouteWithChildren
-  '/auth': typeof AuthRoute
-  '/_protected/checkout': typeof ProtectedCheckoutRoute
-  '/_protected/': typeof ProtectedIndexRoute
-  '/_protected/addChannel/': typeof ProtectedAddChannelIndexRoute
-  '/_protected/blocked/payment-failed/': typeof ProtectedBlockedPaymentFailedIndexRoute
-  '/_protected/blocked/trial-expired/': typeof ProtectedBlockedTrialExpiredIndexRoute
-  '/_protected/video/$videoId/': typeof ProtectedVideoVideoIdIndexRoute
+  __root__: typeof rootRoute;
+  "/_protected": typeof ProtectedRouteWithChildren;
+  "/auth": typeof AuthRoute;
+  "/_protected/checkout": typeof ProtectedCheckoutRoute;
+  "/_protected/": typeof ProtectedIndexRoute;
+  "/_protected/addChannel/": typeof ProtectedAddChannelIndexRoute;
+  "/_protected/blocked/payment-failed/": typeof ProtectedBlockedPaymentFailedIndexRoute;
+  "/_protected/blocked/trial-expired/": typeof ProtectedBlockedTrialExpiredIndexRoute;
+  "/_protected/video/$videoId/": typeof ProtectedVideoVideoIdIndexRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | ''
-    | '/auth'
-    | '/checkout'
-    | '/'
-    | '/addChannel'
-    | '/blocked/payment-failed'
-    | '/blocked/trial-expired'
-    | '/video/$videoId'
-  fileRoutesByTo: FileRoutesByTo
+    | ""
+    | "/auth"
+    | "/checkout"
+    | "/"
+    | "/addChannel"
+    | "/blocked/payment-failed"
+    | "/blocked/trial-expired"
+    | "/video/$videoId";
+  fileRoutesByTo: FileRoutesByTo;
   to:
-    | '/auth'
-    | '/checkout'
-    | '/'
-    | '/addChannel'
-    | '/blocked/payment-failed'
-    | '/blocked/trial-expired'
-    | '/video/$videoId'
+    | "/auth"
+    | "/checkout"
+    | "/"
+    | "/addChannel"
+    | "/blocked/payment-failed"
+    | "/blocked/trial-expired"
+    | "/video/$videoId";
   id:
-    | '__root__'
-    | '/_protected'
-    | '/auth'
-    | '/_protected/checkout'
-    | '/_protected/'
-    | '/_protected/addChannel/'
-    | '/_protected/blocked/payment-failed/'
-    | '/_protected/blocked/trial-expired/'
-    | '/_protected/video/$videoId/'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/_protected"
+    | "/auth"
+    | "/_protected/checkout"
+    | "/_protected/"
+    | "/_protected/addChannel/"
+    | "/_protected/blocked/payment-failed/"
+    | "/_protected/blocked/trial-expired/"
+    | "/_protected/video/$videoId/";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  ProtectedRoute: typeof ProtectedRouteWithChildren
-  AuthRoute: typeof AuthRoute
+  ProtectedRoute: typeof ProtectedRouteWithChildren;
+  AuthRoute: typeof AuthRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   ProtectedRoute: ProtectedRouteWithChildren,
   AuthRoute: AuthRoute,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {

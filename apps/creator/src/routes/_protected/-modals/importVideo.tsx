@@ -75,8 +75,8 @@ export default function ImportVideo({
           JSON.stringify(
             (userDetails.editors as { editor: { id: string; email: string } }[])
               .filter((e) => selectedEditors?.includes(e.editor.id))
-              .map((e) => e.editor.email)
-          )
+              .map((e) => e.editor.email),
+          ),
         );
       }
 
@@ -189,7 +189,7 @@ export default function ImportVideo({
                                 </div>
                               </Checkbox>
                             );
-                          }
+                          },
                         )}
                     </CheckboxGroup>
                   </div>

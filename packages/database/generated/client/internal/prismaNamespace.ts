@@ -126,13 +126,13 @@ export type InputJsonValue = runtime.InputJsonValue;
 
 export const NullTypes = {
   DbNull: runtime.objectEnumValues.classes.DbNull as new (
-    secret: never
+    secret: never,
   ) => typeof runtime.objectEnumValues.instances.DbNull,
   JsonNull: runtime.objectEnumValues.classes.JsonNull as new (
-    secret: never
+    secret: never,
   ) => typeof runtime.objectEnumValues.instances.JsonNull,
   AnyNull: runtime.objectEnumValues.classes.AnyNull as new (
-    secret: never
+    secret: never,
   ) => typeof runtime.objectEnumValues.instances.AnyNull,
 };
 
@@ -1802,7 +1802,7 @@ export type MiddlewareParams = {
  */
 export type Middleware<T = any> = (
   params: MiddlewareParams,
-  next: (params: MiddlewareParams) => runtime.Types.Utils.JsPromise<T>
+  next: (params: MiddlewareParams) => runtime.Types.Utils.JsPromise<T>,
 ) => runtime.Types.Utils.JsPromise<T>;
 
 /**

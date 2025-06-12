@@ -20,7 +20,7 @@ function CheckoutPage({ searchParams }: CheckoutPageProps) {
   const search = Route.useSearch();
   const router = useRouter();
   const [selectedPlan, setSelectedPlan] = useState<TPlan>(
-    () => plans[1] as TPlan
+    () => plans[1] as TPlan,
   );
   const { data } = useSession();
   useEffect(() => {
