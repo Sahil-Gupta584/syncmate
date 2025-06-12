@@ -40,7 +40,7 @@ export const actionsRoutes = trpcRouter({
           result: {
             videoLink: file.data.webViewLink.replace(
               "view?usp=drivesdk",
-              "preview"
+              "preview",
             ),
           },
         });
