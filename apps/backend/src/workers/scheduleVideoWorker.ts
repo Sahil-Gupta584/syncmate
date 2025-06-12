@@ -2,7 +2,14 @@ import { prisma } from "@repo/db";
 import { getFileFromDrive, getGoogleServices } from "@repo/trpc";
 import axios from "axios";
 import { Worker } from "bullmq";
+import dotenv from "dotenv";
 import moment from "moment";
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "url";
+import { redisUrl } from "../queues.js";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+dotenv.config({ path: resolve(__dirname, "../../../../.env") });
 
 const worker = new Worker(
   "schedule-video-queue",
@@ -110,11 +117,7 @@ const worker = new Worker(
     }
   },
   {
-    connection: {
-      host: "localhost",
-      port: 6379,
-      maxRetriesPerRequest: null,
-    },
+    connection: { url: redisUrl },
   }
 );
 

@@ -7,12 +7,14 @@ import {
 } from "@repo/trpc";
 
 import { Worker } from "bullmq";
+import dotenv from "dotenv";
 import { createReadStream, unlink } from "fs";
-import path, { dirname } from "path";
+import path, { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
-
+import { redisUrl } from "../queues.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+dotenv.config({ path: resolve(__dirname, "../../../../.env") });
 
 const worker = new Worker(
   "import-video-queue",
@@ -82,9 +84,7 @@ const worker = new Worker(
   },
   {
     connection: {
-      host: "localhost",
-      port: 6379,
-      maxRetriesPerRequest: null, // ← this is mandatory
+      url: redisUrl,
     },
   }
 );
