@@ -4,10 +4,10 @@
  * 🟢 You can import this file directly.
  */
 import * as runtime from "@prisma/client/runtime/library";
-import * as $Enums from "./enums.ts";
-import * as $Class from "./internal/class.ts";
-import * as Prisma from "./internal/prismaNamespace.ts";
-export * as $Enums from './enums.ts';
+import * as $Enums from "./enums";
+import * as $Class from "./internal/class";
+import * as Prisma from "./internal/prismaNamespace";
+export * as $Enums from './enums';
 /**
  * ## Prisma Client
  *

@@ -3,15 +3,15 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/User.ts';
-export type * from './models/CreatorEditor.ts';
-export type * from './models/Video.ts';
-export type * from './models/Channel.ts';
-export type * from './models/VideoEditor.ts';
-export type * from './models/Invite.ts';
-export type * from './models/Session.ts';
-export type * from './models/Account.ts';
-export type * from './models/Verification.ts';
-export type * from './models/Subscription.ts';
-export type * from './commonInputTypes.ts';
+export type * from './models/User';
+export type * from './models/CreatorEditor';
+export type * from './models/Video';
+export type * from './models/Channel';
+export type * from './models/VideoEditor';
+export type * from './models/Invite';
+export type * from './models/Session';
+export type * from './models/Account';
+export type * from './models/Verification';
+export type * from './models/Subscription';
+export type * from './commonInputTypes';
 //# sourceMappingURL=models.d.ts.map

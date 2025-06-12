@@ -4,8 +4,8 @@
  * 🟢 You can import this file directly.
  */
 import * as runtime from "@prisma/client/runtime/library";
-import * as $Enums from "./enums.ts";
-import type * as Prisma from "./internal/prismaNamespace.ts";
+import * as $Enums from "./enums";
+import type * as Prisma from "./internal/prismaNamespace";
 export type StringFilter<$PrismaModel = never> = {
     equals?: string | Prisma.StringFieldRefInput<$PrismaModel>;
     in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>;

@@ -19,13 +19,15 @@ type CheckoutPageProps = { searchParams: Promise<{ planType: PlanType }> };
 function CheckoutPage({ searchParams }: CheckoutPageProps) {
   const search = Route.useSearch();
   const router = useRouter();
-  const [selectedPlan, setSelectedPlan] = useState<TPlan>(plans[1]);
+  const [selectedPlan, setSelectedPlan] = useState<TPlan>(
+    () => plans[1] as TPlan
+  );
   const { data } = useSession();
   useEffect(() => {
     (async () => {
       const selectedPlan =
         search?.planType && plans.find((p) => p.name === search?.planType);
-      if (selectedPlan) setSelectedPlan(selectedPlan);
+      if (selectedPlan) setSelectedPlan(selectedPlan as TPlan);
     })();
   }, [searchParams]);
   function loadRazorpayScript(): Promise<boolean> {

@@ -1,1 +1,1 @@
-{"version":3,"file":"trpc.d.ts","sourceRoot":"","sources":["trpc.ts"],"names":[],"mappings":"AAGA,eAAO,MAAM,aAAa,gYAAc,CAAC;AACzC,eAAO,MAAM,UAAU;;;;;0FAAW,CAAC"}
+{"version":3,"file":"trpc.d.ts","sourceRoot":"","sources":["trpc.ts"],"names":[],"mappings":"AAGA,eAAO,MAAM,aAAa,gYAAc,CAAC;AACzC,eAAO,MAAM,UAAU,yBACurF,0CAAU;;;;;0FADtrF,CAAC"}

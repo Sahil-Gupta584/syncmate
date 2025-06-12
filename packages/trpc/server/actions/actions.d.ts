@@ -8,7 +8,7 @@ export declare const actionsRoutes: import("@trpc/server/unstable-core-do-not-im
         input: {
             videoId: string;
         };
-        output: import("../..").TBackendRes<null> | import("../..").TBackendRes<{
+        output: import("../../helpers.js").TBackendRes<null> | import("../../helpers.js").TBackendRes<{
             videoLink: string;
         }>;
         meta: object;
@@ -17,7 +17,7 @@ export declare const actionsRoutes: import("@trpc/server/unstable-core-do-not-im
         input: {
             channelId: string;
         };
-        output: import("../..").TBackendRes<null> | import("../..").TBackendRes<{
+        output: import("../../helpers.js").TBackendRes<null> | import("../../helpers.js").TBackendRes<{
             data: import("googleapis").youtube_v3.Schema$Playlist[] | undefined;
         }>;
         meta: object;
@@ -31,7 +31,7 @@ export declare const actionsRoutes: import("@trpc/server/unstable-core-do-not-im
                 email: string;
             };
         };
-        output: import("../..").TBackendRes<null> | import("../..").TBackendRes<boolean>;
+        output: import("../../helpers.js").TBackendRes<null> | import("../../helpers.js").TBackendRes<boolean>;
         meta: object;
     }>;
 }>>;
