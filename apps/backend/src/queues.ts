@@ -8,7 +8,6 @@ const __dirname = dirname(__filename);
 dotenv.config({ path: resolve(__dirname, "../../../.env") });
 
 export const redisUrl = process.env.REDIS_URL;
-console.log({ redisUrl });
 
 export const uploadQueue = new Queue("import-video-queue", {
   connection: {

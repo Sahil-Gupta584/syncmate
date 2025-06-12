@@ -1,3 +1,4 @@
+import { backendUrl } from "@repo/lib/utils";
 import { inferAdditionalFields } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 
@@ -17,6 +18,7 @@ export const authClient = createAuthClient({
       },
     }),
   ],
+  baseURL: String(backendUrl).replace("/api", "/editor/api/auth"),
 });
 
 export const { useSession } = authClient;

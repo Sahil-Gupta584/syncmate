@@ -12,10 +12,13 @@ import {
   SelectItem,
   useDisclosure,
 } from "@heroui/react";
-import { getVideoDuration, trpcErrorHandler } from "@repo/lib/utils";
+import {
+  axiosInstance,
+  getVideoDuration,
+  trpcErrorHandler,
+} from "@repo/lib/utils";
 import type { TBackendOutput } from "@repo/trpc/react";
 import { ImportButton } from "@repo/ui";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { FaUpload } from "react-icons/fa";
 type TImportVideo = {
@@ -59,10 +62,7 @@ export default function ImportVideo({
         "selectedEditorEmails",
         JSON.stringify([userDetails.email])
       );
-      const res = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/import-video`,
-        formData
-      );
+      const res = await axiosInstance.post(`/import-video`, formData);
 
       if (res.data.ok) {
         addToast({

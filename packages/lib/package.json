@@ -1,6 +1,7 @@
 {
   "name": "@repo/lib",
   "version": "1.0.0",
+  "type": "module",
   "exports": {
     "./actions": "./src/actions.ts",
     "./utils": "./src/utils.ts",

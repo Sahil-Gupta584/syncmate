@@ -1,3 +1,4 @@
+import { axiosInstance } from "@repo/lib/utils";
 import { Header } from "@repo/ui";
 import {
   createFileRoute,
@@ -6,7 +7,6 @@ import {
   useNavigate,
   useRouterState,
 } from "@tanstack/react-router";
-import axios from "axios";
 import moment from "moment";
 import { useEffect } from "react";
 import { useSession } from "../lib/authActions";
@@ -48,8 +48,8 @@ export default function Home() {
       return;
     }
 
-    axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/api/isPaymentActive`, {
+    axiosInstance
+      .post(`/isPaymentActive`, {
         userId: data?.user.id,
       })
       .then((res) => {

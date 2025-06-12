@@ -9,9 +9,8 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@heroui/react";
-import { trpcErrorHandler } from "@repo/lib/utils";
+import { axiosInstance, trpcErrorHandler } from "@repo/lib/utils";
 import { backend } from "@repo/trpc/react";
-import axios from "axios";
 import { useState } from "react";
 import { MdOutlineFileUpload } from "react-icons/md";
 export default function PublishNow({
@@ -31,14 +30,11 @@ export default function PublishNow({
   async function handlePublishNow() {
     try {
       setIsLoading(true);
-      const res = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/schedule-video/${videoId}`,
-        {
-          videoId,
-          scheduleAt: null,
-          isPublishNow: true,
-        }
-      );
+      const res = await axiosInstance.post(`/schedule-video/${videoId}`, {
+        videoId,
+        scheduleAt: null,
+        isPublishNow: true,
+      });
       if (res.data.ok) {
         addToast({
           color: "success",

@@ -9,8 +9,8 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@heroui/react";
+import { axiosInstance } from "@repo/lib/utils";
 import { backend } from "@repo/trpc/react";
-import axios from "axios";
 import moment from "moment";
 import { useForm } from "react-hook-form";
 import { MdSchedule } from "react-icons/md";
@@ -61,13 +61,10 @@ export function DateTimePicker({ isEditing, videoDetails }: TDateTimePicker) {
       return;
     }
 
-    const res = await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/api/schedule-video/${videoDetails.id}`,
-      {
-        scheduleAt: selectedUnix,
-        isPublishNow: false,
-      }
-    );
+    const res = await axiosInstance.post(`/schedule-video/${videoDetails.id}`, {
+      scheduleAt: selectedUnix,
+      isPublishNow: false,
+    });
     if (res.data.ok) {
       addToast({
         color: "success",

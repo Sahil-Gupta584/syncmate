@@ -13,10 +13,13 @@ import { fileURLToPath } from "url";
 import { importVideo } from "./controllers/importVideo.js";
 import { scheduleVideo } from "./controllers/scheduleVideo.js";
 import { creatorAuth, editorAuth } from "./lib/auths.js";
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 dotenv.config({ path: resolve(__dirname, "../../../.env") });
+console.log(
+  "process.env.VITE_CREATOR_BASE_URL",
+  process.env.VITE_CREATOR_BASE_URL
+);
 
 const storage = multer.diskStorage({
   destination: path.join(__dirname, "../uploads"),
@@ -34,6 +37,7 @@ app.use(
       process.env.VITE_CREATOR_BASE_URL!,
       process.env.VITE_EDITOR_BASE_URL!,
     ],
+    credentials: true,
   })
 );
 

@@ -13,13 +13,13 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@heroui/react";
-import { getVideoDuration } from "@repo/lib/utils";
+import { axiosInstance, getVideoDuration } from "@repo/lib/utils";
 import { backend, type TBackendOutput } from "@repo/trpc/react";
 import { ImportButton } from "@repo/ui";
 import { imageInputPlaceholder } from "@repo/ui/assets";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { FaUpload } from "react-icons/fa";
+
 type TImportVideo = {
   videoFile: FileList;
   channelId?: string;
@@ -80,10 +80,7 @@ export default function ImportVideo({
         );
       }
 
-      const res = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/import-video`,
-        formData
-      );
+      const res = await axiosInstance.post(`/import-video`, formData);
 
       if (res.data.ok) {
         addToast({

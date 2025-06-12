@@ -16,10 +16,10 @@ import {
   Skeleton,
   useDisclosure,
 } from "@heroui/react";
+import { axiosInstance } from "@repo/lib/utils";
 import { backend, type TBackendOutput } from "@repo/trpc/react";
 import { DrawerProfileHeader } from "@repo/ui";
 import { imageInputPlaceholder } from "@repo/ui/assets";
-import axios from "axios";
 import { FaCaretLeft } from "react-icons/fa";
 import { MdAdd } from "react-icons/md";
 import { AddEditor } from "../-modals/addEditor";
@@ -43,9 +43,7 @@ export default function DrawerComponent() {
   const userDetails: TData = userDetailsQuery.data?.result;
   async function handleAddChannel() {
     try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/getAuthUrl`
-      );
+      const res = await axiosInstance.get(`/getAuthUrl`);
       const authUrl = res.data.authUrl;
       if (!authUrl) {
         addToast({
