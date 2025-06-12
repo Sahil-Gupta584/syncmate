@@ -1,6 +1,6 @@
 import { prisma } from "@repo/db";
 import { Request, Response } from "express";
-import { scheduleQueue } from "../queues";
+import { scheduleQueue } from "../queues.js";
 
 export async function scheduleVideo(req: Request, res: Response) {
   try {
