@@ -1,8 +1,8 @@
 import { prisma } from "@repo/db";
 import moment from "moment";
-import { backendRes, getGoogleServices, updateGoogleDrivePermissions, updateThumbnails, } from "../../helpers";
-import { trpcProcedure, trpcRouter } from "../trpc";
-import { dbActionsZodSchema } from "./schema";
+import { backendRes, getGoogleServices, updateGoogleDrivePermissions, updateThumbnails, } from "../../helpers.js";
+import { trpcProcedure, trpcRouter } from "../trpc.js";
+import { dbActionsZodSchema } from "./schema.js";
 export const dbActionsRoutes = trpcRouter({
     addChannel: trpcProcedure
         .input(dbActionsZodSchema.addChannel)
