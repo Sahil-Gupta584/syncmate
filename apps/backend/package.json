@@ -13,6 +13,7 @@
   "description": "",
   "dependencies": {
     "@repo/db": "*",
+    "@repo/trpc": "*",
     "@trpc/server": "^11.1.2",
     "axios": "^1.9.0",
     "better-auth": "^1.2.8",
