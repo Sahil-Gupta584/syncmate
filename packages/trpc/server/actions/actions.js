@@ -5,125 +5,124 @@ import { backendRes, getGoogleServices } from "../../helpers.js";
 import { trpcProcedure, trpcRouter } from "../trpc.js";
 import { actionsZodSchema } from "./schema.js";
 export const actionsRoutes = trpcRouter({
-    getVideoLink: trpcProcedure
-        .input(actionsZodSchema.getVideoDetails)
-        .query(async ({ input }) => {
-        try {
-            const { videoId } = input;
-            const video = await prisma.video.findUnique({
-                where: {
-                    id: videoId,
-                },
-                include: { owner: { include: { channels: true } } },
-            });
-            if (!video) {
-                throw new Error("Video not found");
-            }
-            const { result, error } = await getGoogleServices(video.ownerId);
-            if (!result) {
-                throw new Error("Failed to get Google services: " + error?.message);
-            }
-            const { drive } = result;
-            if (!video.gDriveId)
-                throw new Error("Invalid gDriveId");
-            const file = await drive.files.get({
-                fileId: video.gDriveId,
-                fields: "webViewLink",
-            });
-            if (!file.data.webViewLink) {
-                throw new Error("Video not found");
-            }
-            return backendRes({
-                ok: true,
-                result: {
-                    videoLink: file.data.webViewLink.replace("view?usp=drivesdk", "preview"),
-                },
-            });
+  getVideoLink: trpcProcedure
+    .input(actionsZodSchema.getVideoDetails)
+    .query(async ({ input }) => {
+      try {
+        const { videoId } = input;
+        const video = await prisma.video.findUnique({
+          where: {
+            id: videoId,
+          },
+          include: { owner: { include: { channels: true } } },
+        });
+        if (!video) {
+          throw new Error("Video not found");
         }
-        catch (error) {
-            console.error("Error in getVideoLink:", error);
-            return backendRes({ ok: false, error: error, result: null });
+        const { result, error } = await getGoogleServices(video.ownerId);
+        if (!result) {
+          throw new Error("Failed to get Google services: " + error?.message);
         }
+        const { drive } = result;
+        if (!video.gDriveId) throw new Error("Invalid gDriveId");
+        const file = await drive.files.get({
+          fileId: video.gDriveId,
+          fields: "webViewLink",
+        });
+        if (!file.data.webViewLink) {
+          throw new Error("Video not found");
+        }
+        return backendRes({
+          ok: true,
+          result: {
+            videoLink: file.data.webViewLink.replace(
+              "view?usp=drivesdk",
+              "preview",
+            ),
+          },
+        });
+      } catch (error) {
+        console.error("Error in getVideoLink:", error);
+        return backendRes({ ok: false, error: error, result: null });
+      }
     }),
-    getPlaylists: trpcProcedure
-        .input(actionsZodSchema.getPlaylists)
-        .query(async ({ input }) => {
-        try {
-            const { channelId } = input;
-            const { result, error } = await getGoogleServices(channelId);
-            if (!result) {
-                throw new Error("Failed to get Google services: " + error?.message);
-            }
-            const { youtube } = result;
-            const res = await youtube.playlists.list({
-                part: ["snippet"],
-                channelId,
-            });
-            // console.log("res", res.data);
-            return backendRes({
-                ok: true,
-                result: { data: res.data.items },
-            });
+  getPlaylists: trpcProcedure
+    .input(actionsZodSchema.getPlaylists)
+    .query(async ({ input }) => {
+      try {
+        const { channelId } = input;
+        const { result, error } = await getGoogleServices(channelId);
+        if (!result) {
+          throw new Error("Failed to get Google services: " + error?.message);
         }
-        catch (error) {
-            console.error("Error in getPlaylists:", error);
-            return backendRes({ ok: false, error: error, result: null });
-        }
+        const { youtube } = result;
+        const res = await youtube.playlists.list({
+          part: ["snippet"],
+          channelId,
+        });
+        // console.log("res", res.data);
+        return backendRes({
+          ok: true,
+          result: { data: res.data.items },
+        });
+      } catch (error) {
+        console.error("Error in getPlaylists:", error);
+        return backendRes({ ok: false, error: error, result: null });
+      }
     }),
-    sendInviteLink: trpcProcedure
-        .input(actionsZodSchema.sendInviteLink)
-        .mutation(async ({ input }) => {
-        try {
-            const { editorEmail, creator } = input;
-            if (editorEmail === creator.email) {
-                throw new Error("Buddy, You can't invite yourself🤗! ");
-            }
-            if (!creator.id)
-                throw new Error("Creator Not Found");
-            const isEditorAlreadyInSpace = await prisma.creatorEditor.findFirst({
-                where: {
-                    creator: { id: creator.id },
-                    editor: { email: editorEmail },
-                },
-            });
-            if (isEditorAlreadyInSpace) {
-                throw new Error("Editor already in your workspace . ");
-            }
-            const isEditorExists = await prisma.user.findUnique({
-                where: { email: editorEmail },
-            });
-            const isInviteExists = await prisma.invite.findFirst({
-                where: {
-                    creatorId: creator.id,
-                    editorEmail,
-                },
-            });
-            if (isInviteExists) {
-                throw new Error("Invite already sent to this editor. ");
-            }
-            const createInvite = await prisma.invite.create({
-                data: {
-                    creatorId: creator.id,
-                    editorEmail,
-                    editorId: isEditorExists ? isEditorExists.id : undefined,
-                    expiresAt: moment().add(7, "day").unix().toString(),
-                    createdAt: moment().unix().toString(),
-                },
-            });
-            // console.log("isEditorAlreadyInSpace", isEditorAlreadyInSpace);
-            const transporter = nodemailer.createTransport({
-                service: "gmail",
-                auth: {
-                    user: process.env.NODEMAILER_USER,
-                    pass: process.env.NODEMAILER_PASS,
-                },
-            });
-            transporter.sendMail({
-                from: process.env.NODEMAILER_USER,
-                to: editorEmail,
-                subject: "Invite Link",
-                text: "Click here to join: https://example.com/invite",
-                html: `<!DOCTYPE html>
+  sendInviteLink: trpcProcedure
+    .input(actionsZodSchema.sendInviteLink)
+    .mutation(async ({ input }) => {
+      try {
+        const { editorEmail, creator } = input;
+        if (editorEmail === creator.email) {
+          throw new Error("Buddy, You can't invite yourself🤗! ");
+        }
+        if (!creator.id) throw new Error("Creator Not Found");
+        const isEditorAlreadyInSpace = await prisma.creatorEditor.findFirst({
+          where: {
+            creator: { id: creator.id },
+            editor: { email: editorEmail },
+          },
+        });
+        if (isEditorAlreadyInSpace) {
+          throw new Error("Editor already in your workspace . ");
+        }
+        const isEditorExists = await prisma.user.findUnique({
+          where: { email: editorEmail },
+        });
+        const isInviteExists = await prisma.invite.findFirst({
+          where: {
+            creatorId: creator.id,
+            editorEmail,
+          },
+        });
+        if (isInviteExists) {
+          throw new Error("Invite already sent to this editor. ");
+        }
+        const createInvite = await prisma.invite.create({
+          data: {
+            creatorId: creator.id,
+            editorEmail,
+            editorId: isEditorExists ? isEditorExists.id : undefined,
+            expiresAt: moment().add(7, "day").unix().toString(),
+            createdAt: moment().unix().toString(),
+          },
+        });
+        // console.log("isEditorAlreadyInSpace", isEditorAlreadyInSpace);
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: process.env.NODEMAILER_USER,
+            pass: process.env.NODEMAILER_PASS,
+          },
+        });
+        transporter.sendMail({
+          from: process.env.NODEMAILER_USER,
+          to: editorEmail,
+          subject: "Invite Link",
+          text: "Click here to join: https://example.com/invite",
+          html: `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -196,12 +195,11 @@ export const actionsRoutes = trpcRouter({
     </table>
   </body>
 </html>`,
-            });
-            return backendRes({ ok: true, result: true });
-        }
-        catch (error) {
-            console.error("Error in sendInviteLink:", error);
-            return backendRes({ ok: false, error: error, result: null });
-        }
+        });
+        return backendRes({ ok: true, result: true });
+      } catch (error) {
+        console.error("Error in sendInviteLink:", error);
+        return backendRes({ ok: false, error: error, result: null });
+      }
     }),
 });
