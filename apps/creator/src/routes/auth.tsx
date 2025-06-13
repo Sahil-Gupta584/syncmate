@@ -8,6 +8,11 @@ export const Route = createFileRoute("/auth")({
 });
 
 export default function RouteComponent() {
+  console.log(
+    "import.meta.env.VITE_CREATOR_BASE_URL",
+    import.meta.env.VITE_CREATOR_BASE_URL
+  );
+
   return (
     <AuthPage
       role="CREATOR"
