@@ -1,8 +1,8 @@
-name: Main Branch Pr Checker
+name: Main Branch PR Checker
 
 on:
   pull_request:
-    - branches: ["main"]
+    branches: ["main"]
 
 jobs:
   prettier:
@@ -10,6 +10,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Format Code
         run: npm run format:check
