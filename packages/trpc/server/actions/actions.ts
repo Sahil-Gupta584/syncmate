@@ -119,6 +119,15 @@ export const actionsRoutes = trpcRouter({
             pass: process.env.NODEMAILER_PASS,
           },
         });
+        const createInvite = await prisma.invite.create({
+          data: {
+            creatorId: creator.id,
+            editorEmail,
+            editorId: isEditorExists ? isEditorExists.id : undefined,
+            expiresAt: moment().add(7, "day").unix().toString(),
+            createdAt: moment().unix().toString(),
+          },
+        });
 
         transporter.sendMail({
           from: process.env.NODEMAILER_USER,
@@ -200,15 +209,6 @@ export const actionsRoutes = trpcRouter({
 </html>`,
         });
 
-        const createInvite = await prisma.invite.create({
-          data: {
-            creatorId: creator.id,
-            editorEmail,
-            editorId: isEditorExists ? isEditorExists.id : undefined,
-            expiresAt: moment().add(7, "day").unix().toString(),
-            createdAt: moment().unix().toString(),
-          },
-        });
         return backendRes({ ok: true, result: true });
       } catch (error) {
         console.error("Error in sendInviteLink:", error);
