@@ -1,11 +1,6 @@
 import { backendUrl } from "@repo/lib/utils";
 import { inferAdditionalFields } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
-console.log({ backendUrl });
-console.log(
-  "import.meta.env.VITE_BACKEND_URL",
-  import.meta.env.VITE_BACKEND_URL,
-);
 
 export const authClient = createAuthClient({
   plugins: [
