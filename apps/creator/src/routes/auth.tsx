@@ -14,7 +14,7 @@ export default function RouteComponent() {
       onClick={async () => {
         await signIn.social({
           provider: "google",
-          // callbackURL: import.meta.env.VITE_CREATOR_BASE_URL,
+          callbackURL: import.meta.env.VITE_CREATOR_BASE_URL,
         });
       }}
     />
