@@ -164,7 +164,7 @@ export const editorAuth = betterAuth({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       scope: ["openid", "profile", "email"],
-      redirectURI: `${process.env.BACKEND_URL}/editor/api/auth/callback/google`,
+      redirectURI: `${process.env.VITE_BACKEND_URL}/editor/api/auth/callback/google`,
     },
   },
   user: {

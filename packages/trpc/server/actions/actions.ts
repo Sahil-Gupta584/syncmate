@@ -40,7 +40,7 @@ export const actionsRoutes = trpcRouter({
           result: {
             videoLink: file.data.webViewLink.replace(
               "view?usp=drivesdk",
-              "preview",
+              "preview"
             ),
           },
         });
@@ -108,15 +108,8 @@ export const actionsRoutes = trpcRouter({
         if (isInviteExists) {
           throw new Error("Invite already sent to this editor. ");
         }
-        const createInvite = await prisma.invite.create({
-          data: {
-            creatorId: creator.id,
-            editorEmail,
-            editorId: isEditorExists ? isEditorExists.id : undefined,
-            expiresAt: moment().add(7, "day").unix().toString(),
-            createdAt: moment().unix().toString(),
-          },
-        });
+
+        console.log("process.env.NODEMAILER_USER", process.env.NODEMAILER_USER);
 
         // console.log("isEditorAlreadyInSpace", isEditorAlreadyInSpace);
         const transporter = nodemailer.createTransport({
@@ -205,6 +198,16 @@ export const actionsRoutes = trpcRouter({
     </table>
   </body>
 </html>`,
+        });
+
+        const createInvite = await prisma.invite.create({
+          data: {
+            creatorId: creator.id,
+            editorEmail,
+            editorId: isEditorExists ? isEditorExists.id : undefined,
+            expiresAt: moment().add(7, "day").unix().toString(),
+            createdAt: moment().unix().toString(),
+          },
         });
         return backendRes({ ok: true, result: true });
       } catch (error) {
