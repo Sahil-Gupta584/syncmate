@@ -4,9 +4,8 @@ export default {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // UI package components
   ],
-    theme: {
+  theme: {
     extend: {},
   },
   plugins: [heroui()],
-}
-
+};
