@@ -37,7 +37,7 @@ export function AddEditor({ creator }: { creator: User }) {
       }
 
       addToast({
-        description: "Unknown error occurred",
+        description: (res.error as Error).message || "Unknown error occurred",
         color: "danger",
       });
     } catch (error) {
