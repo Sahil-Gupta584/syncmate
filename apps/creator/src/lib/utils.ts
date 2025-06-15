@@ -30,7 +30,7 @@ export async function UploadImgGetUrl({ imgFile }: { imgFile: File }) {
 
     const res = await axios.post(
       "https://api.imgbb.com/1/upload?key=b10b7ca5ecd048d6a0ed9f9751cebbdc",
-      form,
+      form
     );
 
     return {
@@ -38,6 +38,6 @@ export async function UploadImgGetUrl({ imgFile }: { imgFile: File }) {
       result: { displayUrl: res.data.data.display_url },
     };
   } catch (error) {
-    return { ok: false, error: error as Error, result: null };
+    return { ok: false, error: (error as Error).message, result: null };
   }
 }
