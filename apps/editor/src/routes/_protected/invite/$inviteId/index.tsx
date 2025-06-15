@@ -26,10 +26,10 @@ function Page() {
       inviteDetails.error
     ) {
       addToast({ description: "Unknown error occurred", color: "danger" });
-      setErrorMessage(inviteDetails.error?.message);
+      setErrorMessage(inviteDetails.error);
     }
     if (inviteDetailsQuery.error) {
-      setErrorMessage(inviteDetailsQuery.error?.message);
+      setErrorMessage(inviteDetailsQuery.error);
     }
   }, [inviteId, isPending, inviteDetailsQuery]);
 

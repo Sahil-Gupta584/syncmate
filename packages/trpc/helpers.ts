@@ -159,7 +159,7 @@ export async function getFileFromDrive(driveFileId: string, userId: string) {
     if (driveFileId.length <= 1) throw new Error("No file ID provided");
     const { result, error } = await getGoogleServices(userId);
     if (!result) {
-      throw new Error("Failed to get Google services: " + error?.message);
+      throw new Error("Failed to get Google services: " + error);
     }
     const { drive } = result;
 
@@ -168,8 +168,6 @@ export async function getFileFromDrive(driveFileId: string, userId: string) {
       fileId: driveFileId,
       fields: "mimeType, name",
     });
-
-    console.log("File Metadata:", fileMetadata.data);
 
     // Check if it's a binary file (not a Google Doc)
     if (fileMetadata.data.mimeType?.includes("application/vnd.google-apps")) {
@@ -209,7 +207,7 @@ export async function updateThumbnails({
   try {
     const { result, error } = await getGoogleServices(ownerId);
     if (!result) {
-      throw new Error("Failed to get Google services: " + error?.message);
+      throw new Error("Failed to get Google services: " + error);
     }
     const { drive } = result;
     const updatedVideos: TUpdateThumbnailsProps = { videos: [], ownerId };

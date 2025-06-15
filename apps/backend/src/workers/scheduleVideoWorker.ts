@@ -27,7 +27,7 @@ const worker = new Worker(
 
       const { result, error } = await getGoogleServices(isVideoExist.ownerId);
       if (!result) {
-        throw new Error("Failed to get Google services: " + error?.message);
+        throw new Error("Failed to get Google services: " + error);
       }
       const { youtube } = result;
 

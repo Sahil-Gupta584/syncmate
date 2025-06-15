@@ -96,7 +96,7 @@ export const creatorAuth = betterAuth({
             const { result, error } = await getGoogleServices(userId);
             if (!result) {
               throw new Error(
-                "Failed to get Google services: " + error?.message
+                "Failed to get Google services: " + error
               );
             }
             const { youtube } = result;

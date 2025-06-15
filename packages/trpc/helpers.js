@@ -125,7 +125,7 @@ export async function getFileFromDrive(driveFileId, userId) {
     if (driveFileId.length <= 1) throw new Error("No file ID provided");
     const { result, error } = await getGoogleServices(userId);
     if (!result) {
-      throw new Error("Failed to get Google services: " + error?.message);
+      throw new Error("Failed to get Google services: " + error);
     }
     const { drive } = result;
     // Get file metadata to check MIME type
@@ -158,7 +158,7 @@ export async function updateThumbnails({ videos, ownerId }) {
   try {
     const { result, error } = await getGoogleServices(ownerId);
     if (!result) {
-      throw new Error("Failed to get Google services: " + error?.message);
+      throw new Error("Failed to get Google services: " + error);
     }
     const { drive } = result;
     const updatedVideos = { videos: [], ownerId };

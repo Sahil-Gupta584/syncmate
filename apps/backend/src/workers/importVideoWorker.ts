@@ -28,7 +28,7 @@ const worker = new Worker(
 
       const { result, error } = await getGoogleServices(ownerId);
       if (!result)
-        throw new Error("Failed to get Google services: " + error?.message);
+        throw new Error("Failed to get Google services: " + error);
 
       const { drive } = result;
       const folderId = await getOrCreateFolder(drive, "Syncly");
