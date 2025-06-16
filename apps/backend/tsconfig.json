@@ -11,7 +11,8 @@
     "moduleResolution": "bundler" /* Specify how TypeScript looks up a file from a given module specifier. */,
     "declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
     "removeComments": true /* Disable emitting comments. */,
-
+    "skipLibCheck": true,
+    "types": ["node"],
     "outDir": "./dist" /* Specify an output folder for all emitted files. */
   },
   "exclude": ["dist"],
@@ -19,16 +20,6 @@
   "tsc-alias": {
     "verbose": false,
     "resolveFullPaths": true,
-    "replacers": {
-      "exampleReplacer": {
-        "enabled": true,
-        "file": "./exampleReplacer.js"
-      },
-      "otherReplacer": {
-        "enabled": true,
-        "file": "./otherReplacer.js"
-      }
-    },
     "fileExtensions": {
       "inputGlob": "{js,jsx,mjs}",
       "outputCheck": ["js", "json", "jsx", "mjs"]
