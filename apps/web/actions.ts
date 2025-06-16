@@ -35,6 +35,6 @@ export async function sendContactEmail(formData: {
     return { ok: true, result: true };
   } catch (error) {
     console.error("error in sendContactEmail:", error);
-    return { ok: true, error: error as Error };
+    return { ok: true, error: (error as Error).message };
   }
 }

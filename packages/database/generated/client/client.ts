@@ -7,18 +7,17 @@
  * 🟢 You can import this file directly.
  */
 
-import * as path from "node:path";
 import * as process from "node:process";
+import * as path from "node:path";
 import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-import * as runtime from "@prisma/client/runtime/library.js";
-import * as $Enums from "./enums.js";
-import * as $Class from "./internal/class.js";
-import * as Prisma from "./internal/prismaNamespace.js";
+import * as runtime from "@prisma/client/runtime/library";
+import * as $Enums from "./enums";
+import * as $Class from "./internal/class";
+import * as Prisma from "./internal/prismaNamespace";
 
-export * as $Enums from "./enums.js";
-export { Prisma };
+export * as $Enums from "./enums";
 /**
  * ## Prisma Client
  *
@@ -39,19 +38,17 @@ export type PrismaClient<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = $Class.PrismaClient<ClientOptions, Log, ExtArgs>;
+export { Prisma };
 
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
-path.join(
-  process.cwd(),
-  "packages/database/generated/client/query_engine-windows.dll.node",
-);
+path.join(process.cwd(), "generated/client/query_engine-windows.dll.node");
 
 // file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
 path.join(
   process.cwd(),
-  "packages/database/generated/client/libquery_engine-debian-openssl-3.0.x.so.node",
+  "generated/client/libquery_engine-debian-openssl-3.0.x.so.node",
 );
 
 /**

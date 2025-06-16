@@ -21,7 +21,7 @@ export const actionsRoutes = trpcRouter({
         }
         const { result, error } = await getGoogleServices(video.ownerId);
         if (!result) {
-          throw new Error("Failed to get Google services: " + error?.message);
+          throw new Error("Failed to get Google services: " + error);
         }
         const { drive } = result;
         if (!video.gDriveId) throw new Error("Invalid gDriveId");
@@ -53,7 +53,7 @@ export const actionsRoutes = trpcRouter({
         const { channelId } = input;
         const { result, error } = await getGoogleServices(channelId);
         if (!result) {
-          throw new Error("Failed to get Google services: " + error?.message);
+          throw new Error("Failed to get Google services: " + error);
         }
         const { youtube } = result;
         const res = await youtube.playlists.list({

@@ -38,6 +38,6 @@ export async function UploadImgGetUrl({ imgFile }: { imgFile: File }) {
       result: { displayUrl: res.data.data.display_url },
     };
   } catch (error) {
-    return { ok: false, error: error as Error, result: null };
+    return { ok: false, error: (error as Error).message, result: null };
   }
 }

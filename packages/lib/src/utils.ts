@@ -53,7 +53,7 @@ export function trpcErrorHandler(error: any) {
 
   if (error) {
     if (error?.data?.code === "BAD_REQUEST") {
-      const data = JSON.parse(error?.message);
+      const data = JSON.parse(error);
       addToast({
         color: "danger",
         title: "Input Error",

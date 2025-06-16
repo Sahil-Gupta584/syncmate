@@ -22,7 +22,7 @@ export const actionsRoutes = trpcRouter({
         }
         const { result, error } = await getGoogleServices(video.ownerId);
         if (!result) {
-          throw new Error("Failed to get Google services: " + error?.message);
+          throw new Error("Failed to get Google services: " + error);
         }
         const { drive } = result;
         if (!video.gDriveId) throw new Error("Invalid gDriveId");
@@ -40,13 +40,17 @@ export const actionsRoutes = trpcRouter({
           result: {
             videoLink: file.data.webViewLink.replace(
               "view?usp=drivesdk",
-              "preview"
+              "preview",
             ),
           },
         });
       } catch (error) {
         console.error("Error in getVideoLink:", error);
-        return backendRes({ ok: false, error: error as Error, result: null });
+        return backendRes({
+          ok: false,
+          error: (error as Error).message,
+          result: null,
+        });
       }
     }),
   getPlaylists: trpcProcedure
@@ -56,7 +60,7 @@ export const actionsRoutes = trpcRouter({
         const { channelId } = input;
         const { result, error } = await getGoogleServices(channelId);
         if (!result) {
-          throw new Error("Failed to get Google services: " + error?.message);
+          throw new Error("Failed to get Google services: " + error);
         }
         const { youtube } = result;
 
@@ -73,7 +77,11 @@ export const actionsRoutes = trpcRouter({
         });
       } catch (error) {
         console.error("Error in getPlaylists:", error);
-        return backendRes({ ok: false, error: error as Error, result: null });
+        return backendRes({
+          ok: false,
+          error: (error as Error).message,
+          result: null,
+        });
       }
     }),
   sendInviteLink: trpcProcedure
@@ -212,7 +220,11 @@ export const actionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: true });
       } catch (error) {
         console.error("Error in sendInviteLink:", error);
-        return backendRes({ ok: false, error: error as Error, result: null });
+        return backendRes({
+          ok: false,
+          error: (error as Error).message,
+          result: null,
+        });
       }
     }),
 });

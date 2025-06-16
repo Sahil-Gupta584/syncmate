@@ -16,7 +16,7 @@ export const dbActionsRoutes = trpcRouter({
         const { userId, code } = input;
         const { result, error } = await getGoogleServices(userId, code);
         if (!result) {
-          throw new Error("Failed to get Google services: " + error?.message);
+          throw new Error("Failed to get Google services: " + error);
         }
         const { youtube, authTokens } = result;
         if (!authTokens) throw new Error("Failed to add Channel");
@@ -221,7 +221,7 @@ export const dbActionsRoutes = trpcRouter({
         }
         const { result, error } = await getGoogleServices(video.ownerId);
         if (!result) {
-          throw new Error("Failed to get Google services: " + error?.message);
+          throw new Error("Failed to get Google services: " + error);
         }
         const { drive } = result;
         await prisma.$transaction(async () => {
