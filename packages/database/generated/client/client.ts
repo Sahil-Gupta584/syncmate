@@ -48,7 +48,7 @@ path.join(process.cwd(), "generated/client/query_engine-windows.dll.node");
 path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
 path.join(
   process.cwd(),
-  "generated/client/libquery_engine-debian-openssl-3.0.x.so.node"
+  "generated/client/libquery_engine-debian-openssl-3.0.x.so.node",
 );
 
 /**
