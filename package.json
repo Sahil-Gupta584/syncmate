@@ -7,7 +7,7 @@
     "build": "turbo run build",
     "lint": "turbo run lint",
     "format": "prettier . --write ",
-    "format:check": "prettier --check .",
+    "format:check": "npx prettier --check .",
     "db:generate": "cd packages/database && npx prisma generate",
     "backend": "turbo run dev --filter=backend"
   },
