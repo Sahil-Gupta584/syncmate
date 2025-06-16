@@ -35,10 +35,10 @@ export function AddEditor({ creator }: { creator: User }) {
         onClose();
         return;
       }
-      console.log("msg", (res.error as Error).message);
+      console.log("msg", res.error);
 
       addToast({
-        description: (res.error as Error).message || "Unknown error occurred",
+        description: res.error || "Unknown error occurred",
         color: "danger",
       });
     } catch (error) {

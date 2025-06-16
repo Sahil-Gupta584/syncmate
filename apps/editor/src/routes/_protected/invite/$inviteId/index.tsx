@@ -29,7 +29,7 @@ function Page() {
       setErrorMessage(inviteDetails.error);
     }
     if (inviteDetailsQuery.error) {
-      setErrorMessage(inviteDetailsQuery.error);
+      setErrorMessage(inviteDetailsQuery.error.message);
     }
   }, [inviteId, isPending, inviteDetailsQuery]);
 
