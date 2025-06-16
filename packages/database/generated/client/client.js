@@ -34,7 +34,10 @@ path.join(__dirname, "query_engine-windows.dll.node");
 path.join(process.cwd(), "generated/client/query_engine-windows.dll.node");
 // file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
-path.join(process.cwd(), "generated/client/libquery_engine-debian-openssl-3.0.x.so.node");
+path.join(
+  process.cwd(),
+  "generated/client/libquery_engine-debian-openssl-3.0.x.so.node",
+);
 export const Role = $Enums.Role;
 export const PlanType = $Enums.PlanType;
 export const VideoStatus = $Enums.VideoStatus;

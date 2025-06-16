@@ -7,37 +7,37 @@
  * 🟢 You can import this file directly.
  */
 export const Role = {
-    CREATOR: "CREATOR",
-    EDITOR: "EDITOR",
+  CREATOR: "CREATOR",
+  EDITOR: "EDITOR",
 };
 export const PlanType = {
-    TRIAL: "TRIAL",
-    BASE: "BASE",
-    PRO: "PRO",
-    GROWTH: "GROWTH",
-    ENTERPRISE: "ENTERPRISE",
+  TRIAL: "TRIAL",
+  BASE: "BASE",
+  PRO: "PRO",
+  GROWTH: "GROWTH",
+  ENTERPRISE: "ENTERPRISE",
 };
 export const VideoStatus = {
-    DRAFT: "DRAFT",
-    SCHEDULED: "SCHEDULED",
-    SCHEDULING: "SCHEDULING",
-    PUBLISHING: "PUBLISHING",
-    PROCESSING: "PROCESSING",
-    PUBLISHED: "PUBLISHED",
+  DRAFT: "DRAFT",
+  SCHEDULED: "SCHEDULED",
+  SCHEDULING: "SCHEDULING",
+  PUBLISHING: "PUBLISHING",
+  PROCESSING: "PROCESSING",
+  PUBLISHED: "PUBLISHED",
 };
 export const PrivacyStatus = {
-    Private: "Private",
-    Public: "Public",
-    Unlisted: "Unlisted",
+  Private: "Private",
+  Public: "Public",
+  Unlisted: "Unlisted",
 };
 export const InviteStatus = {
-    PENDING: "PENDING",
-    ACCEPTED: "ACCEPTED",
-    EXPIRED: "EXPIRED",
+  PENDING: "PENDING",
+  ACCEPTED: "ACCEPTED",
+  EXPIRED: "EXPIRED",
 };
 export const subscriptionStatus = {
-    active: "active",
-    cancelled: "cancelled",
-    completed: "completed",
-    failed: "failed",
+  active: "active",
+  cancelled: "cancelled",
+  completed: "completed",
+  failed: "failed",
 };
