@@ -47,7 +47,11 @@ export async function getGoogleServices(userId, code) {
     });
   } catch (error) {
     console.error("Error in getGoogleServices:", error);
-    return backendRes({ ok: false, error: error, result: null });
+    return backendRes({
+      ok: false,
+      error: error.message,
+      result: null,
+    });
   }
 }
 export async function updateGoogleDrivePermissions({
@@ -133,7 +137,6 @@ export async function getFileFromDrive(driveFileId, userId) {
       fileId: driveFileId,
       fields: "mimeType, name",
     });
-    console.log("File Metadata:", fileMetadata.data);
     // Check if it's a binary file (not a Google Doc)
     if (fileMetadata.data.mimeType?.includes("application/vnd.google-apps")) {
       throw new Error(
@@ -210,6 +213,10 @@ export async function updateThumbnails({ videos, ownerId }) {
     });
   } catch (error) {
     console.error("Error in updateThumbnails:", error);
-    return backendRes({ ok: false, error: error, result: null });
+    return backendRes({
+      ok: false,
+      error: error.message,
+      result: null,
+    });
   }
 }

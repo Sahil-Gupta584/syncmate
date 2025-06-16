@@ -9,7 +9,7 @@
     "format": "prettier . --write ",
     "format:check": "npx prettier --check .",
     "db:generate": "cd packages/database && npx prisma generate",
-    "backend": "turbo run dev --filter=backend",
+    "backend": "cd apps/backend && npm run start",
     "build:backend": "tsc -p apps/backend && tsc -p packages/trpc --noEmit false || true"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 export type TBackendRes<T> = {
   ok: boolean;
-  error?: Error;
+  error?: string;
   result?: T | null;
 };
 export declare const backendRes: <T = undefined>({

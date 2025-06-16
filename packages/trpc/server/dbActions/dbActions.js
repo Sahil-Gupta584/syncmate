@@ -50,7 +50,11 @@ export const dbActionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: true });
       } catch (error) {
         console.error("Error adding channel with Google APIs:", error);
-        return backendRes({ ok: false, error: error, result: null });
+        return backendRes({
+          ok: false,
+          error: error.message,
+          result: null,
+        });
       }
     }),
   getVideoDetails: trpcProcedure
@@ -79,7 +83,11 @@ export const dbActionsRoutes = trpcRouter({
         });
       } catch (error) {
         console.error("Error in getVideoDetails:", error);
-        return backendRes({ ok: false, error: error, result: null });
+        return backendRes({
+          ok: false,
+          error: error.message,
+          result: null,
+        });
       }
     }),
   getUserVideos: trpcProcedure
@@ -100,7 +108,11 @@ export const dbActionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: res });
       } catch (error) {
         console.log("error from getUserVideos", error);
-        return backendRes({ ok: false, error: error, result: null });
+        return backendRes({
+          ok: false,
+          error: error.message,
+          result: null,
+        });
       }
     }),
   getUserWithEditors: trpcProcedure
@@ -121,7 +133,11 @@ export const dbActionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: res });
       } catch (error) {
         console.log("error from getUserWithEditors", error);
-        return backendRes({ ok: false, error: error, result: null });
+        return backendRes({
+          ok: false,
+          error: error.message,
+          result: null,
+        });
       }
     }),
   getCreatorDetails: trpcProcedure
@@ -132,7 +148,7 @@ export const dbActionsRoutes = trpcRouter({
         if (!userId) {
           return backendRes({
             ok: false,
-            error: new Error("User ID is required"),
+            error: "User ID is required",
             result: null,
           });
         }
@@ -177,7 +193,11 @@ export const dbActionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: res });
       } catch (error) {
         console.log("error from getCreatorDetails", error);
-        return backendRes({ ok: false, error: error, result: null });
+        return backendRes({
+          ok: false,
+          error: error.message,
+          result: null,
+        });
       }
     }),
   removeEditor: trpcProcedure
@@ -202,7 +222,11 @@ export const dbActionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: res });
       } catch (error) {
         console.log("error from removeEditor", error);
-        return backendRes({ ok: false, error: error, result: null });
+        return backendRes({
+          ok: false,
+          error: error.message,
+          result: null,
+        });
       }
     }),
   deleteVideo: trpcProcedure
@@ -239,7 +263,11 @@ export const dbActionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: null });
       } catch (error) {
         console.error("Error in deleteVideo:", error);
-        return backendRes({ ok: false, error: error, result: null });
+        return backendRes({
+          ok: false,
+          error: error.message,
+          result: null,
+        });
       }
     }),
   getCreatorEditors: trpcProcedure
@@ -256,7 +284,11 @@ export const dbActionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: res });
       } catch (error) {
         console.log("error from getCreatorEditors", error);
-        return backendRes({ ok: false, error: error, result: null });
+        return backendRes({
+          ok: false,
+          error: error.message,
+          result: null,
+        });
       }
     }),
   getCreatorChannels: trpcProcedure
@@ -270,7 +302,11 @@ export const dbActionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: res });
       } catch (error) {
         console.log("error from getCreatorChannels", error);
-        return backendRes({ ok: false, error: error, result: null });
+        return backendRes({
+          ok: false,
+          error: error.message,
+          result: null,
+        });
       }
     }),
   getVideoEditors: trpcProcedure
@@ -285,7 +321,11 @@ export const dbActionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: res });
       } catch (error) {
         console.log("error from getVideoEditors", error);
-        return backendRes({ ok: false, error: error, result: null });
+        return backendRes({
+          ok: false,
+          error: error.message,
+          result: null,
+        });
       }
     }),
   updateVideoDetails: trpcProcedure
@@ -357,7 +397,11 @@ export const dbActionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: res });
       } catch (error) {
         console.log("error from updateVideoDetails", error);
-        return backendRes({ ok: false, error: error, result: null });
+        return backendRes({
+          ok: false,
+          error: error.message,
+          result: null,
+        });
       }
     }),
   handleAcceptInvite: trpcProcedure
@@ -392,7 +436,11 @@ export const dbActionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: createCreatorEditor });
       } catch (error) {
         console.log("Error from handleAcceptInvite :", error);
-        return backendRes({ ok: false, result: null, error: error });
+        return backendRes({
+          ok: false,
+          result: null,
+          error: error.message,
+        });
       }
     }),
   getInviteDetails: trpcProcedure
@@ -412,7 +460,11 @@ export const dbActionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: isExists });
       } catch (error) {
         console.log("Error from getInviteDetails :", error);
-        return backendRes({ ok: false, result: null, error: error });
+        return backendRes({
+          ok: false,
+          result: null,
+          error: error.message,
+        });
       }
     }),
   getEditorVideos: trpcProcedure
@@ -437,7 +489,11 @@ export const dbActionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: isExists });
       } catch (error) {
         console.log("Error from getEditorVideos :", error);
-        return backendRes({ ok: false, result: null, error: error });
+        return backendRes({
+          ok: false,
+          result: null,
+          error: error.message,
+        });
       }
     }),
   getEditorCreators: trpcProcedure
@@ -457,7 +513,11 @@ export const dbActionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: isExists });
       } catch (error) {
         console.log("Error from getEditorVideos :", error);
-        return backendRes({ ok: false, result: null, error: error });
+        return backendRes({
+          ok: false,
+          result: null,
+          error: error.message,
+        });
       }
     }),
 });

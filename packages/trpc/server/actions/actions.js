@@ -43,7 +43,11 @@ export const actionsRoutes = trpcRouter({
         });
       } catch (error) {
         console.error("Error in getVideoLink:", error);
-        return backendRes({ ok: false, error: error, result: null });
+        return backendRes({
+          ok: false,
+          error: error.message,
+          result: null,
+        });
       }
     }),
   getPlaylists: trpcProcedure
@@ -67,7 +71,11 @@ export const actionsRoutes = trpcRouter({
         });
       } catch (error) {
         console.error("Error in getPlaylists:", error);
-        return backendRes({ ok: false, error: error, result: null });
+        return backendRes({
+          ok: false,
+          error: error.message,
+          result: null,
+        });
       }
     }),
   sendInviteLink: trpcProcedure
@@ -100,6 +108,15 @@ export const actionsRoutes = trpcRouter({
         if (isInviteExists) {
           throw new Error("Invite already sent to this editor. ");
         }
+        console.log("process.env.NODEMAILER_USER", process.env.NODEMAILER_USER);
+        // console.log("isEditorAlreadyInSpace", isEditorAlreadyInSpace);
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: process.env.NODEMAILER_USER,
+            pass: process.env.NODEMAILER_PASS,
+          },
+        });
         const createInvite = await prisma.invite.create({
           data: {
             creatorId: creator.id,
@@ -107,14 +124,6 @@ export const actionsRoutes = trpcRouter({
             editorId: isEditorExists ? isEditorExists.id : undefined,
             expiresAt: moment().add(7, "day").unix().toString(),
             createdAt: moment().unix().toString(),
-          },
-        });
-        // console.log("isEditorAlreadyInSpace", isEditorAlreadyInSpace);
-        const transporter = nodemailer.createTransport({
-          service: "gmail",
-          auth: {
-            user: process.env.NODEMAILER_USER,
-            pass: process.env.NODEMAILER_PASS,
           },
         });
         transporter.sendMail({
@@ -199,7 +208,11 @@ export const actionsRoutes = trpcRouter({
         return backendRes({ ok: true, result: true });
       } catch (error) {
         console.error("Error in sendInviteLink:", error);
-        return backendRes({ ok: false, error: error, result: null });
+        return backendRes({
+          ok: false,
+          error: error.message,
+          result: null,
+        });
       }
     }),
 });
