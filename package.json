@@ -10,7 +10,7 @@
     "format:check": "npx prettier --check .",
     "db:generate": "cd packages/database && npx prisma generate",
     "backend": "cd apps/backend && npm run start",
-    "build:backend": "tsc -p apps/backend && tsc -p packages/trpc --noEmit false || true"
+    "build:backend": "tsc -p apps/backend && tsc -p packages/trpc --noEmit false || true && tsc -p packages/database"
   },
   "devDependencies": {
     "turbo": "^2.5.3",

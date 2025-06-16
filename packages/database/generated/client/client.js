@@ -6,15 +6,14 @@
  *
  * 🟢 You can import this file directly.
  */
-import * as path from "node:path";
 import * as process from "node:process";
+import * as path from "node:path";
 import { fileURLToPath } from "node:url";
-import * as $Enums from "./enums.js";
-import * as $Class from "./internal/class.js";
-import * as Prisma from "./internal/prismaNamespace.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-export * as $Enums from "./enums.js";
-export { Prisma };
+import * as $Enums from "./enums";
+import * as $Class from "./internal/class";
+import * as Prisma from "./internal/prismaNamespace";
+export * as $Enums from "./enums";
 /**
  * ## Prisma Client
  *
@@ -29,17 +28,15 @@ export { Prisma };
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
  */
 export const PrismaClient = $Class.getPrismaClientClass(__dirname);
+export { Prisma };
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
-path.join(
-  process.cwd(),
-  "packages/database/generated/client/query_engine-windows.dll.node",
-);
+path.join(process.cwd(), "generated/client/query_engine-windows.dll.node");
 // file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
 path.join(
   process.cwd(),
-  "packages/database/generated/client/libquery_engine-debian-openssl-3.0.x.so.node",
+  "generated/client/libquery_engine-debian-openssl-3.0.x.so.node",
 );
 export const Role = $Enums.Role;
 export const PlanType = $Enums.PlanType;
