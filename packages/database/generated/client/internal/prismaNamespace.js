@@ -20,13 +20,10 @@ export const validator = runtime.Public.validator;
 /**
  * Prisma Errors
  */
-export const PrismaClientKnownRequestError =
-  runtime.PrismaClientKnownRequestError;
-export const PrismaClientUnknownRequestError =
-  runtime.PrismaClientUnknownRequestError;
+export const PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError;
+export const PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError;
 export const PrismaClientRustPanicError = runtime.PrismaClientRustPanicError;
-export const PrismaClientInitializationError =
-  runtime.PrismaClientInitializationError;
+export const PrismaClientInitializationError = runtime.PrismaClientInitializationError;
 export const PrismaClientValidationError = runtime.PrismaClientValidationError;
 /**
  * Re-export of sql-template-tag
@@ -46,13 +43,13 @@ export const getExtensionContext = runtime.Extensions.getExtensionContext;
  * Query Engine version: 81e4af48011447c3cc503a190e86995b66d2a28e
  */
 export const prismaVersion = {
-  client: "6.9.0",
-  engine: "81e4af48011447c3cc503a190e86995b66d2a28e",
+    client: "6.9.0",
+    engine: "81e4af48011447c3cc503a190e86995b66d2a28e",
 };
 export const NullTypes = {
-  DbNull: runtime.objectEnumValues.classes.DbNull,
-  JsonNull: runtime.objectEnumValues.classes.JsonNull,
-  AnyNull: runtime.objectEnumValues.classes.AnyNull,
+    DbNull: runtime.objectEnumValues.classes.DbNull,
+    JsonNull: runtime.objectEnumValues.classes.JsonNull,
+    AnyNull: runtime.objectEnumValues.classes.AnyNull,
 };
 /**
  * Helper for filtering JSON entries that have `null` on the database (empty on the db)
@@ -73,149 +70,150 @@ export const JsonNull = runtime.objectEnumValues.instances.JsonNull;
  */
 export const AnyNull = runtime.objectEnumValues.instances.AnyNull;
 export const ModelName = {
-  User: "User",
-  CreatorEditor: "CreatorEditor",
-  Video: "Video",
-  Channel: "Channel",
-  VideoEditor: "VideoEditor",
-  Invite: "Invite",
-  Session: "Session",
-  Account: "Account",
-  Verification: "Verification",
-  Subscription: "Subscription",
+    User: "User",
+    CreatorEditor: "CreatorEditor",
+    Video: "Video",
+    Channel: "Channel",
+    VideoEditor: "VideoEditor",
+    Invite: "Invite",
+    Session: "Session",
+    Account: "Account",
+    Verification: "Verification",
+    Subscription: "Subscription",
 };
 /**
  * Enums
  */
 export const TransactionIsolationLevel = runtime.makeStrictEnum({
-  ReadUncommitted: "ReadUncommitted",
-  ReadCommitted: "ReadCommitted",
-  RepeatableRead: "RepeatableRead",
-  Serializable: "Serializable",
+    ReadUncommitted: "ReadUncommitted",
+    ReadCommitted: "ReadCommitted",
+    RepeatableRead: "RepeatableRead",
+    Serializable: "Serializable",
 });
 export const UserScalarFieldEnum = {
-  id: "id",
-  email: "email",
-  name: "name",
-  image: "image",
-  emailVerified: "emailVerified",
-  role: "role",
-  plan: "plan",
-  trialEndAt: "trialEndAt",
-  createdAt: "createdAt",
-  updatedAt: "updatedAt",
+    id: "id",
+    email: "email",
+    name: "name",
+    image: "image",
+    emailVerified: "emailVerified",
+    role: "role",
+    plan: "plan",
+    trialEndAt: "trialEndAt",
+    createdAt: "createdAt",
+    updatedAt: "updatedAt",
 };
 export const CreatorEditorScalarFieldEnum = {
-  creatorId: "creatorId",
-  editorId: "editorId",
-  assignedAt: "assignedAt",
+    creatorId: "creatorId",
+    editorId: "editorId",
+    assignedAt: "assignedAt",
 };
 export const VideoScalarFieldEnum = {
-  id: "id",
-  gDriveId: "gDriveId",
-  title: "title",
-  description: "description",
-  duration: "duration",
-  thumbnailUrl: "thumbnailUrl",
-  scheduledAt: "scheduledAt",
-  videoStatus: "videoStatus",
-  privacyStatus: "privacyStatus",
-  playlistIds: "playlistIds",
-  tags: "tags",
-  categoryId: "categoryId",
-  ownerId: "ownerId",
-  importedById: "importedById",
-  channelId: "channelId",
-  createdAt: "createdAt",
+    id: "id",
+    gDriveId: "gDriveId",
+    title: "title",
+    description: "description",
+    duration: "duration",
+    thumbnailUrl: "thumbnailUrl",
+    scheduledAt: "scheduledAt",
+    videoStatus: "videoStatus",
+    privacyStatus: "privacyStatus",
+    playlistIds: "playlistIds",
+    tags: "tags",
+    categoryId: "categoryId",
+    ownerId: "ownerId",
+    importedById: "importedById",
+    channelId: "channelId",
+    createdAt: "createdAt",
 };
 export const ChannelScalarFieldEnum = {
-  id: "id",
-  userId: "userId",
-  name: "name",
-  ytChannelId: "ytChannelId",
-  logoUrl: "logoUrl",
-  description: "description",
-  refresh_token: "refresh_token",
-  access_token: "access_token",
+    id: "id",
+    userId: "userId",
+    name: "name",
+    ytChannelId: "ytChannelId",
+    logoUrl: "logoUrl",
+    description: "description",
+    refresh_token: "refresh_token",
+    access_token: "access_token",
 };
 export const VideoEditorScalarFieldEnum = {
-  videoId: "videoId",
-  editorEmail: "editorEmail",
-  assignedAt: "assignedAt",
+    videoId: "videoId",
+    editorEmail: "editorEmail",
+    assignedAt: "assignedAt",
 };
 export const InviteScalarFieldEnum = {
-  id: "id",
-  creatorId: "creatorId",
-  editorId: "editorId",
-  editorEmail: "editorEmail",
-  status: "status",
-  createdAt: "createdAt",
-  expiresAt: "expiresAt",
+    id: "id",
+    creatorId: "creatorId",
+    editorId: "editorId",
+    editorEmail: "editorEmail",
+    status: "status",
+    createdAt: "createdAt",
+    expiresAt: "expiresAt",
 };
 export const SessionScalarFieldEnum = {
-  id: "id",
-  expiresAt: "expiresAt",
-  token: "token",
-  createdAt: "createdAt",
-  updatedAt: "updatedAt",
-  ipAddress: "ipAddress",
-  userAgent: "userAgent",
-  userId: "userId",
+    id: "id",
+    expiresAt: "expiresAt",
+    token: "token",
+    createdAt: "createdAt",
+    updatedAt: "updatedAt",
+    ipAddress: "ipAddress",
+    userAgent: "userAgent",
+    userId: "userId",
 };
 export const AccountScalarFieldEnum = {
-  id: "id",
-  accountId: "accountId",
-  providerId: "providerId",
-  userId: "userId",
-  accessToken: "accessToken",
-  refreshToken: "refreshToken",
-  idToken: "idToken",
-  accessTokenExpiresAt: "accessTokenExpiresAt",
-  refreshTokenExpiresAt: "refreshTokenExpiresAt",
-  scope: "scope",
-  password: "password",
-  createdAt: "createdAt",
-  updatedAt: "updatedAt",
+    id: "id",
+    accountId: "accountId",
+    providerId: "providerId",
+    userId: "userId",
+    accessToken: "accessToken",
+    refreshToken: "refreshToken",
+    idToken: "idToken",
+    accessTokenExpiresAt: "accessTokenExpiresAt",
+    refreshTokenExpiresAt: "refreshTokenExpiresAt",
+    scope: "scope",
+    password: "password",
+    createdAt: "createdAt",
+    updatedAt: "updatedAt",
 };
 export const VerificationScalarFieldEnum = {
-  id: "id",
-  identifier: "identifier",
-  value: "value",
-  expiresAt: "expiresAt",
-  createdAt: "createdAt",
-  updatedAt: "updatedAt",
+    id: "id",
+    identifier: "identifier",
+    value: "value",
+    expiresAt: "expiresAt",
+    createdAt: "createdAt",
+    updatedAt: "updatedAt",
 };
 export const SubscriptionScalarFieldEnum = {
-  id: "id",
-  razorpaySubId: "razorpaySubId",
-  razorpayCustId: "razorpayCustId",
-  status: "status",
-  userId: "userId",
-  createdAt: "createdAt",
-  updatedAt: "updatedAt",
+    id: "id",
+    razorpaySubId: "razorpaySubId",
+    razorpayCustId: "razorpayCustId",
+    status: "status",
+    userId: "userId",
+    createdAt: "createdAt",
+    updatedAt: "updatedAt",
 };
 export const SortOrder = {
-  asc: "asc",
-  desc: "desc",
+    asc: "asc",
+    desc: "desc",
 };
 export const NullableJsonNullValueInput = {
-  DbNull: DbNull,
-  JsonNull: JsonNull,
+    DbNull: DbNull,
+    JsonNull: JsonNull,
 };
 export const JsonNullValueInput = {
-  JsonNull: JsonNull,
+    JsonNull: JsonNull,
 };
 export const QueryMode = {
-  default: "default",
-  insensitive: "insensitive",
+    default: "default",
+    insensitive: "insensitive",
 };
 export const JsonNullValueFilter = {
-  DbNull: DbNull,
-  JsonNull: JsonNull,
-  AnyNull: AnyNull,
+    DbNull: DbNull,
+    JsonNull: JsonNull,
+    AnyNull: AnyNull,
 };
 export const NullsOrder = {
-  first: "first",
-  last: "last",
+    first: "first",
+    last: "last",
 };
-export const defineExtension = runtime.Extensions.defineExtension;
+export const defineExtension = runtime.Extensions
+    .defineExtension;

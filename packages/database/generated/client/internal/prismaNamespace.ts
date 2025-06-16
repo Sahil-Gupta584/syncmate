@@ -14,10 +14,10 @@
  */
 
 import * as runtime from "@prisma/client/runtime/library";
-import type * as Prisma from "../models";
-import { type PrismaClient } from "./class";
+import type * as Prisma from "../models.js";
+import { type PrismaClient } from "./class.js";
 
-export type * from "../models";
+export type * from "../models.js";
 
 export type DMMF = typeof runtime.DMMF;
 
@@ -126,13 +126,13 @@ export type InputJsonValue = runtime.InputJsonValue;
 
 export const NullTypes = {
   DbNull: runtime.objectEnumValues.classes.DbNull as new (
-    secret: never,
+    secret: never
   ) => typeof runtime.objectEnumValues.instances.DbNull,
   JsonNull: runtime.objectEnumValues.classes.JsonNull as new (
-    secret: never,
+    secret: never
   ) => typeof runtime.objectEnumValues.instances.JsonNull,
   AnyNull: runtime.objectEnumValues.classes.AnyNull as new (
-    secret: never,
+    secret: never
   ) => typeof runtime.objectEnumValues.instances.AnyNull,
 };
 
@@ -1802,7 +1802,7 @@ export type MiddlewareParams = {
  */
 export type Middleware<T = any> = (
   params: MiddlewareParams,
-  next: (params: MiddlewareParams) => runtime.Types.Utils.JsPromise<T>,
+  next: (params: MiddlewareParams) => runtime.Types.Utils.JsPromise<T>
 ) => runtime.Types.Utils.JsPromise<T>;
 
 /**
