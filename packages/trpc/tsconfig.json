@@ -11,6 +11,5 @@
       "@repo/lib/*": ["../lib/src/*"]
     }
   },
-  "include": ["../../"],
   "exclude": ["dist", "build", "node_modules"]
 }
