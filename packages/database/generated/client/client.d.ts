@@ -4,10 +4,11 @@
  * 🟢 You can import this file directly.
  */
 import * as runtime from "@prisma/client/runtime/library";
-import * as $Enums from "./enums";
-import * as $Class from "./internal/class";
-import * as Prisma from "./internal/prismaNamespace";
-export * as $Enums from "./enums";
+import * as $Enums from "./enums.js";
+import * as $Class from "./internal/class.js";
+import * as Prisma from "./internal/prismaNamespace.js";
+export * as $Enums from "./enums.js";
+export { Prisma };
 /**
  * ## Prisma Client
  *
@@ -28,7 +29,6 @@ export type PrismaClient<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = $Class.PrismaClient<ClientOptions, Log, ExtArgs>;
-export { Prisma };
 /**
  * Model User
  *

@@ -6,7 +6,7 @@
  * Please import the `PrismaClient` class from the `client.ts` file instead.
  */
 import * as runtime from "@prisma/client/runtime/library";
-import type * as Prisma from "./prismaNamespace";
+import type * as Prisma from "./prismaNamespace.js";
 export type LogOptions<ClientOptions extends Prisma.PrismaClientOptions> =
   "log" extends keyof ClientOptions
     ? ClientOptions["log"] extends Array<Prisma.LogLevel | Prisma.LogDefinition>

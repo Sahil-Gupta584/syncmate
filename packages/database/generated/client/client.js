@@ -6,14 +6,15 @@
  *
  * 🟢 You can import this file directly.
  */
-import * as process from "node:process";
 import * as path from "node:path";
+import * as process from "node:process";
 import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-import * as $Enums from "./enums";
-import * as $Class from "./internal/class";
-import * as Prisma from "./internal/prismaNamespace";
-export * as $Enums from "./enums";
+import * as $Enums from "./enums.js";
+import * as $Class from "./internal/class.js";
+import * as Prisma from "./internal/prismaNamespace.js";
+export * as $Enums from "./enums.js";
+export { Prisma };
 /**
  * ## Prisma Client
  *
@@ -28,7 +29,6 @@ export * as $Enums from "./enums";
  * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
  */
 export const PrismaClient = $Class.getPrismaClientClass(__dirname);
-export { Prisma };
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
 path.join(process.cwd(), "generated/client/query_engine-windows.dll.node");
