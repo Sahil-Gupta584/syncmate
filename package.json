@@ -2,7 +2,6 @@
   "name": "trt",
   "private": true,
   "scripts": {
-    "start": "turbo run start",
     "dev": "turbo run dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
@@ -25,7 +24,6 @@
     "packages/*"
   ],
   "dependencies": {
-    "@tanstack/react-query": "^5.77.2",
     "@tanstack/react-router": "^1.120.10",
     "@tanstack/router-plugin": "^1.120.10",
     "@trpc/client": "^11.1.2",
