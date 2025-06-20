@@ -9,7 +9,7 @@ COPY ./packages ./packages
 
 RUN npm i
 RUN npm run db:generate
-RUN npm run build
+RUN npm run build --filter=web
 EXPOSE 3000
 
 CMD [ "npm","run","backend" ]
