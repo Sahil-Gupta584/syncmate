@@ -96,13 +96,15 @@ export async function updateGoogleDrivePermissions({
   });
 
   const existingEmails =
-    permissions.data.permissions?.map((p) => p.emailAddress) ?? [];
+    permissions.data.permissions?.map(
+      (p: { emailAddress: string }) => p.emailAddress,
+    ) ?? [];
 
   const toGrant = selectedEditorEmails.filter(
     (email) => !existingEmails.includes(email),
   );
   const toRevoke = existingEmails.filter(
-    (email) => !selectedEditorEmails.includes(email as string),
+    (email: string) => !selectedEditorEmails.includes(email as string),
   );
   console.log("toGrant", toGrant);
   await Promise.all(
@@ -119,8 +121,8 @@ export async function updateGoogleDrivePermissions({
   );
 
   await Promise.all(
-    permissions.data
-      .permissions!.filter(
+    (permissions.data.permissions as { emailAddress: string; id: string }[])!
+      .filter(
         (p) =>
           toRevoke.includes(p.emailAddress!) &&
           p.emailAddress !== videoOwnerEmail,
@@ -220,7 +222,6 @@ export async function updateThumbnails({
         fileId: gDriveId,
         fields: "thumbnailLink",
       });
-      console.log("fileDatad", JSON.stringify(file.data));
 
       if (!file.data.thumbnailLink) {
         console.error("Thumbnail not found");
@@ -230,8 +231,6 @@ export async function updateThumbnails({
         responseType: "arraybuffer",
       });
       const buffer = Buffer.from(imgFile.data);
-
-      console.log("imgFile", imgFile.data);
 
       const form = new FormData();
       const blob = new Blob([buffer], {
