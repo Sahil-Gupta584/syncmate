@@ -11,7 +11,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy Backend
+    name: Deploy Creator
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the Code
