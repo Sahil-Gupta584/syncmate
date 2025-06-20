@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY ./package.json ./package.json
 COPY ./turbo.json ./turbo.json
-COPY ./apps/creator ./apps/creator
 COPY ./packages ./packages
+COPY ./apps/creator ./apps/creator
 
 RUN npm i
 RUN npm run db:generate

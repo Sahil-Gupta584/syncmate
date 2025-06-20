@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import {
   FaArrowRight,
   FaCheckCircle,
-  FaClock,
   FaExclamationTriangle,
 } from "react-icons/fa";
 
