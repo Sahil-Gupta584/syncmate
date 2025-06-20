@@ -28,4 +28,4 @@ jobs:
           context: .
           file: ./docker/Dockerfile.backend
           push: true
-          tags: sahilg99/syncmate-backend:${{ github.sha }}
+          tags: sahilg99/syncmate-creator:${{ github.sha }}
