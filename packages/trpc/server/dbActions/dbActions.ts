@@ -189,7 +189,7 @@ export const dbActionsRoutes = trpcRouter({
             if (updatedVideoRes && updatedVideoRes.result) {
               for (const video of updatedVideoRes.result.videos) {
                 const videoIndex = res.ownedVideos.findIndex(
-                  (v) => v.id === video.videoId
+                  (v: { id: string }) => v.id === video.videoId
                 );
                 if (videoIndex !== -1 && res.ownedVideos[videoIndex]) {
                   res.ownedVideos[videoIndex].thumbnailUrl =
