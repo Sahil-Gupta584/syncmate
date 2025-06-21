@@ -75,8 +75,8 @@ export default function ImportVideo({
           JSON.stringify(
             (userDetails.editors as { editor: { id: string; email: string } }[])
               .filter((e) => selectedEditors?.includes(e.editor.id))
-              .map((e) => e.editor.email),
-          ),
+              .map((e) => e.editor.email)
+          )
         );
       }
 
@@ -141,26 +141,34 @@ export default function ImportVideo({
                     <p className=" font-medium">For :</p>
                     <div className="gap-6 flex flex-wrap ">
                       {userDetails &&
-                        userDetails.channels.map((channel) => (
-                          <label
-                            key={channel.id}
-                            className="flex items-center  cursor-pointer gap-1"
-                          >
-                            <input
-                              type="radio"
-                              value={channel.id}
-                              {...register("channelId")}
-                              checked={selectedChannel === channel.id}
-                              onChange={() => setValue("channelId", channel.id)}
-                            />
-                            <Avatar
-                              src={channel.logoUrl}
-                              fallback
-                              className="w-7 h-7 ml-3"
-                            />
-                            <span className="mt-1">{channel.name}</span>
-                          </label>
-                        ))}
+                        userDetails.channels.map(
+                          (channel: {
+                            id: string;
+                            logoUrl: string;
+                            name: string;
+                          }) => (
+                            <label
+                              key={channel.id}
+                              className="flex items-center  cursor-pointer gap-1"
+                            >
+                              <input
+                                type="radio"
+                                value={channel.id}
+                                {...register("channelId")}
+                                checked={selectedChannel === channel.id}
+                                onChange={() =>
+                                  setValue("channelId", channel.id)
+                                }
+                              />
+                              <Avatar
+                                src={channel.logoUrl}
+                                fallback
+                                className="w-7 h-7 ml-3"
+                              />
+                              <span className="mt-1">{channel.name}</span>
+                            </label>
+                          )
+                        )}
                     </div>
                   </div>
                 )}
@@ -189,7 +197,7 @@ export default function ImportVideo({
                                 </div>
                               </Checkbox>
                             );
-                          },
+                          }
                         )}
                     </CheckboxGroup>
                   </div>

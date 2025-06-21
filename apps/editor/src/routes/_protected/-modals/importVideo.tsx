@@ -60,7 +60,7 @@ export default function ImportVideo({
       formData.append("duration", duration);
       formData.append(
         "selectedEditorEmails",
-        JSON.stringify([userDetails.email]),
+        JSON.stringify([userDetails.email])
       );
       const res = await axiosInstance.post(`/import-video`, formData);
 
@@ -155,13 +155,15 @@ export default function ImportVideo({
                         className="flex items-center gap-2 "
                       >
                         <Avatar
-                          alt={creator.data?.creator.name}
+                          alt={creator.data?.creator.name as string}
                           className="flex-shrink-0"
                           size="sm"
-                          src={creator.data?.creator.image || undefined}
+                          src={
+                            (creator.data?.creator.image as string) || undefined
+                          }
                         />
                         <div className="flex flex-col">
-                          <span>{creator.data?.creator.name}</span>
+                          <span>{creator.data?.creator.name as string}</span>
                         </div>
                       </div>
                     ));
@@ -174,7 +176,7 @@ export default function ImportVideo({
                     },
                   })}
                 >
-                  {({ creator }) => (
+                  {({ creator }: { creator: any }) => (
                     <SelectItem key={creator.id} textValue={creator.name}>
                       <div className="flex gap-2 items-center">
                         <Avatar
