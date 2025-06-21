@@ -189,7 +189,7 @@ export const dbActionsRoutes = trpcRouter({
             if (updatedVideoRes && updatedVideoRes.result) {
               for (const video of updatedVideoRes.result.videos) {
                 const videoIndex = res.ownedVideos.findIndex(
-                  (v: { id: string }) => v.id === video.videoId
+                  (v: { id: string }) => v.id === video.videoId,
                 );
                 if (videoIndex !== -1 && res.ownedVideos[videoIndex]) {
                   res.ownedVideos[videoIndex].thumbnailUrl =
@@ -382,10 +382,10 @@ export const dbActionsRoutes = trpcRouter({
             const existingEditorIds = editors.map((e) => e.id);
 
             const editorToAdd = selectedEditorsEmail.filter(
-              (id) => !existingEditorIds.includes(id)
+              (id) => !existingEditorIds.includes(id),
             );
             const editorToRemove = existingEditorIds.filter(
-              (id) => !selectedEditorsEmail.includes(id)
+              (id) => !selectedEditorsEmail.includes(id),
             );
 
             await prisma.videoEditor.deleteMany({
