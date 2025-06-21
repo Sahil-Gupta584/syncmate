@@ -38,13 +38,13 @@ export declare const serverZodSchemas: {
           "strip",
           import("zod").ZodTypeAny,
           {
-            name: string;
             id: string;
+            name: string;
             email: string;
           },
           {
-            name: string;
             id: string;
+            name: string;
             email: string;
           }
         >;
@@ -54,16 +54,16 @@ export declare const serverZodSchemas: {
       {
         editorEmail: string;
         creator: {
-          name: string;
           id: string;
+          name: string;
           email: string;
         };
       },
       {
         editorEmail: string;
         creator: {
-          name: string;
           id: string;
+          name: string;
           email: string;
         };
       }
@@ -168,12 +168,12 @@ export declare const serverZodSchemas: {
       "strip",
       import("zod").ZodTypeAny,
       {
-        creatorId: string;
         editorId: string;
+        creatorId: string;
       },
       {
-        creatorId: string;
         editorId: string;
+        creatorId: string;
       }
     >;
     getCreatorEditors: import("zod").ZodObject<
@@ -242,6 +242,10 @@ export declare const serverZodSchemas: {
       {
         id: string;
         gDriveId: string;
+        editors: {
+          id: string;
+          email: string;
+        }[];
         title: string | null;
         description: string | null;
         thumbnailUrl: string | null;
@@ -250,15 +254,15 @@ export declare const serverZodSchemas: {
         tags: string | null;
         categoryId: string | null;
         channelId: string | null;
-        editors: {
-          id: string;
-          email: string;
-        }[];
         selectedEditorsEmail: string[] | null;
       },
       {
         id: string;
         gDriveId: string;
+        editors: {
+          id: string;
+          email: string;
+        }[];
         title: string | null;
         description: string | null;
         thumbnailUrl: string | null;
@@ -267,10 +271,6 @@ export declare const serverZodSchemas: {
         tags: string | null;
         categoryId: string | null;
         channelId: string | null;
-        editors: {
-          id: string;
-          email: string;
-        }[];
         selectedEditorsEmail: string[] | null;
       }
     >;

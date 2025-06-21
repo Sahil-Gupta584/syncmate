@@ -174,7 +174,6 @@ export async function updateThumbnails({ videos, ownerId }) {
         fileId: gDriveId,
         fields: "thumbnailLink",
       });
-      console.log("fileDatad", JSON.stringify(file.data));
       if (!file.data.thumbnailLink) {
         console.error("Thumbnail not found");
         return;
@@ -183,7 +182,6 @@ export async function updateThumbnails({ videos, ownerId }) {
         responseType: "arraybuffer",
       });
       const buffer = Buffer.from(imgFile.data);
-      console.log("imgFile", imgFile.data);
       const form = new FormData();
       const blob = new Blob([buffer], {
         type: imgFile.headers["content-type"],

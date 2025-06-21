@@ -13,6 +13,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@heroui/react";
+import { TRole } from "@repo/lib/constants";
 import axios from "axios";
 
 import { type HTMLAttributes, useState } from "react";
@@ -37,7 +38,7 @@ export default function VideoDropdown({
 }: {
   title?: string;
   videoId: string;
-  userRole: "CREATOR" | "EDITOR";
+  userRole: TRole;
   className?: HTMLAttributes<HTMLElement>["className"];
   CREATOR_BASE_URL: string;
 } & Partial<TVideoDropdownProps>) {

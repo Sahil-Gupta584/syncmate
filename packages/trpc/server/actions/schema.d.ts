@@ -38,13 +38,13 @@ export declare const actionsZodSchema: {
         "strip",
         z.ZodTypeAny,
         {
-          name: string;
           id: string;
+          name: string;
           email: string;
         },
         {
-          name: string;
           id: string;
+          name: string;
           email: string;
         }
       >;
@@ -54,16 +54,16 @@ export declare const actionsZodSchema: {
     {
       editorEmail: string;
       creator: {
-        name: string;
         id: string;
+        name: string;
         email: string;
       };
     },
     {
       editorEmail: string;
       creator: {
-        name: string;
         id: string;
+        name: string;
         email: string;
       };
     }

@@ -37,12 +37,12 @@ export declare const dbActionsZodSchema: {
     "strip",
     z.ZodTypeAny,
     {
-      creatorId: string;
       editorId: string;
+      creatorId: string;
     },
     {
-      creatorId: string;
       editorId: string;
+      creatorId: string;
     }
   >;
   getCreatorEditors: z.ZodObject<
@@ -109,6 +109,10 @@ export declare const dbActionsZodSchema: {
     {
       id: string;
       gDriveId: string;
+      editors: {
+        id: string;
+        email: string;
+      }[];
       title: string | null;
       description: string | null;
       thumbnailUrl: string | null;
@@ -117,15 +121,15 @@ export declare const dbActionsZodSchema: {
       tags: string | null;
       categoryId: string | null;
       channelId: string | null;
-      editors: {
-        id: string;
-        email: string;
-      }[];
       selectedEditorsEmail: string[] | null;
     },
     {
       id: string;
       gDriveId: string;
+      editors: {
+        id: string;
+        email: string;
+      }[];
       title: string | null;
       description: string | null;
       thumbnailUrl: string | null;
@@ -134,10 +138,6 @@ export declare const dbActionsZodSchema: {
       tags: string | null;
       categoryId: string | null;
       channelId: string | null;
-      editors: {
-        id: string;
-        email: string;
-      }[];
       selectedEditorsEmail: string[] | null;
     }
   >;

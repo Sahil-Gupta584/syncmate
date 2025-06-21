@@ -32,8 +32,8 @@ export declare const actionsRoutes: import("@trpc/server/unstable-core-do-not-im
       input: {
         editorEmail: string;
         creator: {
-          name: string;
           id: string;
+          name: string;
           email: string;
         };
       };

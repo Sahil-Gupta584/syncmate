@@ -96,15 +96,13 @@ export async function updateGoogleDrivePermissions({
   });
 
   const existingEmails =
-    permissions.data.permissions?.map(
-      (p: { emailAddress: string }) => p.emailAddress,
-    ) ?? [];
+    permissions.data.permissions?.map((p) => p.emailAddress) ?? [];
 
   const toGrant = selectedEditorEmails.filter(
     (email) => !existingEmails.includes(email),
   );
   const toRevoke = existingEmails.filter(
-    (email: string) => !selectedEditorEmails.includes(email as string),
+    (email) => !selectedEditorEmails.includes(email as string),
   );
   console.log("toGrant", toGrant);
   await Promise.all(

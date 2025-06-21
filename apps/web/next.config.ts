@@ -1,13 +1,5 @@
-import { loadEnvConfig } from "@next/env";
-import type { NextConfig } from "next";
-import { resolve } from "path";
-const projectDir = resolve(process.cwd(), "../../");
-loadEnvConfig(projectDir);
+import { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  env: {
-    VITE_CREATOR_BASE_URL: process.env.VITE_CREATOR_BASE_URL,
-  },
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
