@@ -45,24 +45,6 @@ const stats = [
 ];
 
 export default function WhyUs() {
-  const oldWorkflowTime = painPoints.reduce((total, point) => {
-    const minutes =
-      parseInt(point.time.split(" ")[0]) *
-      (point.time.includes("hour") ? 60 : 1);
-    return total + minutes;
-  }, 0);
-
-  const newWorkflowTime = ourSolution.reduce((total, point) => {
-    const timeStr = point.time.split(" ")[0];
-    const minutes =
-      timeStr === "10" && point.time.includes("sec")
-        ? 0.17
-        : timeStr === "30" && point.time.includes("sec")
-          ? 0.5
-          : parseInt(timeStr);
-    return total + minutes;
-  }, 0);
-
   return (
     <section
       id="whyUs"
