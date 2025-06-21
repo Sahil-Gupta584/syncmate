@@ -4,12 +4,13 @@
     "module": "ESNext",
     "target": "ES2020",
     "moduleResolution": "bundler",
+    "outDir": "dist",
     "baseUrl": ".",
     "skipLibCheck": true,
     "paths": {
       "@repo/lib/*": ["../lib/src/*"]
     },
-    "types": ["node"]
+    "types": ["node", "@prisma/client"]
   },
 
   "exclude": ["dist", "build", "node_modules"]
