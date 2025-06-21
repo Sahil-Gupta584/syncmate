@@ -15,7 +15,7 @@ function VideosPage() {
   const { data: userDetails, isFetching } = backend.db.getEditorVideos.useQuery(
     {
       editorId: data?.user ? data.user.id : "",
-    },
+    }
   );
 
   return (
@@ -47,16 +47,18 @@ function VideosPage() {
             userDetails.result &&
             userDetails.result.accessibleVideos.length > 0 &&
             userDetails.result &&
-            userDetails.result.accessibleVideos.map(({ video }) => (
-              <div className="relative" key={video.id}>
-                <VideoCard
-                  key={video.id}
-                  video={video}
-                  LinkComponent={Link}
-                  role={data?.user.role as TRole}
-                />
-              </div>
-            ))}
+            userDetails.result.accessibleVideos.map(
+              ({ video }: { video: any }) => (
+                <div className="relative" key={video.id}>
+                  <VideoCard
+                    key={video.id}
+                    video={video}
+                    LinkComponent={Link}
+                    role={data?.user.role as TRole}
+                  />
+                </div>
+              )
+            )}
         </div>
         {userDetails &&
           userDetails.result &&

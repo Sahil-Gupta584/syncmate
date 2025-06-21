@@ -37,7 +37,7 @@ export default function DrawerComponent() {
     },
     {
       enabled: !!user,
-    },
+    }
   );
   type TData = TBackendOutput["db"]["getUserWithEditors"]["result"];
   const userDetails: TData = userDetailsQuery.data?.result;
@@ -161,7 +161,7 @@ export default function DrawerComponent() {
                                     />
                                   </div>
                                 );
-                              },
+                              }
                             )}
                         </div>
                       </AccordionItem>
@@ -188,22 +188,29 @@ export default function DrawerComponent() {
                         </div>
                         <div className="flex gap-4 items-center flex-wrap p-4">
                           {userDetails &&
-                            userDetails.channels.map((channel) => (
-                              <a
-                                href={`https://www.youtube.com/channel/${channel.ytChannelId}`}
-                                className="flex gap-4 items-center pl-10"
-                                key={channel.id}
-                              >
-                                <Avatar
-                                  className="h-14 w-14"
-                                  src={channel.logoUrl}
-                                  fallback
-                                />
-                                <span className="capitalize text-[22px]">
-                                  {channel?.name}
-                                </span>
-                              </a>
-                            ))}
+                            userDetails.channels.map(
+                              (channel: {
+                                id: string;
+                                logoUrl: string;
+                                name: string;
+                                ytChannelId: string;
+                              }) => (
+                                <a
+                                  href={`https://www.youtube.com/channel/${channel.ytChannelId}`}
+                                  className="flex gap-4 items-center pl-10"
+                                  key={channel.id}
+                                >
+                                  <Avatar
+                                    className="h-14 w-14"
+                                    src={channel.logoUrl}
+                                    fallback
+                                  />
+                                  <span className="capitalize text-[22px]">
+                                    {channel?.name}
+                                  </span>
+                                </a>
+                              )
+                            )}
                         </div>
                       </AccordionItem>
                     </Accordion>
