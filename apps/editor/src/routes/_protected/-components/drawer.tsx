@@ -22,7 +22,7 @@ export default function DrawerComponent() {
     },
     {
       enabled: !!user,
-    }
+    },
   );
   const creators =
     getCreatorsQuery.data && getCreatorsQuery.data.result?.creators;
