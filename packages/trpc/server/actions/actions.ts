@@ -117,9 +117,6 @@ export const actionsRoutes = trpcRouter({
           throw new Error("Invite already sent to this editor. ");
         }
 
-        console.log("process.env.NODEMAILER_USER", process.env.NODEMAILER_USER);
-
-        // console.log("isEditorAlreadyInSpace", isEditorAlreadyInSpace);
         const transporter = nodemailer.createTransport({
           service: "gmail",
           auth: {

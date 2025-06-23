@@ -30,7 +30,7 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.1 }}
             >
               <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-              Trusted by 500+ Content Creators
+              Trusted by 500+ Content Creatorsss
             </motion.div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">

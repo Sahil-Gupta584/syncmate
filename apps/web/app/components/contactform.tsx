@@ -27,7 +27,7 @@ export default function ContactForm({
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -72,6 +72,7 @@ export default function ContactForm({
         color: "danger",
       });
     } catch (error) {
+      console.log(error);
       addToast({
         title: "Something went wrong",
         description: "Please try again later",
