@@ -6,7 +6,7 @@ on:
     paths:
       - "apps/backend/**"
       - "packages/database/**"
-      - "packages/trpc/**"
+      - "packages/**"
       - "package.json"
       - "turbo.json"
 

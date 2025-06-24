@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 
 // Import the generated route tree
 import { HeroUIProvider, ToastProvider } from "@heroui/react";
+import { backendUrl } from "@repo/lib/utils";
 import { backend } from "@repo/trpc/react";
 import { ThemeProvider } from "next-themes";
 import { routeTree } from "./routeTree.gen";
@@ -24,7 +25,7 @@ export function App() {
     return backend.createClient({
       links: [
         httpBatchLink({
-          url: import.meta.env.VITE_BACKEND_URL + "/trpc",
+          url: backendUrl.replace("api", "trpc"),
         }),
       ],
     });

@@ -14,8 +14,6 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "javascript.preferences.importModuleSpecifierEnding": "js",
-  "typescript.preferences.importModuleSpecifierEnding": "js",
   "typescript.preferences.preferTypeOnlyAutoImports": false,
   "editor.cursorSmoothCaretAnimation": "on",
   "workbench.editor.wrapTabs": true,

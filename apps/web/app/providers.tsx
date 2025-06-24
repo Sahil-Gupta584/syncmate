@@ -18,7 +18,7 @@ export default function Providers({
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       {typeof window !== "undefined" && (
-        <style jsx global>
+        <style>
           {`
             .dark {
               color-scheme: dark;
