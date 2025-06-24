@@ -15,7 +15,7 @@ function VideosPage() {
   const { data: userDetails, isFetching } = backend.db.getEditorVideos.useQuery(
     {
       editorId: data?.user ? data.user.id : "",
-    }
+    },
   );
 
   return (
@@ -57,7 +57,7 @@ function VideosPage() {
                     role={data?.user.role as TRole}
                   />
                 </div>
-              )
+              ),
             )}
         </div>
         {userDetails &&

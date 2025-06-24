@@ -48,7 +48,7 @@ export default function ChanNEditrsFields({
                     <span className="mt-1">{channel.name}</span>
                   </label>
                 );
-              }
+              },
             )}
           </div>
         </div>

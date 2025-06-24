@@ -16,7 +16,7 @@ export const creatorAuth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
-  secret: process.env.AUTH_SECRET!,
+  secret: process.env.CREATOR_AUTH_SECRET!,
   advanced: { defaultCookieAttributes: { sameSite: "None", secure: true } },
   trustedOrigins: [process.env.VITE_CREATOR_BASE_URL!],
   socialProviders: {
@@ -73,22 +73,17 @@ export const creatorAuth = betterAuth({
           if (account.accessToken && account.refreshToken) {
             account.accessToken = jwt.sign(
               account.accessToken,
-              process.env.AUTH_SECRET!,
+              process.env.CREATOR_AUTH_SECRET!,
             );
             account.refreshToken = jwt.sign(
               account.refreshToken,
-              process.env.AUTH_SECRET!,
+              process.env.CREATOR_AUTH_SECRET!,
             );
           }
           return { data: account };
         },
         after: async ({ userId, refreshToken, accessToken }) => {
           try {
-            console.log(
-              "Account:",
-              JSON.stringify({ userId, refreshToken, accessToken }),
-            );
-
             if (!refreshToken) {
               console.log("No refresh_token found in account for user", userId);
               return;
@@ -136,11 +131,11 @@ export const creatorAuth = betterAuth({
           if (account.accessToken && account.refreshToken) {
             account.accessToken = jwt.sign(
               account.accessToken,
-              process.env.AUTH_SECRET!,
+              process.env.CREATOR_AUTH_SECRET!,
             );
             account.refreshToken = jwt.sign(
               account.refreshToken,
-              process.env.AUTH_SECRET!,
+              process.env.CREATOR_AUTH_SECRET!,
             );
           }
           return { data: account };
@@ -149,11 +144,12 @@ export const creatorAuth = betterAuth({
     },
   },
 });
+
 export const editorAuth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
-  secret: process.env.AUTH_SECRET!,
+  secret: process.env.EDITOR_AUTH_SECRET!,
   advanced: { defaultCookieAttributes: { sameSite: "None", secure: true } },
 
   trustedOrigins: [process.env.VITE_EDITOR_BASE_URL!],

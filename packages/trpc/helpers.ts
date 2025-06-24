@@ -48,7 +48,7 @@ export async function getGoogleServices(userId: string, code?: string) {
 
       const refresh_token = jwt.verify(
         account.refreshToken,
-        process.env.AUTH_SECRET!,
+        process.env.EDITOR_AUTH_SECRET!,
       );
       auth.setCredentials({
         refresh_token: refresh_token as string,

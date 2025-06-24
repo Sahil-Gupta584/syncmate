@@ -4,19 +4,24 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
+    "start": "turbo run start",
     "lint": "turbo run lint",
     "format": "prettier . --write ",
     "format:check": "npx prettier --check .",
     "db:generate": "cd packages/database && npx prisma generate",
-    "backend": "cd apps/backend && npm run start",
+    "db:migrate": "cd packages/database && npx prisma migrate dev",
     "build:backend": "tsc -p apps/backend && tsc -p packages/trpc --noEmit false || true && tsc -p packages/database",
     "build:creator": "turbo run build --filter=creator",
     "build:editor": "turbo run build --filter=editor",
-    "build:web": "turbo run build --filter=web"
+    "build:web": "turbo run build --filter=web",
+    "start:backend": "turbo run start --filter=backend",
+    "start:creator": "turbo run start --filter=creator",
+    "start:editor": "turbo run start --filter=editor",
+    "start:web": "turbo run start --filter=web"
   },
   "devDependencies": {
-    "turbo": "^2.5.3",
-    "typescript": "5.8.2"
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6"
   },
   "engines": {
     "node": ">=18"
@@ -27,9 +32,12 @@
     "packages/*"
   ],
   "dependencies": {
+    "@heroui/react": "^2.7.6",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "autoprefixer": "^10.4.21",
-    "googleapis": "^150.0.1",
-    "react-hook-form": "^7.56.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "tailwindcss": "^3.4.17",
     "zod": "^3.25.32"

@@ -72,6 +72,7 @@ export default function ContactForm({
         color: "danger",
       });
     } catch (error) {
+      console.log(error);
       addToast({
         title: "Something went wrong",
         description: "Please try again later",

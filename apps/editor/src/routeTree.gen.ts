@@ -8,92 +8,118 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as AuthRouteImport } from "./routes/auth";
+import { Route as ProtectedRouteImport } from "./routes/_protected";
+import { Route as ProtectedIndexRouteImport } from "./routes/_protected/index";
+import { Route as ProtectedVideoVideoIdIndexRouteImport } from "./routes/_protected/video/$videoId/index";
+import { Route as ProtectedInviteInviteIdIndexRouteImport } from "./routes/_protected/invite/$inviteId/index";
 
-import { Route as rootRoute } from "./routes/__root";
-import { Route as AuthImport } from "./routes/auth";
-import { Route as ProtectedImport } from "./routes/_protected";
-import { Route as ProtectedIndexImport } from "./routes/_protected/index";
-import { Route as ProtectedVideoVideoIdIndexImport } from "./routes/_protected/video/$videoId/index";
-import { Route as ProtectedInviteInviteIdIndexImport } from "./routes/_protected/invite/$inviteId/index";
-
-// Create/Update Routes
-
-const AuthRoute = AuthImport.update({
+const AuthRoute = AuthRouteImport.update({
   id: "/auth",
   path: "/auth",
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any);
-
-const ProtectedRoute = ProtectedImport.update({
+const ProtectedRoute = ProtectedRouteImport.update({
   id: "/_protected",
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any);
-
-const ProtectedIndexRoute = ProtectedIndexImport.update({
+const ProtectedIndexRoute = ProtectedIndexRouteImport.update({
   id: "/",
   path: "/",
   getParentRoute: () => ProtectedRoute,
 } as any);
-
-const ProtectedVideoVideoIdIndexRoute = ProtectedVideoVideoIdIndexImport.update(
-  {
+const ProtectedVideoVideoIdIndexRoute =
+  ProtectedVideoVideoIdIndexRouteImport.update({
     id: "/video/$videoId/",
     path: "/video/$videoId/",
     getParentRoute: () => ProtectedRoute,
-  } as any,
-);
-
+  } as any);
 const ProtectedInviteInviteIdIndexRoute =
-  ProtectedInviteInviteIdIndexImport.update({
+  ProtectedInviteInviteIdIndexRouteImport.update({
     id: "/invite/$inviteId/",
     path: "/invite/$inviteId/",
     getParentRoute: () => ProtectedRoute,
   } as any);
 
-// Populate the FileRoutesByPath interface
+export interface FileRoutesByFullPath {
+  "/auth": typeof AuthRoute;
+  "/": typeof ProtectedIndexRoute;
+  "/invite/$inviteId": typeof ProtectedInviteInviteIdIndexRoute;
+  "/video/$videoId": typeof ProtectedVideoVideoIdIndexRoute;
+}
+export interface FileRoutesByTo {
+  "/auth": typeof AuthRoute;
+  "/": typeof ProtectedIndexRoute;
+  "/invite/$inviteId": typeof ProtectedInviteInviteIdIndexRoute;
+  "/video/$videoId": typeof ProtectedVideoVideoIdIndexRoute;
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport;
+  "/_protected": typeof ProtectedRouteWithChildren;
+  "/auth": typeof AuthRoute;
+  "/_protected/": typeof ProtectedIndexRoute;
+  "/_protected/invite/$inviteId/": typeof ProtectedInviteInviteIdIndexRoute;
+  "/_protected/video/$videoId/": typeof ProtectedVideoVideoIdIndexRoute;
+}
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: "/auth" | "/" | "/invite/$inviteId" | "/video/$videoId";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/auth" | "/" | "/invite/$inviteId" | "/video/$videoId";
+  id:
+    | "__root__"
+    | "/_protected"
+    | "/auth"
+    | "/_protected/"
+    | "/_protected/invite/$inviteId/"
+    | "/_protected/video/$videoId/";
+  fileRoutesById: FileRoutesById;
+}
+export interface RootRouteChildren {
+  ProtectedRoute: typeof ProtectedRouteWithChildren;
+  AuthRoute: typeof AuthRoute;
+}
 
 declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    "/_protected": {
-      id: "/_protected";
-      path: "";
-      fullPath: "";
-      preLoaderRoute: typeof ProtectedImport;
-      parentRoute: typeof rootRoute;
-    };
     "/auth": {
       id: "/auth";
       path: "/auth";
       fullPath: "/auth";
-      preLoaderRoute: typeof AuthImport;
-      parentRoute: typeof rootRoute;
+      preLoaderRoute: typeof AuthRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/_protected": {
+      id: "/_protected";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof ProtectedRouteImport;
+      parentRoute: typeof rootRouteImport;
     };
     "/_protected/": {
       id: "/_protected/";
       path: "/";
       fullPath: "/";
-      preLoaderRoute: typeof ProtectedIndexImport;
-      parentRoute: typeof ProtectedImport;
-    };
-    "/_protected/invite/$inviteId/": {
-      id: "/_protected/invite/$inviteId/";
-      path: "/invite/$inviteId";
-      fullPath: "/invite/$inviteId";
-      preLoaderRoute: typeof ProtectedInviteInviteIdIndexImport;
-      parentRoute: typeof ProtectedImport;
+      preLoaderRoute: typeof ProtectedIndexRouteImport;
+      parentRoute: typeof ProtectedRoute;
     };
     "/_protected/video/$videoId/": {
       id: "/_protected/video/$videoId/";
       path: "/video/$videoId";
       fullPath: "/video/$videoId";
-      preLoaderRoute: typeof ProtectedVideoVideoIdIndexImport;
-      parentRoute: typeof ProtectedImport;
+      preLoaderRoute: typeof ProtectedVideoVideoIdIndexRouteImport;
+      parentRoute: typeof ProtectedRoute;
+    };
+    "/_protected/invite/$inviteId/": {
+      id: "/_protected/invite/$inviteId/";
+      path: "/invite/$inviteId";
+      fullPath: "/invite/$inviteId";
+      preLoaderRoute: typeof ProtectedInviteInviteIdIndexRouteImport;
+      parentRoute: typeof ProtectedRoute;
     };
   }
 }
-
-// Create and export the route tree
 
 interface ProtectedRouteChildren {
   ProtectedIndexRoute: typeof ProtectedIndexRoute;
@@ -111,92 +137,10 @@ const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
   ProtectedRouteChildren,
 );
 
-export interface FileRoutesByFullPath {
-  "": typeof ProtectedRouteWithChildren;
-  "/auth": typeof AuthRoute;
-  "/": typeof ProtectedIndexRoute;
-  "/invite/$inviteId": typeof ProtectedInviteInviteIdIndexRoute;
-  "/video/$videoId": typeof ProtectedVideoVideoIdIndexRoute;
-}
-
-export interface FileRoutesByTo {
-  "/auth": typeof AuthRoute;
-  "/": typeof ProtectedIndexRoute;
-  "/invite/$inviteId": typeof ProtectedInviteInviteIdIndexRoute;
-  "/video/$videoId": typeof ProtectedVideoVideoIdIndexRoute;
-}
-
-export interface FileRoutesById {
-  __root__: typeof rootRoute;
-  "/_protected": typeof ProtectedRouteWithChildren;
-  "/auth": typeof AuthRoute;
-  "/_protected/": typeof ProtectedIndexRoute;
-  "/_protected/invite/$inviteId/": typeof ProtectedInviteInviteIdIndexRoute;
-  "/_protected/video/$videoId/": typeof ProtectedVideoVideoIdIndexRoute;
-}
-
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "" | "/auth" | "/" | "/invite/$inviteId" | "/video/$videoId";
-  fileRoutesByTo: FileRoutesByTo;
-  to: "/auth" | "/" | "/invite/$inviteId" | "/video/$videoId";
-  id:
-    | "__root__"
-    | "/_protected"
-    | "/auth"
-    | "/_protected/"
-    | "/_protected/invite/$inviteId/"
-    | "/_protected/video/$videoId/";
-  fileRoutesById: FileRoutesById;
-}
-
-export interface RootRouteChildren {
-  ProtectedRoute: typeof ProtectedRouteWithChildren;
-  AuthRoute: typeof AuthRoute;
-}
-
 const rootRouteChildren: RootRouteChildren = {
   ProtectedRoute: ProtectedRouteWithChildren,
   AuthRoute: AuthRoute,
 };
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>();
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/_protected",
-        "/auth"
-      ]
-    },
-    "/_protected": {
-      "filePath": "_protected.tsx",
-      "children": [
-        "/_protected/",
-        "/_protected/invite/$inviteId/",
-        "/_protected/video/$videoId/"
-      ]
-    },
-    "/auth": {
-      "filePath": "auth.tsx"
-    },
-    "/_protected/": {
-      "filePath": "_protected/index.tsx",
-      "parent": "/_protected"
-    },
-    "/_protected/invite/$inviteId/": {
-      "filePath": "_protected/invite/$inviteId/index.tsx",
-      "parent": "/_protected"
-    },
-    "/_protected/video/$videoId/": {
-      "filePath": "_protected/video/$videoId/index.tsx",
-      "parent": "/_protected"
-    }
-  }
-}
-ROUTE_MANIFEST_END */
