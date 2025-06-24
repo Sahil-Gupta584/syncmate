@@ -30,3 +30,16 @@ jobs:
           file: ./docker/Dockerfile.backend
           push: true
           tags: sahilg99/syncmate-backend:${{ github.sha }}
+          build-args: |
+            VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
+            GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
+            GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
+            VITE_CREATOR_BASE_URL=${{ secrets.VITE_CREATOR_BASE_URL }}
+            VITE_EDITOR_BASE_URL=${{ secrets.VITE_EDITOR_BASE_URL }}
+            EDITOR_AUTH_SECRET=${{ secrets.EDITOR_AUTH_SECRET }}
+            CREATOR_AUTH_SECRET=${{ secrets.CREATOR_AUTH_SECRET }}
+            RAZORPAY_WEBHOOK_SECRET=${{ secrets.RAZORPAY_WEBHOOK_SECRET }}
+            REDIS_URL=${{ secrets.REDIS_URL }}
+            DATABASE_URL=${{ secrets.DATABASE_URL }}
+            NODEMAILER_USER=${{ secrets.NODEMAILER_USER }}
+            NODEMAILER_PASS=${{ secrets.NODEMAILER_PASS }}
