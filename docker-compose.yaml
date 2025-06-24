@@ -1,0 +1,53 @@
+# t this is just for my practice, has some envs sync issue locally
+version: "3.8"
+services:
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=root123
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.backend
+    volumes:
+      - ./.env:/app/.env
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+      - redis
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.web
+    ports:
+      - 5173:5173
+    volumes:
+      - ./.env:/app/.env
+  creator:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.creator
+    ports:
+      - 5174:5174
+    volumes:
+      - ./.env:/app/.env
+    depends_on:
+      - backend
+  editor:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.editor
+    ports:
+      - 5175:5175
+    volumes:
+      - ./.env:/app/.env
+    depends_on:
+      - backend

@@ -10,13 +10,36 @@ import multer from "multer";
 import path, { dirname, resolve } from "path";
 import { validateWebhookSignature } from "razorpay/dist/utils/razorpay-utils.js";
 import { fileURLToPath } from "url";
+import z from "zod";
 import { importVideo } from "./controllers/importVideo.js";
 import { scheduleVideo } from "./controllers/scheduleVideo.js";
 import { creatorAuth, editorAuth } from "./lib/auths.js";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 dotenv.config({ path: resolve(__dirname, "../../../.env") });
 
+const envSchema = z.object({
+  VITE_BACKEND_URL: z.string().min(1).url(),
+  VITE_CREATOR_BASE_URL: z.string().min(1).url(),
+  VITE_EDITOR_BASE_URL: z.string().min(1).url(),
+  GOOGLE_CLIENT_ID: z.string().min(1),
+  GOOGLE_CLIENT_SECRET: z.string().min(1),
+  EDITOR_AUTH_SECRET: z.string().min(1),
+  CREATOR_AUTH_SECRET: z.string().min(1),
+  RAZORPAY_WEBHOOK_SECRET: z.string().min(1).optional(),
+  REDIS_URL: z.string().min(1),
+  DATABASE_URL: z.string().min(1),
+  NODEMAILER_USER: z.string().min(1).email(),
+  NODEMAILER_PASS: z.string().min(1),
+});
+
+const env = envSchema.safeParse(process.env);
+
+if (!env.success) {
+  console.error("Environment variables validation failed:", env.error);
+  // throw new Error("Invalid environment variables");
+}
 const storage = multer.diskStorage({
   destination: path.join(__dirname, "../uploads"),
   filename(req, file, callback) {
@@ -62,7 +85,6 @@ app.post("/api/webhook", express.raw({ type: "*/*" }), async (req, res) => {
       signature! as string,
       process.env.RAZORPAY_WEBHOOK_SECRET!,
     );
-    console.log({ isValid });
 
     if (!isValid) {
       console.error("Invalid webhook signature ");

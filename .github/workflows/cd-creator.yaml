@@ -24,6 +24,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v4
+        build-args:
+          - VITE_CREATOR_BASE_URL: ${{ secrets.VITE_CREATOR_BASE_URL }}
+          - VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
         with:
           context: .
           file: ./docker/Dockerfile.creator

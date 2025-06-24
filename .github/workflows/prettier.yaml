@@ -1,9 +1,21 @@
 name: autofix.ci
 on:
-  push:
-permissions: {}
+  pull_request:
+    branches: [main]
+
 jobs:
+  build:
+  name: Build Repo
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v2
+    - run: |
+        npm install
+        npm run build
+
   prettier:
+    name: Prettier Format
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

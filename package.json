@@ -9,6 +9,7 @@
     "format": "prettier . --write ",
     "format:check": "npx prettier --check .",
     "db:generate": "cd packages/database && npx prisma generate",
+    "db:migrate": "cd packages/database && npx prisma migrate dev",
     "build:backend": "tsc -p apps/backend && tsc -p packages/trpc --noEmit false || true && tsc -p packages/database",
     "build:creator": "turbo run build --filter=creator",
     "build:editor": "turbo run build --filter=editor",

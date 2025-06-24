@@ -9,7 +9,6 @@ COPY ./turbo.json ./turbo.json
 COPY ./packages ./packages
 
 RUN echo "NEXT_PUBLIC_CREATOR_BASE_URL=${NEXT_PUBLIC_CREATOR_BASE_URL}" > ./apps/web/.env
-RUN cat ./apps/web/.env
 RUN npm i
 RUN npm run build:web
 EXPOSE 3000
