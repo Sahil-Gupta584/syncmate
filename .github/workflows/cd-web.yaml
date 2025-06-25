@@ -30,4 +30,4 @@ jobs:
           context: .
           file: ./docker/Dockerfile.web
           push: true
-          tags: ${{ secrets.web-image }}:${{ github.sha }}
+          tags: ${{ secrets.web_image }}:${{ github.sha }}
