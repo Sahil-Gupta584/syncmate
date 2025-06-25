@@ -29,7 +29,7 @@ jobs:
           context: .
           file: ./docker/Dockerfile.backend
           push: true
-          tags: sahilg99/syncmate-backend:${{ github.sha }}
+          tags: ${{ secrets.backend_image }}:${{ github.sha }}
           build-args: |
             VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
             GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
