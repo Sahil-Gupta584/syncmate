@@ -33,3 +33,9 @@ jobs:
           file: ./docker/Dockerfile.creator
           push: true
           tags: ${{ secrets.creator_image }}:latest
+      - name: Show Docker Build Output
+        run:
+          docker build --build-arg VITE_CREATOR_BASE_URL=${{ secrets.VITE_CREATOR_BASE_URL }} \
+          --build-arg VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }} \
+          --build-arg VITE_RAZORPAY_KEY_ID=${{ secrets.VITE_RAZORPAY_KEY_ID }} \
+          -f ./docker/Dockerfile.creator .

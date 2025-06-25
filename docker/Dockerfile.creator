@@ -10,6 +10,8 @@ RUN echo "VITE_BACKEND_URL=${VITE_BACKEND_URL}" >> .env && \
     echo "VITE_RAZORPAY_KEY_ID=${VITE_RAZORPAY_KEY_ID}" >> .env && \
     echo "VITE_CREATOR_BASE_URL=${VITE_CREATOR_BASE_URL}" >> .env
 
+RUN cat .env
+
 COPY ./package.json ./package.json
 COPY ./turbo.json ./turbo.json
 COPY ./packages ./packages
