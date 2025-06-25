@@ -1,17 +1,6 @@
 import { addToast } from "@heroui/react";
 import axios from "axios";
-console.log(
-  "import.meta.env.VITE_BACKEND_URL",
-  import.meta.env.VITE_BACKEND_URL
-);
-console.log(
-  "import.meta.env.VITE_RAZORPAY_KEY_ID",
-  import.meta.env.VITE_RAZORPAY_KEY_ID
-);
-console.log(
-  "import.meta.env.VITE_CREATOR_BASE_URL",
-  import.meta.env.VITE_CREATOR_BASE_URL
-);
+
 export const backendUrl = import.meta.env.VITE_BACKEND_URL + "/api";
 
 export const axiosInstance = axios.create({

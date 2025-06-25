@@ -7,8 +7,6 @@ export async function sendContactEmail(formData: {
   channel?: string;
   message?: string;
 }) {
-  console.log("ran");
-
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
