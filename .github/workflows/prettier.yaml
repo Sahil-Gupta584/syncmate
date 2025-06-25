@@ -1,4 +1,4 @@
-name: autofix.ci
+name: Build and Format
 on:
   pull_request:
     branches: [main]
