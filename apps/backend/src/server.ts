@@ -20,6 +20,7 @@ const __dirname = dirname(__filename);
 dotenv.config({ path: resolve(__dirname, "../../../.env") });
 
 console.log("NODEMAILER_USER", process.env.NODEMAILER_USER);
+console.log("------");
 
 console.log("VITE_BACKEND_URL", process.env.VITE_BACKEND_URL);
 const envSchema = z.object({
