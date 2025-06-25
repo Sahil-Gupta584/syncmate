@@ -31,4 +31,4 @@ jobs:
           context: .
           file: ./docker/Dockerfile.creator
           push: true
-          tags: ${{ secrets.creator_image }}:${{ github.sha }}
+          tags: ${{ secrets.creator_image }}:latest
