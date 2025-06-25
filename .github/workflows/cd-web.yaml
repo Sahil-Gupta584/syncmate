@@ -30,4 +30,4 @@ jobs:
           context: .
           file: ./docker/Dockerfile.web
           push: true
-          tags: sahilg99/syncmate-web:${{ github.sha }}
+          tags: ${{ secrets.web-image }}:${{ github.sha }}
