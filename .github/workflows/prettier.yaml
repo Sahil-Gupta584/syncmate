@@ -21,8 +21,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: |
           npm run format:check
-      - uses: autofix-ci/action@v1
-        with:
-          commit-message: "Apply Prettier format"
