@@ -27,7 +27,7 @@ export async function getGoogleServices(userId: string, code?: string) {
       process.env.GOOGLE_CLIENT_SECRET,
       code
         ? `${process.env.VITE_CREATOR_BASE_URL}/addChannel`
-        : process.env.GOOGLE_REDIRECT_URI,
+        : process.env.GOOGLE_REDIRECT_URI
     );
 
     let authTokens = null;
@@ -48,7 +48,7 @@ export async function getGoogleServices(userId: string, code?: string) {
 
       const refresh_token = jwt.verify(
         account.refreshToken,
-        process.env.EDITOR_AUTH_SECRET!,
+        process.env.CREATOR_AUTH_SECRET!
       );
       auth.setCredentials({
         refresh_token: refresh_token as string,
@@ -99,10 +99,10 @@ export async function updateGoogleDrivePermissions({
     permissions.data.permissions?.map((p) => p.emailAddress) ?? [];
 
   const toGrant = selectedEditorEmails.filter(
-    (email) => !existingEmails.includes(email),
+    (email) => !existingEmails.includes(email)
   );
   const toRevoke = existingEmails.filter(
-    (email) => !selectedEditorEmails.includes(email as string),
+    (email) => !selectedEditorEmails.includes(email as string)
   );
   console.log("toGrant", toGrant);
   await Promise.all(
@@ -114,8 +114,8 @@ export async function updateGoogleDrivePermissions({
           type: "user",
           emailAddress: email,
         },
-      }),
-    ),
+      })
+    )
   );
 
   await Promise.all(
@@ -123,13 +123,13 @@ export async function updateGoogleDrivePermissions({
       .filter(
         (p) =>
           toRevoke.includes(p.emailAddress!) &&
-          p.emailAddress !== videoOwnerEmail,
+          p.emailAddress !== videoOwnerEmail
       )
       .map((p) => {
         if (p.emailAddress === videoOwnerEmail) return;
 
         drive.permissions.delete({ fileId: gDriveId, permissionId: p.id! });
-      }),
+      })
   );
 }
 export async function getOrCreateFolder(drive: any, folderName: string) {
@@ -172,7 +172,7 @@ export async function getFileFromDrive(driveFileId: string, userId: string) {
     // Check if it's a binary file (not a Google Doc)
     if (fileMetadata.data.mimeType?.includes("application/vnd.google-apps")) {
       throw new Error(
-        "Cannot download Google Docs files directly. Export required.",
+        "Cannot download Google Docs files directly. Export required."
       );
     }
 
@@ -182,7 +182,7 @@ export async function getFileFromDrive(driveFileId: string, userId: string) {
         fileId: driveFileId,
         alt: "media",
       },
-      { responseType: "stream" },
+      { responseType: "stream" }
     );
 
     return fileStream.data;
@@ -238,7 +238,7 @@ export async function updateThumbnails({
 
       const res = await axios.post(
         "https://api.imgbb.com/1/upload?key=b10b7ca5ecd048d6a0ed9f9751cebbdc",
-        form,
+        form
       );
 
       const updatedVideo = await prisma.video.update({
