@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022", // Use higher if needed
-    "lib": ["ES2023", "DOM", "DOM.Iterable"], // Include both frontend and tooling libs
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "outDir": "dist",
