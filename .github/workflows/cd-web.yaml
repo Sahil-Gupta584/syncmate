@@ -26,7 +26,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           build-args: |
-            VITE_CREATOR_BASE_URL: ${{ secrets.VITE_CREATOR_BASE_URL }}
+            VITE_CREATOR_BASE_URL=${{ secrets.VITE_CREATOR_BASE_URL }}
           context: .
           file: ./docker/Dockerfile.web
           push: true
