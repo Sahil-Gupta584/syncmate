@@ -7,11 +7,14 @@ jobs:
   build:
     name: Build Repo
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
       - run: |
           npm install
           npm run build
+        env:
+          NEXT_PUBLIC_CREATOR_BASE_URL: ${{ secrets.VITE_CREATOR_BASE_URL }}
 
   prettier:
     name: Prettier Format
@@ -19,7 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
       - run: |
           npx prettier . --write
       - uses: autofix-ci/action@v1
