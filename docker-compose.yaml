@@ -1,7 +1,6 @@
 # t this is just for my practice, has some envs sync issue locally
 version: "3.8"
 services:
-
   postgres:
     image: postgres
     ports:
