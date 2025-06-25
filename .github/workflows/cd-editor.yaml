@@ -31,4 +31,4 @@ jobs:
           context: .
           file: ./docker/Dockerfile.editor
           push: true
-          tags: ${{ secrets.editor_image }}:${{ github.sha }}
+          tags: ${{ secrets.editor_image }}:latest
