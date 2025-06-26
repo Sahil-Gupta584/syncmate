@@ -64,10 +64,12 @@ export default function Page() {
 
 const updateVideoDetailsZodSchema =
   serverZodSchemas.dbActionsZodSchema.updateVideoDetails;
-export type TVideoDetailsForm = z.infer<typeof updateVideoDetailsZodSchema> & {
-  newThumbnailFile?: FileList;
-  selectedEditorsId: string[];
-};
+export type TVideoDetailsForm = Partial<
+  z.infer<typeof updateVideoDetailsZodSchema> & {
+    newThumbnailFile?: FileList;
+    selectedEditorsId: string[];
+  }
+>;
 
 export function VideoPage({
   previousData,
@@ -144,12 +146,13 @@ export function VideoPage({
         formDataRaw.thumbnailUrl = result?.displayUrl;
       }
 
-      // console.log(" formDataRaw:", formDataRaw);
+      console.log(" formDataRaw:", formDataRaw);
 
       const playlistIds = `${formDataRaw.playlistIds}`;
 
       const res = await updateVideoDetailsMutation.mutateAsync({
         ...formDataRaw,
+        id: previousData.id,
         playlistIds: playlistIds.split(","),
         editors: Array.isArray(formDataRaw.editors)
           ? formDataRaw.editors.map((e) => ({
