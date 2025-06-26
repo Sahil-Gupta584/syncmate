@@ -56,11 +56,11 @@ export default function ImportVideo({
       const formData = new FormData();
       formData.append("videoFile", data.videoFile[0]); // must be "video" to match multer
       formData.append("importerId", userDetails.id);
-      formData.append("ownerId", userDetails.id);
+      formData.append("ownerId", data.creatorId);
       formData.append("duration", duration);
       formData.append(
         "selectedEditorEmails",
-        JSON.stringify([userDetails.email]),
+        JSON.stringify([userDetails.email])
       );
       const res = await axiosInstance.post(`/import-video`, formData);
 
