@@ -66,7 +66,7 @@ app.use(
       process.env.VITE_EDITOR_BASE_URL!,
     ],
     credentials: true,
-  })
+  }),
 );
 
 app.use((req, res, next) => {
@@ -87,7 +87,7 @@ app.post("/api/webhook", express.raw({ type: "*/*" }), async (req, res) => {
     const isValid = validateWebhookSignature(
       rawBody.toString(),
       signature! as string,
-      process.env.RAZORPAY_WEBHOOK_SECRET!
+      process.env.RAZORPAY_WEBHOOK_SECRET!,
     );
 
     if (!isValid) {
@@ -170,7 +170,7 @@ app.use(
   trpcExpress.createExpressMiddleware({
     router: appRouter,
     createContext: () => ({}),
-  })
+  }),
 );
 
 app.post("/api/import-video", upload.single("videoFile"), importVideo);
@@ -223,5 +223,5 @@ app.get("/api/getAuthUrl", async (req, res) => {
 });
 
 app.listen(3000, () =>
-  console.log("Server is running on http://localhost:3000")
+  console.log("Server is running on http://localhost:3000"),
 );
