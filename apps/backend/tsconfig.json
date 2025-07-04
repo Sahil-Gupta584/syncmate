@@ -10,7 +10,7 @@
     "checkJs": false,
     "moduleResolution": "bundler",
     "declaration": true,
-    "removeComments": true /* Disable emitting comments. */,
+    "removeComments": true,
     "skipLibCheck": true,
     "types": ["node"],
     "outDir": "./dist" /* Specify an output folder for all emitted files. */
