@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "incremental": true,
-    "target": "esnext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "target": "esnext",
 
     "module": "esnext" /* Specify what module code is generated. */,
 
