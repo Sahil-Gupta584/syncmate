@@ -19,7 +19,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 dotenv.config({ path: resolve(__dirname, "../../../.env") });
 
-console.log("VITE_BACKEND_URL", process.env.VITE_BACKEND_URL);
 const envSchema = z.object({
   VITE_BACKEND_URL: z.string().min(1).url(),
   VITE_CREATOR_BASE_URL: z.string().min(1).url(),
