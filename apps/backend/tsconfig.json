@@ -13,7 +13,7 @@
     "removeComments": true,
     "skipLibCheck": true,
     "types": ["node"],
-    "outDir": "./dist"
+    "outDir": "./dist" /* Specify an output folder for all emitted files. */
   },
   "exclude": ["dist"],
 
