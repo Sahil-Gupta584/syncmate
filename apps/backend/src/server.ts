@@ -180,8 +180,7 @@ app.post("/api/isPaymentActive", async (req, res) => {
     });
     if (!user) throw new Error("user not found");
 
-    let isPaymentActive;
-    isPaymentActive = user.plan === "TRIAL";
+    let isPaymentActive = user.plan === "TRIAL";
     if (user.subscriptions[0]) {
       isPaymentActive =
         (user.subscriptions[0] && user.subscriptions[0].status === "active") ||
