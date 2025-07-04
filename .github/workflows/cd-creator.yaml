@@ -10,8 +10,8 @@ on:
       - "turbo.json"
 
 jobs:
-  deploy:
-    name: Deploy Creator
+  build:
+    name: Build Creator
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the Code
