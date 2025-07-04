@@ -38,7 +38,7 @@ const env = envSchema.safeParse(process.env);
 
 if (!env.success) {
   console.error("Environment variables validation failed:", env.error);
-  // throw new Error("Invalid environment variables");
+  throw new Error("Invalid environment variables");
 }
 const storage = multer.diskStorage({
   destination: path.join(__dirname, "../uploads"),
