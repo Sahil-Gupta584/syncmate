@@ -32,8 +32,9 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./docker/Dockerfile.backend
+          file: ./docker/Dockerfile.prod
           tags: ${{ secrets.ECR_URI }}
+          push: true
           build-args: |
             VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
             GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
