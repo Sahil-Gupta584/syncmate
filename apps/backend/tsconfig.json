@@ -9,7 +9,7 @@
     "rootDir": "./src",
     "checkJs": false,
     "moduleResolution": "bundler",
-    "declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
+    "declaration": true,
     "removeComments": true /* Disable emitting comments. */,
     "skipLibCheck": true,
     "types": ["node"],
