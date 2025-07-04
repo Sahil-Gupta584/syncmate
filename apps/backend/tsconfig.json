@@ -3,7 +3,7 @@
     "incremental": true,
     "target": "esnext",
 
-    "module": "esnext" /* Specify what module code is generated. */,
+    "module": "esnext",
 
     "allowJs": false /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */,
     "rootDir": "./src" /* Specify the root folder within your source files. */,
