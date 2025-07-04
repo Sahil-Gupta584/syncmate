@@ -31,6 +31,7 @@ RUN echo "VITE_BACKEND_URL=$VITE_BACKEND_URL" >> .env && \
     echo "VITE_CREATOR_BASE_URL=$VITE_CREATOR_BASE_URL" >> .env && \
     echo "VITE_EDITOR_BASE_URL=$VITE_EDITOR_BASE_URL" >> .env && \
     echo "RAZORPAY_WEBHOOK_SECRET=$RAZORPAY_WEBHOOK_SECRET" >> .env
+RUN echo "NEXT_PUBLIC_CREATOR_BASE_URL=${NEXT_PUBLIC_CREATOR_BASE_URL}" >> ./apps/web/.env 
 
 RUN npm i
 RUN npm run db:generate 
