@@ -345,7 +345,7 @@ export const dbActionsRoutes = trpcRouter({
       }
     }),
   updateVideoDetails: trpcProcedure
-    .input(dbActionsZodSchema.updateVideoDetails)
+    .input(dbActionsZodSchema.updateVideoDetails.partial())
     .mutation(async ({ input }) => {
       try {
         const {

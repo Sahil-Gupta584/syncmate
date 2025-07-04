@@ -1,5 +1,6 @@
 import { addToast } from "@heroui/react";
 import axios from "axios";
+
 export const backendUrl = import.meta.env.VITE_BACKEND_URL + "/api";
 
 export const axiosInstance = axios.create({

@@ -10,8 +10,8 @@ on:
       - "turbo.json"
 
 jobs:
-  deploy:
-    name: Deploy Creator
+  build:
+    name: Build Creator
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the Code
@@ -24,11 +24,12 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v4
-        build-args:
-          - VITE_CREATOR_BASE_URL: ${{ secrets.VITE_CREATOR_BASE_URL }}
-          - VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
         with:
+          build-args: |
+            VITE_CREATOR_BASE_URL=${{ secrets.VITE_CREATOR_BASE_URL }}
+            VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
+            VITE_RAZORPAY_KEY_ID=${{ secrets.VITE_RAZORPAY_KEY_ID }}
           context: .
           file: ./docker/Dockerfile.creator
           push: true
-          tags: sahilg99/syncmate-creator:${{ github.sha }}
+          tags: ${{ secrets.creator_image }}:latest

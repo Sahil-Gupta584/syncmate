@@ -10,8 +10,8 @@ on:
       - "turbo.json"
 
 jobs:
-  deploy:
-    name: Deploy Editor
+  build:
+    name: Build Editor
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the Code
@@ -24,11 +24,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v4
-        build-args:
-          - VITE_EDITOR_BASE_URL: ${{ secrets.VITE_EDITOR_BASE_URL }}
-          - VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
         with:
+          build-args: |
+            VITE_EDITOR_BASE_URL=${{ secrets.VITE_EDITOR_BASE_URL }}
+            VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
           context: .
           file: ./docker/Dockerfile.editor
           push: true
-          tags: sahilg99/syncmate-editor:${{ github.sha }}
+          tags: ${{ secrets.editor_image }}:latest

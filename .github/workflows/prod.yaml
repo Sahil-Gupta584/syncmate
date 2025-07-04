@@ -1,29 +1,39 @@
-name: Build & Deploy Affected Apps
+name: Deploy to Production
 
 on:
   push:
     branches: [main]
     paths:
-      - "apps/backend/**"
-      - "packages/database/**"
+      - "apps/**"
       - "packages/**"
       - "package.json"
       - "turbo.json"
 
 jobs:
-  build:
-    name: Build Backend
+  build-and-push:
+    name: Build and Push to ECR
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the Code
-        uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v4.2.2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4.1.0
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2.0.1
 
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
           context: .
           file: ./docker/Dockerfile.backend
-          tags: ${{ secrets.backend_image }}
+          tags: ${{ secrets.ECR_URI }}
           build-args: |
             VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
             GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}

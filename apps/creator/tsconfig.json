@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2022", // Use higher if needed
-    "lib": ["ES2023", "DOM", "DOM.Iterable"], // Include both frontend and tooling libs
+    "target": "ES2022",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "outDir": "dist",
@@ -11,7 +11,7 @@
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "noEmit": true,
-    "jsx": "react-jsx", // Needed for React
+    "jsx": "react-jsx",
 
     /* Linting */
     "strict": true,

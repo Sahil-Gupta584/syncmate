@@ -10,8 +10,8 @@ on:
       - "turbo.json"
 
 jobs:
-  deploy:
-    name: Deploy Web
+  build:
+    name: Build Web
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the Code
@@ -24,10 +24,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v4
-        build-args:
-          - VITE_CREATOR_BASE_URL: ${{ secrets.VITE_CREATOR_BASE_URL }}
         with:
+          build-args: |
+            NEXT_PUBLIC_CREATOR_BASE_URL=${{ secrets.VITE_CREATOR_BASE_URL }}
           context: .
           file: ./docker/Dockerfile.web
           push: true
-          tags: sahilg99/syncmate-web:${{ github.sha }}
+          tags: ${{ secrets.web_image }}:latest

@@ -10,7 +10,7 @@
     "format:check": "npx prettier --check .",
     "db:generate": "cd packages/database && npx prisma generate",
     "db:migrate": "cd packages/database && npx prisma migrate dev",
-    "build:backend": "tsc -p apps/backend && tsc -p packages/trpc --noEmit false || true && tsc -p packages/database",
+    "build:backend": "turbo run build --filter=backend",
     "build:creator": "turbo run build --filter=creator",
     "build:editor": "turbo run build --filter=editor",
     "build:web": "turbo run build --filter=web",
@@ -33,6 +33,7 @@
   ],
   "dependencies": {
     "@heroui/react": "^2.7.6",
+    "framer-motion": "^12.16.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "autoprefixer": "^10.4.21",
