@@ -15,14 +15,5 @@
     "types": ["node"],
     "outDir": "./dist"
   },
-  "exclude": ["dist"],
-
-  "tsc-alias": {
-    "verbose": false,
-    "resolveFullPaths": true,
-    "fileExtensions": {
-      "inputGlob": "{js,jsx,mjs}",
-      "outputCheck": ["js", "json", "jsx", "mjs"]
-    }
-  }
+  "exclude": ["dist"]
 }
