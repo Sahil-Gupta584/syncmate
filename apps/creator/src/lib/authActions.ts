@@ -18,7 +18,7 @@ export const authClient = createAuthClient({
       },
     }),
   ],
-  baseURL: String(backendUrl).replace("/api", "/creator/api/auth"),
+  baseURL: backendUrl + "/creator/api/auth",
 });
 
 export const { useSession } = authClient;

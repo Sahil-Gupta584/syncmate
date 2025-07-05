@@ -14,7 +14,7 @@ import {
   useDisclosure,
 } from "@heroui/react";
 import type { TRole } from "@repo/lib/constants";
-import axios from "axios";
+import { axiosInstance } from "@repo/lib/utils";
 
 import { type HTMLAttributes, useState } from "react";
 export type TVideoDropdownProps = {
@@ -22,7 +22,7 @@ export type TVideoDropdownProps = {
   handleDeleteVideo: (
     e: React.FormEvent<HTMLFormElement>,
     onClose: () => void,
-    videoId: string,
+    videoId: string
   ) => void;
 
   isDeleting: boolean;
@@ -32,7 +32,6 @@ export default function VideoDropdown({
   title,
   userRole,
   className,
-  CREATOR_BASE_URL,
   handleDeleteVideo,
   isDeleting,
 }: {
@@ -48,10 +47,9 @@ export default function VideoDropdown({
     try {
       setIsDownloading(true);
 
-      const res = await axios.get(
-        `${CREATOR_BASE_URL}/api/download/${videoId}`,
-        { responseType: "blob" },
-      );
+      const res = await axiosInstance.get(`/download/${videoId}`, {
+        responseType: "blob",
+      });
 
       addToast({
         description: "Video download started successfully.",

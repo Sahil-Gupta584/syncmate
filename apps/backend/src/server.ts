@@ -73,7 +73,7 @@ app.use((req, res, next) => {
 app.all("/creator/api/auth/*any", toNodeHandler(creatorAuth));
 app.all("/editor/api/auth/*any", toNodeHandler(editorAuth));
 
-app.post("/api/webhook", express.raw({ type: "*/*" }), async (req, res) => {
+app.post("/webhook", express.raw({ type: "*/*" }), async (req, res) => {
   try {
     const rawBody = req.body;
 
@@ -169,9 +169,9 @@ app.use(
   })
 );
 
-app.post("/api/import-video", upload.single("videoFile"), importVideo);
-app.post("/api/schedule-video/:videoId", scheduleVideo);
-app.post("/api/isPaymentActive", async (req, res) => {
+app.post("/import-video", upload.single("videoFile"), importVideo);
+app.post("/schedule-video/:videoId", scheduleVideo);
+app.post("/isPaymentActive", async (req, res) => {
   try {
     if (!req.body.userId || !req.body) throw new Error("userId is required");
     const user = await prisma.user.findUnique({
@@ -194,7 +194,7 @@ app.post("/api/isPaymentActive", async (req, res) => {
   }
 });
 
-app.get("/api/getAuthUrl", async (req, res) => {
+app.get("/getAuthUrl", async (req, res) => {
   try {
     const clientId = process.env.GOOGLE_CLIENT_ID;
 

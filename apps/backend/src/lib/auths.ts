@@ -73,11 +73,11 @@ export const creatorAuth = betterAuth({
           if (account.accessToken && account.refreshToken) {
             account.accessToken = jwt.sign(
               account.accessToken,
-              process.env.CREATOR_AUTH_SECRET!,
+              process.env.CREATOR_AUTH_SECRET!
             );
             account.refreshToken = jwt.sign(
               account.refreshToken,
-              process.env.CREATOR_AUTH_SECRET!,
+              process.env.CREATOR_AUTH_SECRET!
             );
           }
           return { data: account };
@@ -131,11 +131,11 @@ export const creatorAuth = betterAuth({
           if (account.accessToken && account.refreshToken) {
             account.accessToken = jwt.sign(
               account.accessToken,
-              process.env.CREATOR_AUTH_SECRET!,
+              process.env.CREATOR_AUTH_SECRET!
             );
             account.refreshToken = jwt.sign(
               account.refreshToken,
-              process.env.CREATOR_AUTH_SECRET!,
+              process.env.CREATOR_AUTH_SECRET!
             );
           }
           return { data: account };
