@@ -21,5 +21,20 @@
       "cache": true,
       "persistent": true
     }
-  }
+  },
+  "globalEnv": [
+    "NODEMAILER_USER",
+    "NODEMAILER_PASS",
+    "VITE_WEB_BASE_URL",
+    "VITE_CREATOR_BASE_URL",
+    "VITE_EDITOR_BASE_URL",
+    "VITE_BACKEND_URL",
+    "GOOGLE_CLIENT_SECRET",
+    "GOOGLE_CLIENT_ID",
+    "EDITOR_AUTH_SECRET",
+    "CREATOR_AUTH_SECRET",
+    "VITE_RAZORPAY_KEY_ID",
+    "RAZORPAY_SECRET_ID",
+    "RAZORPAY_WEBHOOK_SECRET"
+  ]
 }

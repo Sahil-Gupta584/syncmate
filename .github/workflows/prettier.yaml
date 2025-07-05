@@ -1,26 +1,26 @@
-name: Build and Format
-on:
-  pull_request:
-    branches: [main]
+# name: Build and Format
+# on:
+#   pull_request:
+#     branches: [main]
 
-jobs:
-  # build:
-  #   name: Build Repo
-  #   runs-on: ubuntu-latest
+# jobs:
+#   # build:
+#   #   name: Build Repo
+#   #   runs-on: ubuntu-latest
 
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - run: |
-  #         npm install
-  #         npm run build
-  #       env:
-  #         NEXT_PUBLIC_CREATOR_BASE_URL: ${{ secrets.VITE_CREATOR_BASE_URL }}
+#   #   steps:
+#   #     - uses: actions/checkout@v2
+#   #     - run: |
+#   #         npm install
+#   #         npm run build
+#   #       env:
+#   #         NEXT_PUBLIC_CREATOR_BASE_URL: ${{ secrets.VITE_CREATOR_BASE_URL }}
 
-  prettier:
-    name: Prettier Check
-    # needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: |
-          npm run format:check
+#   prettier:
+#     name: Prettier Check
+#     # needs: build
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - run: |
+#           npm run format:check

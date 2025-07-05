@@ -1,41 +1,41 @@
-name: Build & Deploy Affected Apps
+# name: Build & Deploy Affected Apps
 
-on:
-  push:
-    branches: [main]
-    paths:
-      - "apps/editor/**"
-      - "packages/**"
-      - "package.json"
-      - "turbo.json"
+# on:
+#   push:
+#     branches: [main]
+#     paths:
+#       - "apps/editor/**"
+#       - "packages/**"
+#       - "package.json"
+#       - "turbo.json"
 
-jobs:
-  build:
-    name: Build Editor
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the Code
-        uses: actions/checkout@v2
+# jobs:
+#   build:
+#     name: Build Editor
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout the Code
+#         uses: actions/checkout@v2
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4.1.0
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+#       - name: Configure AWS Credentials
+#         uses: aws-actions/configure-aws-credentials@v4.1.0
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Login to ECR Public
-        run: |
-          aws ecr-public get-login-password --region us-east-1 | \
-          docker login --username AWS --password-stdin public.ecr.aws
+#       - name: Login to ECR Public
+#         run: |
+#           aws ecr-public get-login-password --region us-east-1 | \
+#           docker login --username AWS --password-stdin public.ecr.aws
 
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./docker/Dockerfile.editor
-          push: true
-          tags: ${{ secrets.editor_repo }}
-          build-args: |
-            VITE_EDITOR_BASE_URL=${{ secrets.VITE_EDITOR_BASE_URL }}
-            VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
+#       - name: Build and push
+#         uses: docker/build-push-action@v4
+#         with:
+#           context: .
+#           file: ./docker/Dockerfile.editor
+#           push: true
+#           tags: ${{ secrets.editor_repo }}
+#           build-args: |
+#             VITE_EDITOR_BASE_URL=${{ secrets.VITE_EDITOR_BASE_URL }}
+#             VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}

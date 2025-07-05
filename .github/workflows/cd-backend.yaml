@@ -1,55 +1,55 @@
-name: Build & Deploy Affected Apps
+# name: Build & Deploy Affected Apps
 
-on:
-  push:
-    branches: [main]
-    paths:
-      - "apps/backend/**"
-      - "packages/database/**"
-      - "packages/**"
-      - "package.json"
-      - "turbo.json"
+# on:
+#   push:
+#     branches: [main]
+#     paths:
+#       - "apps/backend/**"
+#       - "packages/database/**"
+#       - "packages/**"
+#       - "package.json"
+#       - "turbo.json"
 
-jobs:
-  build:
-    name: Build Backend
-    runs-on: ubuntu-latest
-    steps:
-      - name: Log Docker Image Tag
-        run: "echo Docker image tag: ${{ secrets.backend_image }}"
+# jobs:
+#   build:
+#     name: Build Backend
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Log Docker Image Tag
+#         run: "echo Docker image tag: ${{ secrets.backend_image }}"
 
-      - name: Checkout the Code
-        uses: actions/checkout@v2
+#       - name: Checkout the Code
+#         uses: actions/checkout@v2
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4.1.0
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+#       - name: Configure AWS Credentials
+#         uses: aws-actions/configure-aws-credentials@v4.1.0
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Login to ECR Public
-        run: |
-          aws ecr-public get-login-password --region us-east-1 | \
-          docker login --username AWS --password-stdin public.ecr.aws
+#       - name: Login to ECR Public
+#         run: |
+#           aws ecr-public get-login-password --region us-east-1 | \
+#           docker login --username AWS --password-stdin public.ecr.aws
 
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./docker/Dockerfile.backend
-          tags: ${{ secrets.backend_repo }}
-          push: true
-          build-args: |
-            VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
-            GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
-            GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
-            VITE_CREATOR_BASE_URL=${{ secrets.VITE_CREATOR_BASE_URL }}
-            VITE_EDITOR_BASE_URL=${{ secrets.VITE_EDITOR_BASE_URL }}
-            EDITOR_AUTH_SECRET=${{ secrets.EDITOR_AUTH_SECRET }}
-            CREATOR_AUTH_SECRET=${{ secrets.CREATOR_AUTH_SECRET }}
-            RAZORPAY_WEBHOOK_SECRET=${{ secrets.RAZORPAY_WEBHOOK_SECRET }}
-            REDIS_URL=${{ secrets.REDIS_URL }}
-            DATABASE_URL=${{ secrets.DATABASE_URL }}
-            NODEMAILER_USER=${{ secrets.NODEMAILER_USER }}
-            NODEMAILER_PASS=${{ secrets.NODEMAILER_PASS }}
+#       - name: Build and push
+#         uses: docker/build-push-action@v4
+#         with:
+#           context: .
+#           file: ./docker/Dockerfile.backend
+#           tags: ${{ secrets.backend_repo }}
+#           push: true
+#           build-args: |
+#             VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
+#             GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
+#             GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
+#             VITE_CREATOR_BASE_URL=${{ secrets.VITE_CREATOR_BASE_URL }}
+#             VITE_EDITOR_BASE_URL=${{ secrets.VITE_EDITOR_BASE_URL }}
+#             EDITOR_AUTH_SECRET=${{ secrets.EDITOR_AUTH_SECRET }}
+#             CREATOR_AUTH_SECRET=${{ secrets.CREATOR_AUTH_SECRET }}
+#             RAZORPAY_WEBHOOK_SECRET=${{ secrets.RAZORPAY_WEBHOOK_SECRET }}
+#             REDIS_URL=${{ secrets.REDIS_URL }}
+#             DATABASE_URL=${{ secrets.DATABASE_URL }}
+#             NODEMAILER_USER=${{ secrets.NODEMAILER_USER }}
+#             NODEMAILER_PASS=${{ secrets.NODEMAILER_PASS }}
