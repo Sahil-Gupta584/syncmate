@@ -5,6 +5,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "outDir": "dist",
+
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -31,5 +32,6 @@
     "declarationMap": false,
     "baseUrl": "."
   },
+
   "include": ["src", "vite.config.ts"]
 }

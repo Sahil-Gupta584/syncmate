@@ -12,7 +12,7 @@ import { trpcErrorHandler } from "@repo/lib/utils";
 import { backend, type TBackendOutput } from "@repo/trpc/react";
 import { serverZodSchemas } from "@repo/trpc/server/zodSchemas.ts";
 import { Tag, VideoComponent, VideoDropdown } from "@repo/ui";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useParams } from "@tanstack/react-router";
 import type { youtube_v3 } from "googleapis/build/src/apis/youtube";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -34,7 +34,7 @@ export type TVideoDetails = TBackendOutput["db"]["getVideoDetails"]["result"];
 export default function Page() {
   // const [playlists, setPlaylists] = useState<TPlaylists>();
   const [isEditing, setIsEditing] = useState(false);
-  const { videoId } = Route.useParams();
+  const { videoId } = useParams({ from: "/_protected/video/$videoId/" });
   const videoDetailsQuery = backend.db.getVideoDetails.useQuery({ videoId });
 
   return (
