@@ -38,7 +38,7 @@ jobs:
         with:
           context: .
           file: ./docker/Dockerfile.backend
-          tags: ${{ secrets.backend_image }}
+          tags: ${{ secrets.backend_repo }}
           push: true
           build-args: |
             VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}

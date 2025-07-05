@@ -17,19 +17,26 @@ jobs:
       - name: Checkout the Code
         uses: actions/checkout@v2
 
-      - name: Docker Login
-        uses: docker/login-action@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4.1.0
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to ECR Public
+        run: |
+          aws ecr-public get-login-password --region us-east-1 | \
+          docker login --username AWS --password-stdin public.ecr.aws
+
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
+          context: .
+          file: ./docker/Dockerfile.creator
+          push: true
+          tags: ${{ secrets.creator_repo }}
           build-args: |
             VITE_CREATOR_BASE_URL=${{ secrets.VITE_CREATOR_BASE_URL }}
             VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
             VITE_RAZORPAY_KEY_ID=${{ secrets.VITE_RAZORPAY_KEY_ID }}
-          context: .
-          file: ./docker/Dockerfile.creator
-          push: true
-          tags: ${{ secrets.creator_image }}:latest
