@@ -42,6 +42,7 @@ export async function importVideo(req: Request, res: Response) {
         },
       },
     });
+
     await uploadQueue.remove(req.params.videoId as string);
     const jobRes = await uploadQueue.add(
       "import-video-queue",
@@ -51,7 +52,7 @@ export async function importVideo(req: Request, res: Response) {
         ownerId,
         selectedEditorEmails: selectedEditorEmails || [],
       },
-      { jobId: video.id },
+      { jobId: video.id }
     );
     console.log("job", jobRes.id, "added");
 
