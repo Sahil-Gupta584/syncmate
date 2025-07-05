@@ -14,7 +14,7 @@ import { serverZodSchemas } from "@repo/trpc/server/zodSchemas.ts";
 import { Tag, VideoComponent, VideoDropdown } from "@repo/ui";
 import { createFileRoute, useParams } from "@tanstack/react-router";
 import type { youtube_v3 } from "googleapis/build/src/apis/youtube";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type JSX } from "react";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 import { categories, UploadImgGetUrl } from "../../../../lib/utils";
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/_protected/video/$videoId/")({
 type TPlaylists = youtube_v3.Schema$Playlist[] | undefined;
 export type TVideoDetails = TBackendOutput["db"]["getVideoDetails"]["result"];
 
-export default function Page() {
+export default function Page(): JSX.Element {
   // const [playlists, setPlaylists] = useState<TPlaylists>();
   const [isEditing, setIsEditing] = useState(false);
   const { videoId } = useParams({ from: "/_protected/video/$videoId/" });
