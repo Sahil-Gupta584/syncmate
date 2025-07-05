@@ -2,7 +2,6 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-RUN apk update && apk add redis
 
 # Define ARGs
 ARG VITE_BACKEND_URL
@@ -44,4 +43,4 @@ RUN npm run db:generate
 RUN npm run build:backend
 EXPOSE 3000
 
-CMD sh -c "redis-server & sleep 2 && npm run start:backend"
+CMD sh -c "npm run start:backend"
