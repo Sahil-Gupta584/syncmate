@@ -25,7 +25,7 @@ export function App() {
     return backend.createClient({
       links: [
         httpBatchLink({
-          url: backendUrl.replace("api", "trpc"),
+          url: backendUrl + "/trpc",
         }),
       ],
     });
