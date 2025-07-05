@@ -74,6 +74,7 @@ export default function VideoDropdown({
         description: "Failed to download video",
         color: "danger",
       });
+      setIsDownloading(false);
       console.log("error in onDownload", error);
     }
   }

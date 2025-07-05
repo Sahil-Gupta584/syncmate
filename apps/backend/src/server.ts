@@ -11,6 +11,7 @@ import path, { dirname, resolve } from "path";
 import { validateWebhookSignature } from "razorpay/dist/utils/razorpay-utils.js";
 import { fileURLToPath } from "url";
 import z from "zod";
+import { downloadVideo } from "./controllers/downloadVideo.js";
 import { importVideo } from "./controllers/importVideo.js";
 import { scheduleVideo } from "./controllers/scheduleVideo.js";
 import { creatorAuth, editorAuth } from "./lib/auths.js";
@@ -168,6 +169,10 @@ app.use(
     createContext: () => ({}),
   })
 );
+
+app.get("/download/:videoId", async (req, res) => {
+  downloadVideo(req, res);
+});
 
 app.post("/import-video", upload.single("videoFile"), importVideo);
 app.post("/schedule-video/:videoId", scheduleVideo);
