@@ -20,7 +20,7 @@ function CheckoutPage({ searchParams }: CheckoutPageProps) {
   const search = Route.useSearch();
   const router = useRouter();
   const [selectedPlan, setSelectedPlan] = useState<TPlan>(
-    () => plans[1] as TPlan,
+    () => plans[1] as TPlan
   );
   const { data } = useSession();
   useEffect(() => {
@@ -63,7 +63,7 @@ function CheckoutPage({ searchParams }: CheckoutPageProps) {
         // key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         key: "rzp_test_q7TZXZSHpK9aEn",
         // subscription_id: duration === "monthly" ? selectedPlan.monthlySubscriptionId : selectedPlan.yearlySubscriptionId,
-        subscription_id: "sub_QclfK8J7BQdpxp",
+        subscription_id: "sub_Qpni0o6sgaIrBa",
         // plan_id: "plan_QSWz6nuQxdL7Sj",
         name: "Syncly",
         description:

@@ -30,9 +30,9 @@ const worker = new Worker(
       if (!result) throw new Error("Failed to get Google services: " + error);
 
       const { drive } = result;
-      const folderId = await getOrCreateFolder(drive, "Syncly");
+      const folderId = await getOrCreateFolder(drive, "Syncmate");
       const stream = createReadStream(
-        path.join(__dirname, "../../uploads", fileName),
+        path.join(__dirname, "../../uploads", fileName)
       );
       console.log("Uploading to drive...");
 
@@ -85,7 +85,7 @@ const worker = new Worker(
     connection: {
       url: redisUrl,
     },
-  },
+  }
 );
 worker.on("active", (job) => {
   console.log(`Upload Job ${job.id} active`);

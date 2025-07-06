@@ -1,10 +1,10 @@
 import { Divider } from "@heroui/react";
 import {
+  FaHeart,
   FaInstagram,
   FaLinkedin,
   FaTwitter,
   FaYoutube,
-  FaHeart,
 } from "react-icons/fa";
 
 export default function Footer() {
@@ -22,28 +22,28 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://x.com/guptas3067"
+                href="https://x.com/sahil_builds"
                 className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition-colors duration-300"
               >
                 <FaTwitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </a>
               <a
-                href="https://x.com/guptas3067"
+                href="https://x.com/sahil_builds"
                 className="w-10 h-10 bg-gray-800 hover:bg-red-600 rounded-full flex items-center justify-center transition-colors duration-300"
               >
                 <FaYoutube className="h-5 w-5" />
                 <span className="sr-only">YouTube</span>
               </a>
               <a
-                href="https://x.com/guptas3067"
+                href="https://x.com/sahil_builds"
                 className="w-10 h-10 bg-gray-800 hover:bg-pink-600 rounded-full flex items-center justify-center transition-colors duration-300"
               >
                 <FaInstagram className="h-5 w-5" />
                 <span className="sr-only">Instagram</span>
               </a>
               <a
-                href="https://x.com/guptas3067"
+                href="https://x.com/sahil_builds"
                 className="w-10 h-10 bg-gray-800 hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors duration-300"
               >
                 <FaLinkedin className="h-5 w-5" />
@@ -73,7 +73,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://x.com/guptas3067"
+                  href="https://x.com/sahil_builds"
                   className="text-gray-400 hover:text-white transition-colors duration-300"
                 >
                   Success Stories
@@ -81,7 +81,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://x.com/guptas3067"
+                  href="https://x.com/sahil_builds"
                   className="text-gray-400 hover:text-white transition-colors duration-300"
                 >
                   Creator Resources
@@ -95,7 +95,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="https://x.com/guptas3067"
+                  href="https://x.com/sahil_builds"
                   className="text-gray-400 hover:text-white transition-colors duration-300"
                 >
                   Help Center
@@ -103,7 +103,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://x.com/guptas3067"
+                  href="https://x.com/sahil_builds"
                   className="text-gray-400 hover:text-white transition-colors duration-300"
                 >
                   Video Tutorials
@@ -119,7 +119,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://x.com/guptas3067"
+                  href="https://x.com/sahil_builds"
                   className="text-gray-400 hover:text-white transition-colors duration-300"
                 >
                   Creator Community
