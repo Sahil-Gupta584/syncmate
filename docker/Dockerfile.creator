@@ -19,6 +19,6 @@ COPY ./apps/creator ./apps/creator
 RUN npm i
 RUN npm run db:generate
 RUN npm run build:creator
-EXPOSE 3000
+EXPOSE 80
 
 CMD [ "npm", "run", "start:creator" ]
