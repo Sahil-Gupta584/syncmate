@@ -27,28 +27,26 @@ export default function ChanNEditrsFields({
           <p className=" font-medium text-xl">For :</p>
           <div className="flex flex-wrap gap-[35px]">
             {userChannels.map(
-              (channel: { id: string; logoUrl: string; name: string }) => {
-                return (
-                  <label
-                    key={channel.id}
-                    className="flex items-center  cursor-pointer gap-1"
-                  >
-                    <Checkbox
-                      type="radio"
-                      value={channel.id}
-                      checked={previousData.channelId === channel.id}
-                      disabled={!isEditing}
-                      {...register("channelId")}
-                    />
-                    <Avatar
-                      src={channel.logoUrl}
-                      fallback
-                      className="w-12 h-12 ml-3"
-                    />
-                    <span className="mt-1">{channel.name}</span>
-                  </label>
-                );
-              },
+              (channel: { id: string; logoUrl: string; name: string }) => (
+                <label
+                  key={channel.id}
+                  className="flex items-center  cursor-pointer gap-1"
+                >
+                  <Checkbox
+                    type="radio"
+                    value={channel.id}
+                    isSelected={previousData.channelId === channel.id}
+                    disabled={!isEditing}
+                    {...register("channelId")}
+                  />
+                  <Avatar
+                    src={channel.logoUrl}
+                    fallback
+                    className="w-12 h-12 ml-3"
+                  />
+                  <span className="mt-1">{channel.name}</span>
+                </label>
+              )
             )}
           </div>
         </div>

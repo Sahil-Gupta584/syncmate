@@ -139,6 +139,7 @@ export function VideoPage({
 
   async function handleVideoSave(formDataRaw: TVideoDetailsForm) {
     try {
+      if (!formDataRaw.channelId) throw new Error("Please select a Channel");
       if (formDataRaw.newThumbnailFile && formDataRaw.newThumbnailFile[0]) {
         const { result } = await UploadImgGetUrl({
           imgFile: formDataRaw.newThumbnailFile[0],
@@ -146,7 +147,7 @@ export function VideoPage({
         formDataRaw.thumbnailUrl = result?.displayUrl;
       }
 
-      console.log(" formDataRaw:", formDataRaw);
+      // console.log(" formDataRaw:", formDataRaw);
 
       const playlistIds = `${formDataRaw.playlistIds}`;
 
@@ -192,7 +193,6 @@ export function VideoPage({
       <div className="flex sm:flex-row flex-col gap-4 font-semibold my-4 sm:mb-6">
         <DateTimePicker isEditing={isEditing} videoDetails={previousData} />
         <PublishNow
-          isSubmitting={isSubmitting}
           isEditing={isEditing}
           videoId={previousData.id}
           status={previousData.videoStatus}

@@ -8,7 +8,7 @@ export default function VideoComponent({
 }) {
   return (
     <div className="rounded-lg overflow-hidden  shadow-[0px_0px_7px_-2px_gray]  ">
-      {false ? (
+      {videoLink ? (
         <iframe
           src={videoLink}
           allow="autoplay"

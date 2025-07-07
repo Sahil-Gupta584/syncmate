@@ -25,7 +25,7 @@ export const actionsRoutes = trpcRouter({
           throw new Error("Failed to get Google services: " + error);
         }
         const { drive } = result;
-        if (!video.gDriveId) throw new Error("Invalid gDriveId");
+        if (!video.gDriveId) throw new Error("gDriveId not found");
         const file = await drive.files.get({
           fileId: video.gDriveId,
           fields: "webViewLink",
@@ -40,7 +40,7 @@ export const actionsRoutes = trpcRouter({
           result: {
             videoLink: file.data.webViewLink.replace(
               "view?usp=drivesdk",
-              "preview",
+              "preview"
             ),
           },
         });

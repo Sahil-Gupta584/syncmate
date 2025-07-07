@@ -14,12 +14,10 @@ import { backend } from "@repo/trpc/react";
 import { useState } from "react";
 import { MdOutlineFileUpload } from "react-icons/md";
 export default function PublishNow({
-  isSubmitting,
   isEditing,
   videoId,
   status,
 }: {
-  isSubmitting: boolean;
   isEditing: boolean;
   videoId: string;
   status: string;
@@ -57,7 +55,6 @@ export default function PublishNow({
   return (
     <>
       <Button
-        isLoading={isSubmitting}
         className="grow tracking-[1px] font-semibold text-[16px] p-6"
         color="primary"
         startContent={<MdOutlineFileUpload />}

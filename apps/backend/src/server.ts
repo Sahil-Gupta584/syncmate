@@ -49,6 +49,10 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 const app = express();
+app.get("/", (req, res) => {
+  res.send("Backend is working");
+});
+
 console.log("origin", [
   process.env.VITE_WEB_BASE_URL!,
   process.env.VITE_CREATOR_BASE_URL!,
@@ -222,4 +226,7 @@ app.get("/getAuthUrl", async (req, res) => {
   }
 });
 
-app.listen(80, () => console.log("Server is running on http://localhost:80"));
+const PORT = process.env.PORT;
+app.listen(PORT, () =>
+  console.log(`Server is running on http://localhost:${PORT}`)
+);
