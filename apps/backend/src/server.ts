@@ -19,6 +19,9 @@ import { creatorAuth, editorAuth } from "./lib/auths.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 dotenv.config({ path: resolve(__dirname, "../../../.env") });
+console.log("REDIS_URL", process.env.REDIS_URL);
+console.log("DATABASE_URL", process.env.DATABASE_URL);
+console.log("VITE_CREATOR_BASE_URL", process.env.VITE_CREATOR_BASE_URL);
 
 const envSchema = z.object({
   VITE_BACKEND_URL: z.string().min(1).url(),
