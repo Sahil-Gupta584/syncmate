@@ -1,5 +1,5 @@
 import { addToast } from "@heroui/react";
-import { type PlanType, type TPlan, plans } from "@repo/lib/constants";
+import { type TPlan, plans } from "@repo/lib/constants";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { FiArrowLeft, FiCheckCircle } from "react-icons/fi";
@@ -14,13 +14,12 @@ export const Route = createFileRoute("/_protected/checkout")({
 });
 
 export type TPaymentMethod = "razorpay";
-type CheckoutPageProps = { searchParams: Promise<{ planType: PlanType }> };
 
-function CheckoutPage({ searchParams }: CheckoutPageProps) {
+function CheckoutPage() {
   const search = Route.useSearch();
   const router = useRouter();
   const [selectedPlan, setSelectedPlan] = useState<TPlan>(
-    () => plans[1] as TPlan,
+    () => plans[1] as TPlan
   );
   const { data } = useSession();
   useEffect(() => {
@@ -29,9 +28,10 @@ function CheckoutPage({ searchParams }: CheckoutPageProps) {
         search?.planType && plans.find((p) => p.name === search?.planType);
       if (selectedPlan) setSelectedPlan(selectedPlan as TPlan);
     })();
-  }, [searchParams]);
+  }, [search]);
   function loadRazorpayScript(): Promise<boolean> {
     return new Promise((resolve) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if ((window as any).Razorpay) {
         resolve(true);
         return;
@@ -59,6 +59,7 @@ function CheckoutPage({ searchParams }: CheckoutPageProps) {
         return;
       }
       if (!data?.user.id) return;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const razorpay = new (window as any).Razorpay({
         // key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         key: "rzp_test_q7TZXZSHpK9aEn",
