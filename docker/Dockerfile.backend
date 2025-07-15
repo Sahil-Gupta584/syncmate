@@ -34,7 +34,8 @@ RUN echo "VITE_BACKEND_URL=$VITE_BACKEND_URL" >> .env && \
     echo "DATABASE_URL=$DATABASE_URL" >> .env && \
     echo "VITE_CREATOR_BASE_URL=$VITE_CREATOR_BASE_URL" >> .env && \
     echo "VITE_EDITOR_BASE_URL=$VITE_EDITOR_BASE_URL" >> .env && \
-    echo "RAZORPAY_WEBHOOK_SECRET=$RAZORPAY_WEBHOOK_SECRET" >> .env
+    echo "RAZORPAY_WEBHOOK_SECRET=$RAZORPAY_WEBHOOK_SECRET" >> .env \
+    echo "PORT=80" >> .env
 
 
 
