@@ -59,12 +59,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 const app = express();
-app.get("/", (req, res) => {
-  res.send("Backend is working");
-});
 
 console.log("origin", [
-  process.env.VITE_WEB_BASE_URL!,
   process.env.VITE_CREATOR_BASE_URL!,
   process.env.VITE_EDITOR_BASE_URL!,
 ]);
@@ -72,12 +68,11 @@ console.log("origin", [
 app.use(
   cors({
     origin: [
-      process.env.VITE_WEB_BASE_URL!,
       process.env.VITE_CREATOR_BASE_URL!,
       process.env.VITE_EDITOR_BASE_URL!,
     ],
     credentials: true,
-  }),
+  })
 );
 
 app.use((req, res, next) => {
@@ -87,6 +82,10 @@ app.use((req, res, next) => {
 
 app.all("/creator/api/auth/*any", toNodeHandler(creatorAuth));
 app.all("/editor/api/auth/*any", toNodeHandler(editorAuth));
+
+app.get("/", (req, res) => {
+  res.send("Backend is working");
+});
 
 app.post("/webhook", express.raw({ type: "*/*" }), async (req, res) => {
   try {
@@ -98,7 +97,7 @@ app.post("/webhook", express.raw({ type: "*/*" }), async (req, res) => {
     const isValid = validateWebhookSignature(
       rawBody.toString(),
       signature! as string,
-      process.env.RAZORPAY_WEBHOOK_SECRET!,
+      process.env.RAZORPAY_WEBHOOK_SECRET!
     );
 
     if (!isValid) {
@@ -181,7 +180,7 @@ app.use(
   trpcExpress.createExpressMiddleware({
     router: appRouter,
     createContext: () => ({}),
-  }),
+  })
 );
 
 app.get("/download/:videoId", async (req, res) => {
@@ -238,5 +237,5 @@ app.get("/getAuthUrl", async (req, res) => {
 
 const PORT = process.env.PORT;
 app.listen(PORT, () =>
-  console.log(`Server is running on http://localhost:${PORT}`),
+  console.log(`Server is running on http://localhost:${PORT}`)
 );
