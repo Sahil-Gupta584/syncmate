@@ -20,7 +20,7 @@ export const plans = [
     ],
     cta: "Get Started",
     popular: false,
-    monthlySubscriptionId: "sub_QS5jj0OdssPydD",
+    monthlySubscriptionId: "sub_QtK9JKjPMXjfbz",
     yearlySubscriptionId: "sub_QS6nzgmL2lcNeB",
   },
   {
