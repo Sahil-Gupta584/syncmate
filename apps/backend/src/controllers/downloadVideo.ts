@@ -24,13 +24,13 @@ export async function downloadVideo(req: Request, res: Response) {
 
     const driveRes = await drive.files.get(
       { fileId: video.gDriveId, alt: "media" },
-      { responseType: "stream" }
+      { responseType: "stream" },
     );
 
     res.setHeader("Content-Type", "video/mp4");
     res.setHeader(
       "Content-Disposition",
-      `attachment; filename="${video.title}.mp4"`
+      `attachment; filename="${video.title}.mp4"`,
     );
 
     driveRes.data.pipe(res);

@@ -52,7 +52,7 @@ export async function importVideo(req: Request, res: Response) {
         ownerId,
         selectedEditorEmails: selectedEditorEmails || [],
       },
-      { jobId: video.id }
+      { jobId: video.id },
     );
     console.log("job", jobRes.id, "added");
 

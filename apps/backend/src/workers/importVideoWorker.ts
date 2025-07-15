@@ -99,7 +99,7 @@ const worker = new Worker(
     connection: {
       url: redisUrl,
     },
-  }
+  },
 );
 
 worker.on("active", (job) => {

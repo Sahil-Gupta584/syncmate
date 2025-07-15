@@ -22,7 +22,7 @@ export type TVideoDropdownProps = {
   handleDeleteVideo: (
     e: React.FormEvent<HTMLFormElement>,
     onClose: () => void,
-    videoId: string
+    videoId: string,
   ) => void;
 
   isDeleting: boolean;

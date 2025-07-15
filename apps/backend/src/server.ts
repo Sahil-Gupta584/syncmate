@@ -77,7 +77,7 @@ app.use(
       process.env.VITE_EDITOR_BASE_URL!,
     ],
     credentials: true,
-  })
+  }),
 );
 
 app.use((req, res, next) => {
@@ -98,7 +98,7 @@ app.post("/webhook", express.raw({ type: "*/*" }), async (req, res) => {
     const isValid = validateWebhookSignature(
       rawBody.toString(),
       signature! as string,
-      process.env.RAZORPAY_WEBHOOK_SECRET!
+      process.env.RAZORPAY_WEBHOOK_SECRET!,
     );
 
     if (!isValid) {
@@ -181,7 +181,7 @@ app.use(
   trpcExpress.createExpressMiddleware({
     router: appRouter,
     createContext: () => ({}),
-  })
+  }),
 );
 
 app.get("/download/:videoId", async (req, res) => {
@@ -238,5 +238,5 @@ app.get("/getAuthUrl", async (req, res) => {
 
 const PORT = process.env.PORT;
 app.listen(PORT, () =>
-  console.log(`Server is running on http://localhost:${PORT}`)
+  console.log(`Server is running on http://localhost:${PORT}`),
 );
