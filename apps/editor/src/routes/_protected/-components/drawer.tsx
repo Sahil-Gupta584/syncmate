@@ -5,7 +5,7 @@ import {
   DrawerContent,
   DrawerFooter,
   DrawerHeader,
-} from "@heroui/drawer";
+} from "@heroui/react";
 import { Avatar, Button, useDisclosure } from "@heroui/react";
 import { backend } from "@repo/trpc/react";
 import { DrawerProfileHeader } from "@repo/ui";

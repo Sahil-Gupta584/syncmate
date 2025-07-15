@@ -4,7 +4,7 @@ import {
   DrawerBody,
   DrawerContent,
   DrawerHeader,
-} from "@heroui/drawer";
+} from "@heroui/react";
 import {
   Accordion,
   AccordionItem,

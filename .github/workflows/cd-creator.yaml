@@ -1,4 +1,4 @@
-name: Build & Deploy Affected Apps
+name: Build & Push Creator
 
 on:
   push:
