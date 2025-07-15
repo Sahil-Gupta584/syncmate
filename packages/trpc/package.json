@@ -4,10 +4,7 @@
   "type": "module",
   "main": "./dist/index.js",
   "scripts": {
-    "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "eslint . --ext .ts,.tsx --fix",
-    "build": "npm run  trpc:generate || true",
-    "trpc:generate": " tsc --project tsconfig.json"
+    "build": "tsc"
   },
   "types": "./index.ts",
   "keywords": [],

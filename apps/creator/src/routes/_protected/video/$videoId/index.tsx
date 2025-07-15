@@ -62,10 +62,10 @@ export default function Page(): JSX.Element {
   );
 }
 
-const updateVideoDetailsZodSchema =
-  serverZodSchemas.dbActionsZodSchema.updateVideoDetails;
+type TUpdateVideoDetailsZodSchema =
+  typeof serverZodSchemas.dbActionsZodSchema.updateVideoDetails;
 export type TVideoDetailsForm = Partial<
-  z.infer<typeof updateVideoDetailsZodSchema> & {
+  z.infer<TUpdateVideoDetailsZodSchema> & {
     newThumbnailFile?: FileList;
     selectedEditorsId: string[];
   }
@@ -90,7 +90,10 @@ export function VideoPage({
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<TVideoDetailsForm>({
-    disabled: !isEditing || previousData.videoStatus !== "DRAFT",
+    disabled:
+      !isEditing ||
+      previousData.videoStatus === "DRAFT" ||
+      previousData.videoStatus === "PROCESSING",
   });
   const updateVideoDetailsMutation =
     backend.db.updateVideoDetails.useMutation();
@@ -210,7 +213,10 @@ export function VideoPage({
                 className="w-fit bg-blue-600 text-white"
                 isLoading={isSubmitting}
                 type="submit"
-                isDisabled={previousData.videoStatus !== "DRAFT"}
+                isDisabled={
+                  previousData.videoStatus !== "DRAFT" &&
+                  previousData.videoStatus !== "PROCESSING"
+                }
               >
                 {isEditing ? "Save" : "Edit"}
               </Button>
@@ -222,7 +228,10 @@ export function VideoPage({
                 isLoading={isSubmitting}
                 type="button"
                 onPress={() => setIsEditing(true)}
-                isDisabled={previousData.videoStatus !== "DRAFT"}
+                isDisabled={
+                  previousData.videoStatus !== "DRAFT" &&
+                  previousData.videoStatus !== "PROCESSING"
+                }
               >
                 Edit
               </Button>

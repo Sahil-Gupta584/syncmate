@@ -8,7 +8,7 @@ import {
 
 import { Worker } from "bullmq";
 import dotenv from "dotenv";
-import { createReadStream, unlink } from "fs";
+import fs from "fs";
 import path, { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { redisUrl } from "../queues.js";
@@ -31,9 +31,12 @@ const worker = new Worker(
 
       const { drive } = result;
       const folderId = await getOrCreateFolder(drive, "Syncmate");
-      const stream = createReadStream(
-        path.join(__dirname, "../../uploads", fileName)
-      );
+      const fullPath = path.join(__dirname, "../../uploads", fileName);
+      if (!fs.existsSync(fullPath)) {
+        throw new Error("File does not exist: " + fullPath);
+      }
+      const stream = fs.createReadStream(fullPath);
+      stream.on("error", (err) => err && console.error("Stream error:", err));
       console.log("Uploading to drive...");
 
       const uploadedFileData = await drive.files.create({
@@ -46,7 +49,7 @@ const worker = new Worker(
           mimeType: fileType,
           body: stream,
         },
-        fields: "id, thumbnailLink",
+        fields: "id",
       });
       console.log("Uploaded, File ID:", uploadedFileData.data.id);
 
@@ -54,8 +57,10 @@ const worker = new Worker(
         throw new Error("Failed to upload video to Google Drive");
 
       const localFilePath = path.join(__dirname, "../../uploads", fileName);
-      unlink(localFilePath, (err) => {
-        console.log("failed to unlink video:", job.id, err);
+      fs.unlink(localFilePath, (err) => {
+        if (err) {
+          console.log("failed to unlink video:", job.id, err);
+        }
       });
 
       await prisma.video.update({
@@ -78,7 +83,16 @@ const worker = new Worker(
         ],
       });
     } catch (error) {
-      console.error("error in importVideoWorker for jobId", job.id, error);
+      console.error("Upload failed for jobId", job.id);
+      if (error.response) {
+        console.error({
+          Status: error.response.status,
+          Message: error.response.data?.error?.message,
+          Errors: error.response.data?.error?.errors,
+        });
+      } else {
+        console.error("Unexpected error:", error);
+      }
     }
   },
   {
@@ -87,6 +101,7 @@ const worker = new Worker(
     },
   }
 );
+
 worker.on("active", (job) => {
   console.log(`Upload Job ${job.id} active`);
 });

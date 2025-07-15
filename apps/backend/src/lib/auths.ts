@@ -28,8 +28,7 @@ export const creatorAuth = betterAuth({
         "profile",
         "email",
         "https://www.googleapis.com/auth/youtube.upload",
-        "https://www.googleapis.com/auth/drive",
-        "https://www.googleapis.com/auth/youtube",
+        "https://www.googleapis.com/auth/drive.file",
         "https://www.googleapis.com/auth/youtubepartner-channel-audit",
       ],
       accessType: "offline", // This is crucial for refresh tokens
