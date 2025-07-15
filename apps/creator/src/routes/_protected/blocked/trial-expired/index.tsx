@@ -37,7 +37,8 @@ function Page() {
         as={Link}
         color="warning"
         className="text-lg text-black"
-        href="/#pricing"
+        href={`${import.meta.env.VITE_WEB_BASE_URL}/#pricing`}
+        target="_blank"
       >
         Unlock Syncly
       </Button>
