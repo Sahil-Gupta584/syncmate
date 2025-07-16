@@ -55,4 +55,4 @@ jobs:
             NODEMAILER_PASS=${{ secrets.NODEMAILER_PASS }}
 
       - name: Force new ecs service
-        run: aws ecs update-service --cluster syncmate --service syncmate-backend --force-new-deployment
+        run: aws ecs update-service --cluster syncmate --service syncmate-backend-service --force-new-deployment
