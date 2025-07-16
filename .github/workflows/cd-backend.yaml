@@ -53,5 +53,6 @@ jobs:
             DATABASE_URL=${{ secrets.DATABASE_URL }}
             NODEMAILER_USER=${{ secrets.NODEMAILER_USER }}
             NODEMAILER_PASS=${{ secrets.NODEMAILER_PASS }}
-        -name: Force new ecs service
-        -run: aws ecs update-service --cluster syncmate --service syncmate-backend --force-new-deployment
+
+      - name: Force new ecs service
+      - run: aws ecs update-service --cluster syncmate --service syncmate-backend --force-new-deployment
