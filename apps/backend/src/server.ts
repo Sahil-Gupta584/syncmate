@@ -22,14 +22,6 @@ if (process.env.NODE_ENV !== "production") {
   dotenv.config({ path: resolve(__dirname, "../../../.env") });
 }
 
-console.log("RENDER ENV CHECK:", {
-  REDIS_URL: process.env.REDIS_URL,
-  DATABASE_URL: process.env.DATABASE_URL,
-  NODE_ENV: process.env.NODE_ENV,
-  CREATOR_AUTH_SECRET: process.env.CREATOR_AUTH_SECRET,
-  PORT: process.env.PORT,
-});
-
 const envSchema = z.object({
   VITE_BACKEND_URL: z.string().min(1).url(),
   VITE_CREATOR_BASE_URL: z.string().min(1).url(),
