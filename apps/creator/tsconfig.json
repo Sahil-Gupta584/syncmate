@@ -24,8 +24,6 @@
 
     "allowSyntheticDefaultImports": true,
 
-    /* Optional: tsbuild info location */
-
     "composite": false,
     "declaration": false,
     "declarationMap": false,
