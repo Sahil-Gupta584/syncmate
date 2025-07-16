@@ -48,9 +48,9 @@ function CheckoutPage() {
   const handlePayment = async (duration: "monthly" | "yearly") => {
     try {
       console.log("handling");
-
-      if (!import.meta.env.VITE_RAZORPAY_KEY_ID) {
-        return;
+      const razorpayKeyId = import.meta.env.VITE_RAZORPAY_KEY_ID;
+      if (!razorpayKeyId) {
+        addToast({ color: "danger", description: "A Server Error Occurred." });
       }
       const isLoaded = await loadRazorpayScript();
       if (!isLoaded) {
@@ -64,7 +64,7 @@ function CheckoutPage() {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const razorpay = new (window as any).Razorpay({
         // key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-        key: "rzp_test_q7TZXZSHpK9aEn",
+        key: razorpayKeyId,
         // subscription_id: duration === "monthly" ? selectedPlan.monthlySubscriptionId : selectedPlan.yearlySubscriptionId,
         subscription_id: "sub_QtK9JKjPMXjfbz",
         // plan_id: "plan_QSWz6nuQxdL7Sj",
