@@ -60,9 +60,9 @@ jobs:
           echo "Current working directory:"
           pwd
           echo "Listing files:"
-          ls -al
+          ls -al ./.github/workflows
 
-          ./get-ecs-task-public-ip.sh syncmate-backend
+          ./.github/workflows/get-ecs-task-public-ip.sh syncmate-backend
 
       - name: Update Backend Cloudflare DNS Record
         run: |
