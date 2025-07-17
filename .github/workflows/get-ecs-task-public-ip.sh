@@ -42,7 +42,7 @@ for ((i=1; i<=MAX_RETRIES; i++)); do
         --tasks $(echo "$TASK_ARNS" | jq -r 'join(" ")') \
     )
     # Find the latest task by startedAt time
-    LATEST_TASK_ARN=$(echo "$TASKS_JSON" | jq -r '.tasks | sort_by(.startedAt) | last | .taskArn')
+    LATEST_TASK_ARN=$(echo "$TASKS_JSON" | jq -r '.tasks | sort_by(.createdAt) | last | .taskArn')
     echo "latest task arn: $LATEST_TASK_ARN"
 
     if [[ -z "$LATEST_TASK_ARN" || "$LATEST_TASK_ARN" == "null" ]]; then
