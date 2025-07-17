@@ -63,7 +63,7 @@ jobs:
             -H "Content-Type: application/json" \
             --data '{
               "type": "A",
-              "name": "api",
+              "name": "creator",
               "content": "'"$IP"'",
               "ttl": 1,
               "proxied": true
