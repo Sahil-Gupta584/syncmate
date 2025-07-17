@@ -75,5 +75,5 @@ jobs:
               "name": "api",
               "content": "'"$IP"'",
               "ttl": 1,
-              "proxied": false
+              "proxied": true
             }'

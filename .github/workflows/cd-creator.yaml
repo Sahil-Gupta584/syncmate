@@ -41,3 +41,30 @@ jobs:
             VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
             VITE_RAZORPAY_KEY_ID=${{ secrets.VITE_RAZORPAY_KEY_ID }}
             VITE_WEB_BASE_URL=${{ secrets.VITE_WEB_BASE_URL }}
+
+      - name: Force new ecs service
+        run: aws ecs update-service --cluster syncmate --service syncmate-creator-service --force-new-deployment
+
+      - name: Wait for public IP of syncmate-creator
+        id: get-ip
+        run: |
+          chmod +x .github/workflows/get-ecs-task-public-ip.sh
+          ./.github/workflows/get-ecs-task-public-ip.sh syncmate-backend-creator
+
+      - name: Update Backend Cloudflare DNS Record
+        run: |
+          set -e
+          IP="${{ steps.get-ip.outputs.ip }}"
+          echo "Updating Cloudflare DNS for ${{ secrets.CF_RECORD_NAME }} to "'$IP'""
+
+          curl -X PUT "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/dns_records/${{ secrets.CLOUDFLARE_CREATOR_RECORD_ID }}" \
+            -H "X-Auth-Key: ${{ secrets.CLOUDFLARE_API_KEY }}" \
+            -H "X-Auth-Email: ${{ secrets.CLOUDFLARE_EMAIL }}" \
+            -H "Content-Type: application/json" \
+            --data '{
+              "type": "A",
+              "name": "api",
+              "content": "'"$IP"'",
+              "ttl": 1,
+              "proxied": true
+            }'
