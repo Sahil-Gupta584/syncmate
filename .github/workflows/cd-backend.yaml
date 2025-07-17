@@ -77,7 +77,7 @@ jobs:
             --data '{
               "type": "A",
               "name": "api",
-              "content": "99.38.38.39",
+              "content": "'"$IP"'",
               "ttl": 1,
               "proxied": false
             }'
