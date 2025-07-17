@@ -68,7 +68,7 @@ jobs:
         run: |
           set -e
           IP="${{ steps.get-ip.outputs.ip }}"
-          echo "Updating Cloudflare DNS for ${{ secrets.CF_RECORD_NAME }} to $IP"
+          echo "Updating Cloudflare DNS for ${{ secrets.CF_RECORD_NAME }} to "'$IP'""
 
           curl -X PUT "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/dns_records/${{ secrets.CLOUDFLARE_BACKEND_RECORD_ID }}" \
             -H "X-Auth-Key: ${{ secrets.CLOUDFLARE_API_KEY }}" \
