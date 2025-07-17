@@ -8,7 +8,6 @@ fi
 
 CLUSTER="syncmate"
 SERVICE="$1"
-REGION="eu-north-1"
 MAX_RETRIES=20
 SLEEP_SECONDS=10
 
@@ -24,19 +23,11 @@ for ((i=1; i<=MAX_RETRIES; i++)); do
     TASK_ARNS=$(aws ecs list-tasks \
         --cluster "$CLUSTER" \
         --service-name "$SERVICE" \
-        --desired-status RUNNING \
-        --region "$REGION" \
         --query "taskArns" \
         --output json)
-    TASK_ARNS_ALL=$(aws ecs list-tasks \
-        --cluster "$CLUSTER" \
-        --service-name "$SERVICE" \
-        --region "$REGION" \
-        --query "taskArns" \
-        --output json)
+        
     echo "response: $TASK_ARNS"  
-    echo "response all tasks: $TASK_ARNS_ALL"  
-    
+
     TASK_COUNT=$(echo "$TASK_ARNS" | jq 'length')
 
     if (( TASK_COUNT < 2 )); then
@@ -45,21 +36,21 @@ for ((i=1; i<=MAX_RETRIES; i++)); do
         continue
     fi
 
-
+""
     # Describe all tasks to find the latest one
     TASKS_JSON=$(aws ecs describe-tasks \
         --cluster "$CLUSTER" \
         --tasks $(echo "$TASK_ARNS" | jq -r 'join(" ")') \
-        --region "$REGION")
     
     # Find the latest task by startedAt time
     LATEST_TASK_ARN=$(echo "$TASKS_JSON" | jq -r '.tasks | sort_by(.startedAt) | last | .taskArn')
+    echo "latest task arn: $LATEST_TASK_ARN"
     
     if [[ -z "$LATEST_TASK_ARN" || "$LATEST_TASK_ARN" == "null" ]]; then
         echo "[$i/$MAX_RETRIES] Could not identify latest task...waiting"
         sleep "$SLEEP_SECONDS"
         continue
-    fi
+    fi  
 
     # Extract ENI for the latest task
     ENI_ID=$(echo "$TASKS_JSON" | jq -r --arg arn "$LATEST_TASK_ARN" '
@@ -78,7 +69,6 @@ for ((i=1; i<=MAX_RETRIES; i++)); do
     # Get public IP from ENI
     PUBLIC_IP=$(aws ec2 describe-network-interfaces \
         --network-interface-ids "$ENI_ID" \
-        --region "$REGION" \
         --query "NetworkInterfaces[0].Association.PublicIp" \
         --output text)
     
