@@ -40,7 +40,7 @@ for ((i=1; i<=MAX_RETRIES; i++)); do
     TASKS_JSON=$(aws ecs describe-tasks \
         --cluster "$CLUSTER" \
         --tasks $(echo "$TASK_ARNS" | jq -r 'join(" ")') \
-    
+    )
     # Find the latest task by startedAt time
     LATEST_TASK_ARN=$(echo "$TASKS_JSON" | jq -r '.tasks | sort_by(.startedAt) | last | .taskArn')
     echo "latest task arn: $LATEST_TASK_ARN"
