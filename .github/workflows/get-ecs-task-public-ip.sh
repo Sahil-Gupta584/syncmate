@@ -36,11 +36,15 @@ for ((i=1; i<=MAX_RETRIES; i++)); do
         --output json)
     echo "response: $TASK_ARNS"  
     echo "response all tasks: $TASK_ARNS_ALL"  
-    if [[ -z "$TASK_ARNS" || "$TASK_ARNS" == "[]" ]]; then
-        echo "[$i/$MAX_RETRIES] No running tasks found...waiting"
+    
+    TASK_COUNT=$(echo "$TASK_ARNS" | jq 'length')
+
+    if (( TASK_COUNT < 2 )); then
+        echo "[$i/$MAX_RETRIES] Only $TASK_COUNT task(s) running...waiting for new task to appear"
         sleep "$SLEEP_SECONDS"
         continue
     fi
+
 
     # Describe all tasks to find the latest one
     TASKS_JSON=$(aws ecs describe-tasks \
