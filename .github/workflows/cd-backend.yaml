@@ -60,6 +60,10 @@ jobs:
 
       - name: Update Backend Cloudflare DNS Record
         run: |
+          echo "Current working directory:"
+          pwd
+          echo "Listing files:"
+          ls -al
           set -e
           IP="${{ steps.get-ip.outputs.ip }}"
           echo "Updating Cloudflare DNS for ${{ secrets.CF_RECORD_NAME }} to $IP"

@@ -50,15 +50,3 @@ done
 
 echo "❌ Timed out waiting for public IP for service '$SERVICE'."
 exit 1
-
-curl -X PUT "https://api.cloudflare.com/client/v4/zones/3ef4f5708dfecf5e54fb6ed994390ba3/dns_records/dd27aba3-0e75-4248-b92c-00aafc6edfbf"
-       -H "X-Auth-Key:dO5lgiminsEVoYGiTI_EE7JTEirjMTDy2dzNOb3D" 
-       -H "X-Auth-Email:guptas3067@gmail.com" 
-       -H "Content-Type: application/json"
-       --data '{
-        "type": "A",
-        "name": "creator",
-        "content": "19.19.19.19",
-        "ttl": 3600,
-        "proxied": true
-      }'

@@ -76,7 +76,7 @@ app.all("/creator/api/auth/*any", toNodeHandler(creatorAuth));
 app.all("/editor/api/auth/*any", toNodeHandler(editorAuth));
 
 app.get("/", (req, res) => {
-  res.send("Backend is working.");
+  res.send("Backend is working...");
 });
 
 app.post("/webhook", express.raw({ type: "*/*" }), async (req, res) => {
