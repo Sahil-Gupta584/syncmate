@@ -36,7 +36,6 @@ for ((i=1; i<=MAX_RETRIES; i++)); do
         continue
     fi
 
-""
     # Describe all tasks to find the latest one
     TASKS_JSON=$(aws ecs describe-tasks \
         --cluster "$CLUSTER" \
@@ -45,7 +44,7 @@ for ((i=1; i<=MAX_RETRIES; i++)); do
     # Find the latest task by startedAt time
     LATEST_TASK_ARN=$(echo "$TASKS_JSON" | jq -r '.tasks | sort_by(.startedAt) | last | .taskArn')
     echo "latest task arn: $LATEST_TASK_ARN"
-    
+
     if [[ -z "$LATEST_TASK_ARN" || "$LATEST_TASK_ARN" == "null" ]]; then
         echo "[$i/$MAX_RETRIES] Could not identify latest task...waiting"
         sleep "$SLEEP_SECONDS"
