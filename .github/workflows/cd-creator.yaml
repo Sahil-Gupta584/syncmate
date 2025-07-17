@@ -49,9 +49,9 @@ jobs:
         id: get-ip
         run: |
           chmod +x .github/workflows/get-ecs-task-public-ip.sh
-          ./.github/workflows/get-ecs-task-public-ip.sh syncmate-backend-creator
+          ./.github/workflows/get-ecs-task-public-ip.sh syncmate-creator-creator
 
-      - name: Update Backend Cloudflare DNS Record
+      - name: Update Creator Cloudflare DNS Record
         run: |
           set -e
           IP="${{ steps.get-ip.outputs.ip }}"
