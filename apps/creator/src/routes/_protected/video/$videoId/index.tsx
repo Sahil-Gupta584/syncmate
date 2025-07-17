@@ -91,9 +91,7 @@ export function VideoPage({
     formState: { errors, isSubmitting },
   } = useForm<TVideoDetailsForm>({
     disabled:
-      !isEditing ||
-      previousData.videoStatus === "DRAFT" ||
-      previousData.videoStatus === "PROCESSING",
+      isEditing || !["DRAFT", "PROCESSING"].includes(previousData.videoStatus),
   });
   const updateVideoDetailsMutation =
     backend.db.updateVideoDetails.useMutation();
@@ -139,7 +137,7 @@ export function VideoPage({
       window.removeEventListener("popstate", handlePopState);
     };
   }, [isEditing]);
-
+  console.log({ isEditing });
   async function handleVideoSave(formDataRaw: TVideoDetailsForm) {
     try {
       if (!formDataRaw.channelId) throw new Error("Please select a Channel");
@@ -214,8 +212,7 @@ export function VideoPage({
                 isLoading={isSubmitting}
                 type="submit"
                 isDisabled={
-                  previousData.videoStatus !== "DRAFT" &&
-                  previousData.videoStatus !== "PROCESSING"
+                  !["DRAFT", "PROCESSING"].includes(previousData.videoStatus)
                 }
               >
                 {isEditing ? "Save" : "Edit"}
@@ -229,8 +226,7 @@ export function VideoPage({
                 type="button"
                 onPress={() => setIsEditing(true)}
                 isDisabled={
-                  previousData.videoStatus !== "DRAFT" &&
-                  previousData.videoStatus !== "PROCESSING"
+                  !["DRAFT", "PROCESSING"].includes(previousData.videoStatus)
                 }
               >
                 Edit

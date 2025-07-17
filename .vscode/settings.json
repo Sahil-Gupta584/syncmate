@@ -3,7 +3,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.addMissingImports": "explicit",
-    "source.organizeImports": "explicit"
+    "source.organizeImports": "explicit",
+    "editor.formatOnSaveMode": "modifications"
   },
   "files.readonlyInclude": {
     "dist/**": true,
