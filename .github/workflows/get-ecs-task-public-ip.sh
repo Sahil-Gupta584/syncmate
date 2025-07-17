@@ -28,7 +28,14 @@ for ((i=1; i<=MAX_RETRIES; i++)); do
         --region "$REGION" \
         --query "taskArns" \
         --output json)
-    
+    TASK_ARNS_ALL=$(aws ecs list-tasks \
+        --cluster "$CLUSTER" \
+        --service-name "$SERVICE" \
+        --region "$REGION" \
+        --query "taskArns" \
+        --output json)
+    echo "response: $TASK_ARNS"  
+    echo "response all tasks: $TASK_ARNS_ALL"  
     if [[ -z "$TASK_ARNS" || "$TASK_ARNS" == "[]" ]]; then
         echo "[$i/$MAX_RETRIES] No running tasks found...waiting"
         sleep "$SLEEP_SECONDS"
