@@ -13,7 +13,7 @@ echo "🔁 Waiting for ECS service '$SERVICE' in cluster 'syncmate' to start a t
 
 for((i=1;i<=MAX_RETRIES;i++)); do
  TASK_ARN=$(aws ecs list-tasks --cluster "$CLUSTER" --service-name "$SERVICE" --desired-status RUNNING --region "$REGION" --query "taskArns[0]" --output "text")
-  echo "$TASK_ARN"
+  echo "resposne: $TASK_ARN"
  if [[-z "$TASK_ARN" || $TASK_ARN=="None"]];then
     echo "[$i/$MAX_RETRIES] task not yet running..waiting"
     sleep "$SLEEP_SECONDS"
