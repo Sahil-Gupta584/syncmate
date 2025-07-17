@@ -14,7 +14,7 @@
     "skipLibCheck": true,
     "types": ["node"],
     "outDir": "./dist"
-    // asd
+    // as
   },
   "exclude": ["dist"]
 }

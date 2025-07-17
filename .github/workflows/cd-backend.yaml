@@ -21,38 +21,65 @@ jobs:
       - name: Checkout the Code
         uses: actions/checkout@v2
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4.1.0
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-north-1
+      # - name: Configure AWS Credentials
+      #   uses: aws-actions/configure-aws-credentials@v4.1.0
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: eu-north-1
 
-      - name: Login to ECR Public and Docker
+      # - name: Login to ECR Public and Docker
+      #   run: |
+      #     aws ecr-public get-login-password --region us-east-1 | \
+      #     docker login --username AWS --password-stdin public.ecr.aws
+
+      # - name: Build and push
+      #   uses: docker/build-push-action@v4
+      #   with:
+      #     context: .
+      #     file: ./docker/Dockerfile.backend
+      #     tags: ${{ secrets.backend_repo }}
+      #     push: true
+      #     build-args: |
+      #       VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
+      #       GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
+      #       GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
+      #       VITE_CREATOR_BASE_URL=${{ secrets.VITE_CREATOR_BASE_URL }}
+      #       VITE_EDITOR_BASE_URL=${{ secrets.VITE_EDITOR_BASE_URL }}
+      #       EDITOR_AUTH_SECRET=${{ secrets.EDITOR_AUTH_SECRET }}
+      #       CREATOR_AUTH_SECRET=${{ secrets.CREATOR_AUTH_SECRET }}
+      #       RAZORPAY_WEBHOOK_SECRET=${{ secrets.RAZORPAY_WEBHOOK_SECRET }}
+      #       REDIS_URL=${{ secrets.REDIS_URL }}
+      #       DATABASE_URL=${{ secrets.DATABASE_URL }}
+      #       NODEMAILER_USER=${{ secrets.NODEMAILER_USER }}
+      #       NODEMAILER_PASS=${{ secrets.NODEMAILER_PASS }}
+
+      # - name: Force new ecs service
+      #   run: aws ecs update-service --cluster syncmate --service syncmate-backend-service --force-new-deployment
+
+      # - name: Wait for public IP of syncmate-backend
+      #   id: get-ip
+      #   run: ./scripts/wait-for-ecs-ip.sh syncmate-backend
+
+      # # - name: Changing backend IP on Cloudflare
+      # # - uses: cloudflare/wrangler-action@v3
+      # #   with:
+      # #     apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      # #     accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Update Backend Cloudflare DNS Record
         run: |
-          aws ecr-public get-login-password --region us-east-1 | \
-          docker login --username AWS --password-stdin public.ecr.aws
+          IP="${{ steps.get-ip.outputs.ip }}"
+          echo "Updating Cloudflare DNS for ${{ secrets.CF_RECORD_NAME }} to $IP"
 
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./docker/Dockerfile.backend
-          tags: ${{ secrets.backend_repo }}
-          push: true
-          build-args: |
-            VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
-            GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
-            GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
-            VITE_CREATOR_BASE_URL=${{ secrets.VITE_CREATOR_BASE_URL }}
-            VITE_EDITOR_BASE_URL=${{ secrets.VITE_EDITOR_BASE_URL }}
-            EDITOR_AUTH_SECRET=${{ secrets.EDITOR_AUTH_SECRET }}
-            CREATOR_AUTH_SECRET=${{ secrets.CREATOR_AUTH_SECRET }}
-            RAZORPAY_WEBHOOK_SECRET=${{ secrets.RAZORPAY_WEBHOOK_SECRET }}
-            REDIS_URL=${{ secrets.REDIS_URL }}
-            DATABASE_URL=${{ secrets.DATABASE_URL }}
-            NODEMAILER_USER=${{ secrets.NODEMAILER_USER }}
-            NODEMAILER_PASS=${{ secrets.NODEMAILER_PASS }}
-
-      - name: Force new ecs service
-        run: aws ecs update-service --cluster syncmate --service syncmate-backend-service --force-new-deployment
+          curl -X PUT "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/dns_records/${{ secrets.CLOUDFLARE_BACKEND_RECORD_ID }}" \
+            -H "X-Auth-Key: ${{ secrets.CLOUDFLARE_API_KEY }}" \
+            -H "X-Auth-Email: ${{ secrets.CLOUDFLARE_EMAIL }}" \
+            -H "Content-Type: application/json" \
+            --data '{
+              "type": "A",
+              "name": "'"${{ secrets.CLOUDFLARE_RECORD_NAME }}"'",
+              "content": "89.38.38.39",
+              "ttl": 1,
+              "proxied": false
+            }'
