@@ -79,7 +79,7 @@ jobs:
             -H "Content-Type: application/json" \
             --data '{
               "type": "A",
-              "name": 'api',
+              "name": "api",
               "content": "89.38.38.39",
               "ttl": 1,
               "proxied": false
