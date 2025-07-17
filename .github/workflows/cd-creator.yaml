@@ -49,7 +49,7 @@ jobs:
         id: get-ip
         run: |
           chmod +x .github/workflows/get-ecs-task-public-ip.sh
-          ./.github/workflows/get-ecs-task-public-ip.sh syncmate-creator-creator
+          ./.github/workflows/get-ecs-task-public-ip.sh syncmate-creator-service
 
       - name: Update Creator Cloudflare DNS Record
         run: |

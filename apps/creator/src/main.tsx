@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { App } from "./app";
 import "./globals.css";
 
-// Render th
+// Render t
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
