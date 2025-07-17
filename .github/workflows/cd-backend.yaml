@@ -56,14 +56,16 @@ jobs:
 
       - name: Wait for public IP of syncmate-backend
         id: get-ip
-        run: ./get-ecs-task-public-ip.sh syncmate-backend
-
-      - name: Update Backend Cloudflare DNS Record
         run: |
           echo "Current working directory:"
           pwd
           echo "Listing files:"
           ls -al
+
+          ./get-ecs-task-public-ip.sh syncmate-backend
+
+      - name: Update Backend Cloudflare DNS Record
+        run: |
           set -e
           IP="${{ steps.get-ip.outputs.ip }}"
           echo "Updating Cloudflare DNS for ${{ secrets.CF_RECORD_NAME }} to $IP"
