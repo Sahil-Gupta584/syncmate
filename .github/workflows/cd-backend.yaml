@@ -56,7 +56,7 @@ jobs:
 
       - name: Wait for public IP of syncmate-backend
         id: get-ip
-        run: ./scripts/wait-for-ecs-ip.sh syncmate-backend
+        run: ./get-ecs-task-public-ip.sh syncmate-backend
 
       - name: Update Backend Cloudflare DNS Record
         run: |
