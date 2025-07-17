@@ -15,11 +15,11 @@ jobs:
     name: Build Backend
     runs-on: ubuntu-latest
     steps:
-      - name: Log Docker Image Tag
-        run: "echo Docker image tag: ${{ secrets.backend_image }}"
+      # - name: Log Docker Image Tag
+      #   run: "echo Docker image tag: ${{ secrets.backend_image }}"
 
-      - name: Checkout the Code
-        uses: actions/checkout@v2
+      # - name: Checkout the Code
+      #   uses: actions/checkout@v2
 
       # - name: Configure AWS Credentials
       #   uses: aws-actions/configure-aws-credentials@v4.1.0
@@ -80,7 +80,7 @@ jobs:
             --data '{
               "type": "A",
               "name": "api",
-              "content": "89.38.38.39",
+              "content": "99.38.38.39",
               "ttl": 1,
               "proxied": false
             }'
