@@ -3,13 +3,13 @@ import ReactDOM from "react-dom/client";
 import { App } from "./app";
 import "./globals.css";
 
-// Render the app
+// Render the
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
       <App />
-    </StrictMode>,
+    </StrictMode>
   );
 }
