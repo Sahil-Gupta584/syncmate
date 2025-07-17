@@ -61,7 +61,7 @@ jobs:
           pwd
           echo "Listing files:"
           ls -al ./.github/workflows
-
+          chmod +x .github/workflows/get-ecs-task-public-ip.sh
           ./.github/workflows/get-ecs-task-public-ip.sh syncmate-backend
 
       - name: Update Backend Cloudflare DNS Record
