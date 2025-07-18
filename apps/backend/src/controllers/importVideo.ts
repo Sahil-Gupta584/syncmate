@@ -1,11 +1,20 @@
 import { prisma } from "@repo/db";
+import { fromNodeHeaders } from "better-auth/node";
 import { Request, Response } from "express";
 import moment from "moment";
+import { creatorAuth } from "../lib/auths.js";
 import { uploadQueue } from "../queues.js";
 
 export async function importVideo(req: Request, res: Response) {
   try {
-    const { channelId, importerId, ownerId, duration } = req.body;
+    const session = await creatorAuth.api.getSession({
+      headers: fromNodeHeaders(req.headers),
+    });
+    if (!session.user.id) throw new Error("Unauthenticated");
+
+    console.log({ session });
+
+    const { channelId, ownerId, duration } = req.body;
     let { selectedEditorEmails } = req.body;
 
     if (selectedEditorEmails) {
@@ -22,7 +31,7 @@ export async function importVideo(req: Request, res: Response) {
         createdAt: `${Date.now() / 1000}`,
         title: moment().format("DD/MM/YYYY"),
         description: "Description not added.",
-        importedById: importerId,
+        importedById: session.user.id,
         ownerId,
         categoryId: "22",
         tags: "",
@@ -52,7 +61,7 @@ export async function importVideo(req: Request, res: Response) {
         ownerId,
         selectedEditorEmails: selectedEditorEmails || [],
       },
-      { jobId: video.id },
+      { jobId: video.id }
     );
     console.log("job", jobRes.id, "added");
 

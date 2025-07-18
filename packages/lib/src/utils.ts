@@ -48,33 +48,72 @@ export function formatDuration(seconds: number): string {
 }
 
 export function trpcErrorHandler(error: any) {
-  // console.log(query.error)
+  if (!error) return;
 
-  if (error) {
-    if (error?.data?.code === "BAD_REQUEST") {
+  // Handle TRPC BAD_REQUEST (as JSON string)
+  if (error?.data?.code === "BAD_REQUEST") {
+    try {
       const data = JSON.parse(error);
       addToast({
         color: "danger",
         title: "Input Error",
         description: `${data[0]?.message}`,
       });
-
-      return;
-    }
-
-    // local error handlers
-    if (error?.name === "ZodError") {
+    } catch {
       addToast({
         color: "danger",
-        description: `${error?.issues[0]?.message} (${error?.issues[0]?.path[0]})`,
+        title: "Input Error",
+        description: `Invalid request`,
       });
-      return;
     }
+    return;
+  }
 
-    console.log({ error });
+  // Zod validation error
+  if (error?.name === "ZodError") {
     addToast({
       color: "danger",
-      description: `${error}`,
+      title: "Validation Error",
+      description: `${error?.issues?.[0]?.message} (${error?.issues?.[0]?.path?.[0]})`,
     });
+    return;
   }
+
+  // Axios error with response from server
+  if (axios.isAxiosError(error)) {
+    if (error.response) {
+      addToast({
+        color: "danger",
+        title: `Error ${error.response.status}`,
+        description:
+          error.response.data?.message ||
+          error.response.data?.error ||
+          "An error occurred while processing your request.",
+      });
+    } else if (error.request) {
+      // Request made but no response
+      addToast({
+        color: "danger",
+        title: "Network Error",
+        description:
+          "No response received from server. Please check your internet connection.",
+      });
+    } else {
+      // Something else happened while setting up the request
+      addToast({
+        color: "danger",
+        title: "Request Error",
+        description: error.message,
+      });
+    }
+    return;
+  }
+
+  // Fallback for unknown errors
+  console.error("Unhandled error:", error);
+  addToast({
+    color: "danger",
+    title: "Unexpected Error",
+    description: typeof error === "string" ? error : "Something went wrong.",
+  });
 }

@@ -18,14 +18,14 @@ body {
   font-weight: 400;
 }
 
-@media (min-width: 680px) {
+/* @media (min-width: 680px) {
   div[role="alertdialog"] {
     width: fit-content;
   }
   div[role="alert"] div div {
     font-size: 21px;
   }
-}
+} */
 
 button {
   @apply transition-transform duration-150 active:translate-y-1;

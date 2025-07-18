@@ -1,7 +1,7 @@
 import { prisma } from "@repo/db";
 import { appRouter } from "@repo/trpc";
 import * as trpcExpress from "@trpc/server/adapters/express";
-import { toNodeHandler } from "better-auth/node";
+import { fromNodeHeaders, toNodeHandler } from "better-auth/node";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
@@ -49,7 +49,56 @@ const storage = multer.diskStorage({
     callback(null, file.originalname);
   },
 });
-const upload = multer({ storage });
+const MAX_FILE_SIZES = {
+  TRIAL: 150 * 1024 * 1024, // 150MB
+  BASE: 200 * 1024 * 1024, // 600MB
+  PRO: 1024 * 1024 * 1024, // 1GB
+};
+
+// Middleware to decide file size limit per request
+const dynamicMulter = async (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) => {
+  console.log("in dynamicMulter");
+
+  // Get user info (example: from req.user, req.headers, JWT, etc.)
+  const session = await creatorAuth.api.getSession({
+    headers: fromNodeHeaders(req.headers),
+  });
+  if (!session.user.id) throw new Error("Unauthenticated");
+  const userPlan = session.user.plan;
+  console.log({ userPlan });
+
+  const maxSize = MAX_FILE_SIZES[userPlan];
+  console.log({ maxSize });
+
+  const dynamicUpload = multer({
+    storage,
+    limits: { fileSize: maxSize },
+  }).single("videoFile");
+
+  dynamicUpload(req, res, (err) => {
+    console.log({ err });
+
+    if (err instanceof multer.MulterError && err.code === "LIMIT_FILE_SIZE") {
+      res.status(413).json({
+        error: `File too large. Max allowed for ${userPlan} plan is ${maxSize / (1024 * 1024)}MB`,
+        ok: false,
+      });
+      return;
+    } else if (err) {
+      res.status(500).json({
+        ok: false,
+        error: err.message,
+      });
+      return;
+    }
+    next();
+  });
+};
+
 const app = express();
 
 console.log("origin", [
@@ -102,6 +151,7 @@ app.post("/webhook", express.raw({ type: "*/*" }), async (req, res) => {
     if (razPayload.event.includes("subscription.")) {
       console.log("razPayload:", JSON.stringify(razPayload));
       const userId = razPayload.payload.payment.entity.notes.userId as string;
+      const razorpayCustId = razPayload.payload.subscription.entity.customer_id;
       if (!userId) throw new Error("userId not found");
 
       await prisma.$transaction(async () => {
@@ -116,8 +166,8 @@ app.post("/webhook", express.raw({ type: "*/*" }), async (req, res) => {
           await prisma.subscription.create({
             data: {
               userId: userId,
-              razorpayCustId:
-                razPayload.payload.subscription.entity.customer_id ?? "unknown",
+
+              razorpayCustId,
               razorpaySubId: razorpaySubId,
               status: "completed",
             },
@@ -147,8 +197,7 @@ app.post("/webhook", express.raw({ type: "*/*" }), async (req, res) => {
           await prisma.subscription.create({
             data: {
               userId: userId as string,
-              razorpayCustId: razPayload.payload.subscription.entity
-                .customer_id as string,
+              razorpayCustId,
               razorpaySubId: razPayload.payload.subscription.entity
                 .id as string,
               status: "active",
@@ -160,8 +209,7 @@ app.post("/webhook", express.raw({ type: "*/*" }), async (req, res) => {
           await prisma.subscription.create({
             data: {
               userId: userId as string,
-              razorpayCustId: razPayload.payload.subscription.entity
-                .customer_id as string,
+              razorpayCustId,
               razorpaySubId,
               status: "failed",
             },
@@ -191,7 +239,7 @@ app.get("/download/:videoId", async (req, res) => {
   downloadVideo(req, res);
 });
 
-app.post("/import-video", upload.single("videoFile"), importVideo);
+app.post("/import-video", dynamicMulter, importVideo);
 app.post("/schedule-video/:videoId", scheduleVideo);
 app.post("/isPaymentActive", async (req, res) => {
   try {
@@ -218,6 +266,7 @@ app.post("/isPaymentActive", async (req, res) => {
 
 app.get("/getAuthUrl", async (req, res) => {
   try {
+    creatorAuth;
     const clientId = process.env.GOOGLE_CLIENT_ID;
 
     const redirectUri = `${process.env.VITE_CREATOR_BASE_URL}/addChannel`;

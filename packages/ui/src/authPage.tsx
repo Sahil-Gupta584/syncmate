@@ -107,17 +107,17 @@ function AuthConfirmationModal({
                     </span>
                   </li>
                   <li>
-                    ✅ <strong>Google Drive (your files only)</strong> — to
-                    store assets like thumbnails, video drafts, and documents
-                    for your content.
+                    ✅ <strong>Google Drive (your files only)</strong> — Our
+                    platform can create files in your drive and can delete only
+                    which are created by us.
                     <br />
                     <span className="text-xs text-gray-500">
                       (*Scope: <code>drive.file</code>*)
                     </span>
                   </li>
                   <li>
-                    ✅ <strong>YouTube Channel Audit</strong> — to verify your
-                    channel for analytics, auto-tagging, and performance tools.
+                    ✅ <strong>YouTube Channel Audit</strong> — to get some
+                    Metadata's of your channel like name,picture,etc.
                     <br />
                     <span className="text-xs text-gray-500">
                       (*Scope: <code>youtubepartner-channel-audit</code>*)

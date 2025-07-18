@@ -15,11 +15,11 @@
 body {
   @apply antialiased mx-auto min-h-screen max-w-7xl px-4 pb-24 md:px-8;
 }
-@media (min-width: 680px) {
+/* @media (min-width: 680px) {
   div[role="alertdialog"] {
     width: fit-content;
   }
   div[role="alert"] div div {
     font-size: 21px;
   }
-}
+} */

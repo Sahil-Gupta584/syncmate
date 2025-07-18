@@ -13,7 +13,11 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@heroui/react";
-import { axiosInstance, getVideoDuration } from "@repo/lib/utils";
+import {
+  axiosInstance,
+  getVideoDuration,
+  trpcErrorHandler,
+} from "@repo/lib/utils";
 import { backend, type TBackendOutput } from "@repo/trpc/react";
 import { ImportButton } from "@repo/ui";
 import { imageInputPlaceholder } from "@repo/ui/assets";
@@ -40,6 +44,7 @@ export default function ImportVideo({
     watch,
     setValue,
     formState: { isSubmitting },
+    reset,
   } = useForm<TImportVideo>();
   const backendUtils = backend.useUtils();
 
@@ -75,8 +80,8 @@ export default function ImportVideo({
           JSON.stringify(
             (userDetails.editors as { editor: { id: string; email: string } }[])
               .filter((e) => selectedEditors?.includes(e.editor.id))
-              .map((e) => e.editor.email),
-          ),
+              .map((e) => e.editor.email)
+          )
         );
       }
 
@@ -94,7 +99,10 @@ export default function ImportVideo({
       }
       addToast({ color: "danger", description: "Failed to import video" });
     } catch (error) {
+      trpcErrorHandler(error);
       console.log("error in import video", error);
+    } finally {
+      reset();
     }
   };
 
@@ -167,7 +175,7 @@ export default function ImportVideo({
                               />
                               <span className="mt-1">{channel.name}</span>
                             </label>
-                          ),
+                          )
                         )}
                     </div>
                   </div>
@@ -184,6 +192,7 @@ export default function ImportVideo({
                     >
                       {userDetails &&
                         userDetails.editors.map(
+                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           (editorAssignment: { editor: any }) => {
                             const { editor } = editorAssignment;
                             return (
@@ -197,7 +206,7 @@ export default function ImportVideo({
                                 </div>
                               </Checkbox>
                             );
-                          },
+                          }
                         )}
                     </CheckboxGroup>
                   </div>
