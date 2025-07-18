@@ -5,12 +5,10 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "outDir": "dist",
-
+    "emitDeclarationOnly": false,
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
-    "noEmit": true,
 
     "strict": true,
     "noUnusedLocals": true,
@@ -22,7 +20,7 @@
     "allowSyntheticDefaultImports": true,
     //aas
     "composite": false,
-    "declaration": false,
+    "declaration": true,
     "declarationMap": false,
     "baseUrl": "."
   },
