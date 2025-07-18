@@ -66,7 +66,7 @@ function CheckoutPage() {
         // key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         key: razorpayKeyId,
         // subscription_id: duration === "monthly" ? selectedPlan.monthlySubscriptionId : selectedPlan.yearlySubscriptionId,
-        subscription_id: "sub_QuUk79NsZatSsp",
+        subscription_id: "sub_QuV0xpsGbhUMWV",
         name: "Syncly",
         description:
           duration === "monthly"

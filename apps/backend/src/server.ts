@@ -110,6 +110,17 @@ app.post("/webhook", express.raw({ type: "*/*" }), async (req, res) => {
             status: "active",
           },
         });
+        if (razPayload.event === "subscription.completed") {
+          await prisma.subscription.create({
+            data: {
+              userId: userId,
+              razorpayCustId:
+                razPayload.payload.subscription.entity.customer_id ?? "unknown",
+              razorpaySubId: razPayload.payload.subscription.entity.id,
+              status: "completed",
+            },
+          });
+        }
 
         if (existingSub) {
           await prisma.subscription.update({
