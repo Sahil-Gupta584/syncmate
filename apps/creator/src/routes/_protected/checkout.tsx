@@ -62,14 +62,14 @@ function CheckoutPage() {
       }
       if (!data?.user.id) return;
 
-      console.log({ subid: import.meta.env.TEST_SUBS_ID });
+      console.log({ subid: import.meta.env.VITE_TEST_SUBS_ID });
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const razorpay = new (window as any).Razorpay({
         // key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         key: razorpayKeyId,
         // subscription_id: duration === "monthly" ? selectedPlan.monthlySubscriptionId : selectedPlan.yearlySubscriptionId,
-        subscription_id: import.meta.env.TEST_SUBS_ID,
+        subscription_id: import.meta.env.VITE_TEST_SUBS_ID,
         name: "Syncly",
         description:
           duration === "monthly"

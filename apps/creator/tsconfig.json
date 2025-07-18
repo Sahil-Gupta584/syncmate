@@ -21,7 +21,7 @@
     "noUncheckedSideEffectImports": true,
 
     "allowSyntheticDefaultImports": true,
-    //aa
+    //aas
     "composite": false,
     "declaration": false,
     "declarationMap": false,
