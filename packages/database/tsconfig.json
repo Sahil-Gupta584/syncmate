@@ -1,16 +1,31 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
-    "composite": false,
-    "incremental": true,
-    "target": "ES2020",
+    "target": "ES2022",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "esModuleInterop": true,
-    "strict": true,
+    "skipLibCheck": true,
+    "outDir": "dist",
+
     "moduleResolution": "bundler",
-    "outDir": "./dist",
-    "rootDir": "./src"
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+
+    "allowSyntheticDefaultImports": true,
+    //aas
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "baseUrl": "."
   },
 
-  "include": ["src", "generated"]
+  "include": ["src", "vite.config.ts"]
 }
