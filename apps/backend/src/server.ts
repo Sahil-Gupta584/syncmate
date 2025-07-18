@@ -98,15 +98,17 @@ app.post("/webhook", express.raw({ type: "*/*" }), async (req, res) => {
     }
 
     const razPayload = JSON.parse(rawBody.toString());
+    const razorpaySubId = razPayload.payload.subscription.entity.id;
     if (razPayload.event.includes("subscription.")) {
       console.log("razPayload:", JSON.stringify(razPayload));
       const userId = razPayload.payload.payment.entity.notes.userId as string;
+      if (!userId) throw new Error("userId not found");
 
       await prisma.$transaction(async () => {
         const existingSub = await prisma.subscription.findFirst({
           where: {
             userId: userId,
-            razorpaySubId: razPayload.payload.subscription.entity.id,
+            razorpaySubId: razorpaySubId,
             status: "active",
           },
         });
@@ -116,7 +118,7 @@ app.post("/webhook", express.raw({ type: "*/*" }), async (req, res) => {
               userId: userId,
               razorpayCustId:
                 razPayload.payload.subscription.entity.customer_id ?? "unknown",
-              razorpaySubId: razPayload.payload.subscription.entity.id,
+              razorpaySubId: razorpaySubId,
               status: "completed",
             },
           });
@@ -160,8 +162,7 @@ app.post("/webhook", express.raw({ type: "*/*" }), async (req, res) => {
               userId: userId as string,
               razorpayCustId: razPayload.payload.subscription.entity
                 .customer_id as string,
-              razorpaySubId: razPayload.payload.subscription.entity
-                .id as string,
+              razorpaySubId,
               status: "failed",
             },
           });

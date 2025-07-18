@@ -41,6 +41,7 @@ jobs:
             VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
             VITE_RAZORPAY_KEY_ID=${{ secrets.VITE_RAZORPAY_KEY_ID }}
             VITE_WEB_BASE_URL=${{ secrets.VITE_WEB_BASE_URL }}
+            TEST_SUBS_ID=${{ secrets.TEST_SUBS_ID }}
 
       - name: Force new ecs service
         run: aws ecs update-service --cluster syncmate --service syncmate-creator-service --force-new-deployment
