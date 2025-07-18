@@ -24,19 +24,23 @@ export default function Home() {
   } = useRouterState();
   const routesToHide = ["/auth", "/checkout"];
 
+  // 1. Redirect to login if not authenticated
   useEffect(() => {
     if (isPending) return;
+
     if (!data) {
       navigate({ to: "/auth" });
-      return;
-    }
-    if (data && pathname === "/auth") {
+    } else if (data && pathname === "/auth") {
       navigate({ to: "/" });
-      return;
     }
+  }, [isPending, data, pathname, navigate]);
+
+  // 2. Redirect if trial expired
+  useEffect(() => {
+    if (!data || isPending) return;
 
     const isTrialExpired =
-      data?.user.plan === "TRIAL" &&
+      data.user.plan === "TRIAL" &&
       Number(data.user.trialEndAt) < moment().unix();
 
     if (
@@ -45,20 +49,28 @@ export default function Home() {
       pathname !== "/checkout"
     ) {
       navigate({ to: "/blocked/trial-expired" });
-      return;
     }
+  }, [data, isPending, pathname, navigate]);
 
-    axiosInstance
-      .post(`/isPaymentActive`, {
-        userId: data?.user.id,
-      })
-      .then((res) => {
-        if (!res.data.isPaymentActive && pathname !== "/checkout") {
-          navigate({ to: "/blocked/payment-failed" });
-          return;
-        }
-      });
-  }, [isPending]);
+  // 3. Redirect if payment inactive (only after trial check passes)
+  useEffect(() => {
+    if (!data || isPending) return;
+
+    const isTrialExpired =
+      data.user.plan === "TRIAL" &&
+      Number(data.user.trialEndAt) < moment().unix();
+
+    // ✅ Only call if trial is NOT expired
+    if (!isTrialExpired) {
+      axiosInstance
+        .post(`/isPaymentActive`, { userId: data.user.id })
+        .then((res) => {
+          if (!res.data.isPaymentActive && pathname !== "/checkout") {
+            navigate({ to: "/blocked/payment-failed" });
+          }
+        });
+    }
+  }, [data, isPending, pathname, navigate]);
 
   return (
     <>
