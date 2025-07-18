@@ -42,6 +42,15 @@ function Page() {
       >
         Unlock Syncly
       </Button>
+      <Button
+        as={Link}
+        color="warning"
+        className="text-lg text-black"
+        href="/checkout"
+        target="_blank"
+      >
+        checkout
+      </Button>
     </section>
   );
 }
