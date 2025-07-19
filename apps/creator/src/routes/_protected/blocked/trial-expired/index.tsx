@@ -1,6 +1,6 @@
 "use client";
-import { Button, Link } from "@heroui/react";
-import { createFileRoute } from "@tanstack/react-router";
+import { Button } from "@heroui/react";
+import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/_protected/blocked/trial-expired/")({
   component: Page,
 });
@@ -47,10 +47,12 @@ function Page() {
         color="warning"
         className="text-lg text-black"
         href="/checkout"
-        target="_blank"
+        // target="_blank"
       >
         checkout
       </Button>
+      <Link to="/checkout">checkout</Link>
+      <a href="/checkout">checkout</a>
     </section>
   );
 }
