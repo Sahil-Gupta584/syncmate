@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@heroui/react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/_protected/blocked/trial-expired/")({
   component: Page,
 });
@@ -35,15 +35,14 @@ function Page() {
           </p>
         </div>
       </div>
-      <Button
-        as={Link}
-        color="warning"
-        className=" rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        href={pricingPage}
-        target="_blank"
-      >
-        Unlock Syncly
-      </Button>
+      <a target="_blank" href={pricingPage}>
+        <Button
+          color="warning"
+          className=" rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+        >
+          Unlock Syncly
+        </Button>
+      </a>
     </section>
   );
 }
