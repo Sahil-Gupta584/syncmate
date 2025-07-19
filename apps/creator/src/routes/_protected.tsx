@@ -32,7 +32,6 @@ export default function Home() {
 
   // 1. Redirect to login if not authenticated
   useEffect(() => {
-    console.log({ search });
     if (search.redirectTo) {
       navigate({ to: search.redirectTo });
     }

@@ -28,15 +28,14 @@ function Page() {
         <div className="space-y-3 text-center">
           <h2 className="text-2xl">Free trial expired</h2>
           <p className="text-lg text-gray-400 mx-auto max-w-lg">
-            Subscribe to a plan to view your data and track your website
-            analytics.
+            Subscribe to a plan to start simplifying your workflow
           </p>
         </div>
       </div>
       <Button
         as={Link}
         color="warning"
-        className="text-lg text-black"
+        className=" rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
         href={`${import.meta.env.VITE_WEB_BASE_URL}/#pricing`}
         target="_blank"
       >
