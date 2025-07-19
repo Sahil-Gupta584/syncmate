@@ -222,28 +222,6 @@ export default function Pricing() {
                       {plan.cta}
                     </Button>
                   </Link>
-
-                  <Link
-                    href={`${process.env.NEXT_PUBLIC_CREATOR_BASE_URL}/auth?planType=${plan.name}`}
-                  >
-                    auth
-                  </Link>
-                  <a href={`${process.env.NEXT_PUBLIC_CREATOR_BASE_URL}`}>
-                    root
-                  </a>
-                  <Link
-                    href={`${process.env.NEXT_PUBLIC_CREATOR_BASE_URL}/auth?planType=${plan.name}`}
-                    target="_blank"
-                  >
-                    authblank
-                  </Link>
-                  <a
-                    href={`${process.env.NEXT_PUBLIC_CREATOR_BASE_URL}?redirectTo=/checkout?planType=${plan.name}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    root
-                  </a>
                 </CardBody>
               </Card>
             </motion.div>

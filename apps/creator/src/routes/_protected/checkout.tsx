@@ -4,9 +4,9 @@ import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { FiArrowLeft, FiCheckCircle } from "react-icons/fi";
 import z from "zod";
-import { useSession } from "../../../lib/authActions";
+import { useSession } from "../../lib/authActions";
 
-export const Route = createFileRoute("/_protected/checkout/")({
+export const Route = createFileRoute("/_protected/checkout")({
   component: CheckoutPage,
   validateSearch: z.object({
     planType: z.string().optional(),
