@@ -26,6 +26,10 @@ export async function importVideo(req: Request, res: Response) {
       return;
     }
 
+    if (ownerId !== session.user.id) {
+      return res.status(403).json({ error: "Forbidden: You can only import videos for your own account." });
+    }
+
     const video = await prisma.video.create({
       data: {
         createdAt: `${Date.now() / 1000}`,

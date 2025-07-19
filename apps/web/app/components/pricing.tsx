@@ -20,8 +20,8 @@ export const plans = [
     ],
     cta: "Get Started",
     popular: false,
-    monthlySubscriptionId: "sub_QtK9JKjPMXjfbz",
-    yearlySubscriptionId: "sub_QS6nzgmL2lcNeB",
+    monthlySubscriptionId: "sub_QuuaP5Ifl1tSTP",
+    yearlySubscriptionId: "sub_QuubVsLb7sIvjq",
   },
   {
     name: "PRO",
@@ -37,8 +37,8 @@ export const plans = [
     ],
     cta: "Get Started",
     popular: true,
-    monthlySubscriptionId: "sub_QS6q88HHiJo1iu",
-    yearlySubscriptionId: "sub_QS6vlNQegRBuvh",
+    monthlySubscriptionId: "sub_QuucMyZUwutFBx",
+    yearlySubscriptionId: "sub_QuucyOUpCfRPju",
   },
   {
     name: "GROWTH",
@@ -54,8 +54,8 @@ export const plans = [
     ],
     cta: "Get Started",
     popular: false,
-    monthlySubscriptionId: "sub_QS6sHh3HuUeS0c",
-    yearlySubscriptionId: "sub_QS6x26maXPTRwi",
+    monthlySubscriptionId: "sub_QuudmmmUApDttF",
+    yearlySubscriptionId: "sub_QuueTkOAZYt01w",
   },
   {
     name: "ENTERPRISE",
