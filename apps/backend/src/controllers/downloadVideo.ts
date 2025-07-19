@@ -1,7 +1,7 @@
 import { prisma } from "@repo/db";
 import { getGoogleServices } from "@repo/trpc";
-import { Request, Response } from "express";
 import { fromNodeHeaders } from "better-auth/node";
+import { Request, Response } from "express";
 import { creatorAuth } from "../lib/auths.js";
 
 export async function downloadVideo(req: Request, res: Response) {
@@ -10,7 +10,7 @@ export async function downloadVideo(req: Request, res: Response) {
     const session = await creatorAuth.api.getSession({
       headers: fromNodeHeaders(req.headers),
     });
-    if (!session.user.id) return res.status(401).json({ error: "Unauthenticated" });
+    if (!session.user.id) res.status(401).json({ error: "Unauthenticated" });
 
     const { videoId } = req.params;
     console.log("videoId", videoId);
@@ -24,7 +24,7 @@ export async function downloadVideo(req: Request, res: Response) {
     });
 
     if (!video) {
-      return res.status(404).json({ error: "Video not found" });
+      res.status(404).json({ error: "Video not found" });
     }
 
     // Permission check: owner or assigned editor
@@ -33,7 +33,9 @@ export async function downloadVideo(req: Request, res: Response) {
       (ve) => ve.editorEmail === session.user.email
     );
     if (!isOwner && !isEditor) {
-      return res.status(403).json({ error: "Forbidden: You do not have access to this video." });
+      res
+        .status(403)
+        .json({ error: "Forbidden: You do not have access to this video." });
     }
 
     const { result, error } = await getGoogleServices(video.ownerId);
@@ -44,13 +46,13 @@ export async function downloadVideo(req: Request, res: Response) {
 
     const driveRes = await drive.files.get(
       { fileId: video.gDriveId, alt: "media" },
-      { responseType: "stream" },
+      { responseType: "stream" }
     );
 
     res.setHeader("Content-Type", "video/mp4");
     res.setHeader(
       "Content-Disposition",
-      `attachment; filename="${video.title}.mp4"`,
+      `attachment; filename="${video.title}.mp4"`
     );
 
     driveRes.data.pipe(res);
