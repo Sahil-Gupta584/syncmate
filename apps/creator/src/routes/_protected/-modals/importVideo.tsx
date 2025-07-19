@@ -54,6 +54,7 @@ export default function ImportVideo({
 
   const onSubmit = async (data: TImportVideo) => {
     try {
+      console.log("submittedat", Date.now());
       if (!userDetails) {
         addToast({ color: "danger", description: "Unauthenticated" });
         return;
@@ -84,8 +85,9 @@ export default function ImportVideo({
           )
         );
       }
-
+      console.log("beforereq", Date.now());
       const res = await axiosInstance.post(`/import-video`, formData);
+      console.log("aftereq", Date.now());
 
       if (res.data.ok) {
         addToast({
