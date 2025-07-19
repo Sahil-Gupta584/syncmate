@@ -6,6 +6,9 @@ export const Route = createFileRoute("/_protected/blocked/trial-expired/")({
 });
 
 function Page() {
+  const pricingPage = `${import.meta.env.VITE_WEB_BASE_URL}/#pricing`;
+  console.log({ pricingPage });
+
   return (
     <section className="mt-16 flex flex-col items-center justify-center gap-8">
       <div className="flex flex-col items-center justify-center gap-4">
@@ -36,7 +39,7 @@ function Page() {
         as={Link}
         color="warning"
         className=" rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-        href={`${import.meta.env.VITE_WEB_BASE_URL}/#pricing`}
+        href={pricingPage}
         target="_blank"
       >
         Unlock Syncly

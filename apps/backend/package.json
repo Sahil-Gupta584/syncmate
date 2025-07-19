@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"nodemon --watch src --ext ts --exec tsx ./src/server.ts\" \"nodemon --watch src --ext ts --exec tsx ./src/workers/importVideoWorker.ts\" \"nodemon --watch src --ext ts --exec tsx ./src/workers/scheduleVideoWorker.ts\"",
     "build": "tsc",
-    "start": "concurrently \"pwd echo 'Content of node_modules/@repo' && ls ../../node_modules/@repo && echo 'Content of node_modules/@repo/db' && ls ../../node_modules/@repo/db && echo 'Content of node_modules/@repo/db/dist' && ls ../../node_modules/@repo/db/dist && node dist/server.js\" \"node dist/workers/importVideoWorker.js\" \"node dist/workers/scheduleVideoWorker.js\""
+    "start": "concurrently \"node dist/server.js\" \"node dist/workers/importVideoWorker.js\" \"node dist/workers/scheduleVideoWorker.js\""
   },
   "keywords": [],
   "author": "",
