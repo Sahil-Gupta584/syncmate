@@ -91,7 +91,7 @@ const worker = new Worker(
           Errors: error.response.data?.error?.errors,
         });
       } else {
-        console.error("Unexpected error:", error);
+        console.error("Failed to Import video:", error);
       }
     }
   },
@@ -99,7 +99,7 @@ const worker = new Worker(
     connection: {
       url: redisUrl,
     },
-  },
+  }
 );
 
 worker.on("active", (job) => {
