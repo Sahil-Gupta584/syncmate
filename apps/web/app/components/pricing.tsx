@@ -209,7 +209,7 @@ export default function Pricing() {
                   </ul>
 
                   <Link
-                    href={`${process.env.NEXT_PUBLIC_CREATOR_BASE_URL}/checkout?planType=${plan.name}`}
+                    href={`${process.env.NEXT_PUBLIC_CREATOR_BASE_URL}?redirectTo=/checkout?planType=${plan.name}`}
                     className="w-full"
                   >
                     <Button
@@ -238,7 +238,7 @@ export default function Pricing() {
                     authblank
                   </Link>
                   <a
-                    href={`${process.env.NEXT_PUBLIC_CREATOR_BASE_URL}`}
+                    href={`${process.env.NEXT_PUBLIC_CREATOR_BASE_URL}?redirectTo=/checkout?planType=${plan.name}`}
                     target="_blank"
                     rel="noreferrer"
                   >

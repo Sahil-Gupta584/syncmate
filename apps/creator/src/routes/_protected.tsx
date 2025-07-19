@@ -9,16 +9,22 @@ import {
 } from "@tanstack/react-router";
 import moment from "moment";
 import { useEffect } from "react";
+import z from "zod";
 import { useSession } from "../lib/authActions";
 import DrawerComponent from "./_protected/-components/drawer";
 
 export const Route = createFileRoute("/_protected")({
   component: Home,
+  validateSearch: z.object({
+    redirectTo: z.string().optional(),
+  }),
 });
 
 export default function Home() {
   const { data, isPending } = useSession();
   const navigate = useNavigate();
+  const search = Route.useSearch();
+
   const {
     location: { pathname },
   } = useRouterState();
@@ -26,6 +32,10 @@ export default function Home() {
 
   // 1. Redirect to login if not authenticated
   useEffect(() => {
+    console.log({ search });
+    if (search.redirectTo) {
+      navigate({ to: search.redirectTo });
+    }
     if (isPending) return;
 
     if (!data) {
