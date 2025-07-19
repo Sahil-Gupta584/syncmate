@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ProtectedRouteImport } from './routes/_protected'
 import { Route as ProtectedIndexRouteImport } from './routes/_protected/index'
-import { Route as ProtectedCheckoutRouteImport } from './routes/_protected/checkout'
+import { Route as ProtectedCheckoutIndexRouteImport } from './routes/_protected/checkout/index'
 import { Route as ProtectedAddChannelIndexRouteImport } from './routes/_protected/addChannel/index'
 import { Route as ProtectedVideoVideoIdIndexRouteImport } from './routes/_protected/video/$videoId/index'
 import { Route as ProtectedBlockedTrialExpiredIndexRouteImport } from './routes/_protected/blocked/trial-expired/index'
@@ -32,9 +32,9 @@ const ProtectedIndexRoute = ProtectedIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ProtectedRoute,
 } as any)
-const ProtectedCheckoutRoute = ProtectedCheckoutRouteImport.update({
-  id: '/checkout',
-  path: '/checkout',
+const ProtectedCheckoutIndexRoute = ProtectedCheckoutIndexRouteImport.update({
+  id: '/checkout/',
+  path: '/checkout/',
   getParentRoute: () => ProtectedRoute,
 } as any)
 const ProtectedAddChannelIndexRoute =
@@ -64,18 +64,18 @@ const ProtectedBlockedPaymentFailedIndexRoute =
 
 export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
-  '/checkout': typeof ProtectedCheckoutRoute
   '/': typeof ProtectedIndexRoute
   '/addChannel': typeof ProtectedAddChannelIndexRoute
+  '/checkout': typeof ProtectedCheckoutIndexRoute
   '/blocked/payment-failed': typeof ProtectedBlockedPaymentFailedIndexRoute
   '/blocked/trial-expired': typeof ProtectedBlockedTrialExpiredIndexRoute
   '/video/$videoId': typeof ProtectedVideoVideoIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
-  '/checkout': typeof ProtectedCheckoutRoute
   '/': typeof ProtectedIndexRoute
   '/addChannel': typeof ProtectedAddChannelIndexRoute
+  '/checkout': typeof ProtectedCheckoutIndexRoute
   '/blocked/payment-failed': typeof ProtectedBlockedPaymentFailedIndexRoute
   '/blocked/trial-expired': typeof ProtectedBlockedTrialExpiredIndexRoute
   '/video/$videoId': typeof ProtectedVideoVideoIdIndexRoute
@@ -84,9 +84,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_protected': typeof ProtectedRouteWithChildren
   '/auth': typeof AuthRoute
-  '/_protected/checkout': typeof ProtectedCheckoutRoute
   '/_protected/': typeof ProtectedIndexRoute
   '/_protected/addChannel/': typeof ProtectedAddChannelIndexRoute
+  '/_protected/checkout/': typeof ProtectedCheckoutIndexRoute
   '/_protected/blocked/payment-failed/': typeof ProtectedBlockedPaymentFailedIndexRoute
   '/_protected/blocked/trial-expired/': typeof ProtectedBlockedTrialExpiredIndexRoute
   '/_protected/video/$videoId/': typeof ProtectedVideoVideoIdIndexRoute
@@ -95,18 +95,18 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/auth'
-    | '/checkout'
     | '/'
     | '/addChannel'
+    | '/checkout'
     | '/blocked/payment-failed'
     | '/blocked/trial-expired'
     | '/video/$videoId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
-    | '/checkout'
     | '/'
     | '/addChannel'
+    | '/checkout'
     | '/blocked/payment-failed'
     | '/blocked/trial-expired'
     | '/video/$videoId'
@@ -114,9 +114,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_protected'
     | '/auth'
-    | '/_protected/checkout'
     | '/_protected/'
     | '/_protected/addChannel/'
+    | '/_protected/checkout/'
     | '/_protected/blocked/payment-failed/'
     | '/_protected/blocked/trial-expired/'
     | '/_protected/video/$videoId/'
@@ -150,11 +150,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedIndexRouteImport
       parentRoute: typeof ProtectedRoute
     }
-    '/_protected/checkout': {
-      id: '/_protected/checkout'
+    '/_protected/checkout/': {
+      id: '/_protected/checkout/'
       path: '/checkout'
       fullPath: '/checkout'
-      preLoaderRoute: typeof ProtectedCheckoutRouteImport
+      preLoaderRoute: typeof ProtectedCheckoutIndexRouteImport
       parentRoute: typeof ProtectedRoute
     }
     '/_protected/addChannel/': {
@@ -189,18 +189,18 @@ declare module '@tanstack/react-router' {
 }
 
 interface ProtectedRouteChildren {
-  ProtectedCheckoutRoute: typeof ProtectedCheckoutRoute
   ProtectedIndexRoute: typeof ProtectedIndexRoute
   ProtectedAddChannelIndexRoute: typeof ProtectedAddChannelIndexRoute
+  ProtectedCheckoutIndexRoute: typeof ProtectedCheckoutIndexRoute
   ProtectedBlockedPaymentFailedIndexRoute: typeof ProtectedBlockedPaymentFailedIndexRoute
   ProtectedBlockedTrialExpiredIndexRoute: typeof ProtectedBlockedTrialExpiredIndexRoute
   ProtectedVideoVideoIdIndexRoute: typeof ProtectedVideoVideoIdIndexRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
-  ProtectedCheckoutRoute: ProtectedCheckoutRoute,
   ProtectedIndexRoute: ProtectedIndexRoute,
   ProtectedAddChannelIndexRoute: ProtectedAddChannelIndexRoute,
+  ProtectedCheckoutIndexRoute: ProtectedCheckoutIndexRoute,
   ProtectedBlockedPaymentFailedIndexRoute:
     ProtectedBlockedPaymentFailedIndexRoute,
   ProtectedBlockedTrialExpiredIndexRoute:
