@@ -53,6 +53,7 @@ function Page() {
       </Button>
       <Link to="/checkout">checkout</Link>
       <a href="/checkout">checkout</a>
+      <a href="/auth">auth</a>
     </section>
   );
 }
