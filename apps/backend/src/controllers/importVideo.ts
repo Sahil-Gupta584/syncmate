@@ -7,6 +7,8 @@ import { uploadQueue } from "../queues.js";
 
 export async function importVideo(req: Request, res: Response) {
   try {
+    console.log("started", Date.now());
+
     const session = await creatorAuth.api.getSession({
       headers: fromNodeHeaders(req.headers),
     });
@@ -26,11 +28,9 @@ export async function importVideo(req: Request, res: Response) {
     }
 
     if (ownerId !== session.user.id) {
-      res
-        .status(403)
-        .json({
-          error: "Forbidden: You can only import videos for your own account.",
-        });
+      res.status(403).json({
+        error: "Forbidden: You can only import videos for your own account.",
+      });
     }
 
     const video = await prisma.video.create({
@@ -72,10 +72,12 @@ export async function importVideo(req: Request, res: Response) {
     );
     console.log("job", jobRes.id, "added");
 
+    console.log("endedpre", Date.now());
     res.json({
       ok: true,
       message: "Video received. Processing in background.",
     });
+    console.log("endedpost", Date.now());
   } catch (error) {
     console.log("err video-upload", error);
     res.json({ message: (error as Error).message });
