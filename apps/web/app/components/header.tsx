@@ -3,6 +3,7 @@ import { Button, Link } from "@heroui/react";
 import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
+import { appUrl } from "./hero";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -53,7 +54,7 @@ export default function Navbar() {
             </a>
             <Button
               as={Link}
-              href="/auth"
+              href={appUrl}
               className=" rounded-md bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             >
               Start Free Trial
@@ -107,7 +108,7 @@ export default function Navbar() {
             Pricing
           </a>
           <a
-            href="/auth"
+            href={appUrl}
             className="block bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 px-4 py-2 rounded-lg text-base font-medium mt-2 text-center transition-all duration-300"
             onClick={closeMobileMenu}
           >

@@ -14,8 +14,6 @@ export async function importVideo(req: Request, res: Response) {
     });
     if (!session.user.id) throw new Error("Unauthenticated");
 
-    console.log({ session });
-
     const { channelId, ownerId, duration } = req.body;
     let { selectedEditorEmails } = req.body;
 

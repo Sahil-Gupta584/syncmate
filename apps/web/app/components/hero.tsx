@@ -4,7 +4,7 @@ import { Button } from "@heroui/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaPlay, FaYoutube } from "react-icons/fa";
-
+export const appUrl = process.env.NEXT_PUBLIC_CREATOR_BASE_URL!;
 export default function Hero() {
   return (
     <section className="pt-20 pb-20 lg:pt-36 lg:pb-28 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden">
@@ -63,7 +63,7 @@ export default function Hero() {
             </div>
 
             <div className="mt-8 flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
-              <Link href={process.env.NEXT_PUBLIC_CREATOR_BASE_URL!}>
+              <Link href={appUrl}>
                 <Button className="rounded-md w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 h-auto text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                   <FaPlay className="mr-2" />
                   Start Free Trial

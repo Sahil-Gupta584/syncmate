@@ -10,6 +10,7 @@ import {
 } from "@heroui/react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { appUrl } from "./hero";
 
 interface ContactFormProps {
   isContactPage?: boolean;
@@ -169,7 +170,7 @@ export default function ContactForm({
               improving collaboration with Syncly.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
-              <a href="/contact">
+              <a href={appUrl}>
                 <Button className="w-full sm:w-auto bg-white text-primary hover:bg-primary-50 px-8 py-6 h-auto text-lg">
                   Start Free Trial
                 </Button>

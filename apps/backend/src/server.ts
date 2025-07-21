@@ -61,8 +61,6 @@ const dynamicMulter = async (
   res: express.Response,
   next: express.NextFunction
 ) => {
-  console.log("in dynamicMulter");
-
   // Get user info (example: from req.user, req.headers, JWT, etc.)
   const session = await creatorAuth.api.getSession({
     headers: fromNodeHeaders(req.headers),
