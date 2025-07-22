@@ -91,7 +91,7 @@ export function VideoPage({
     formState: { errors, isSubmitting },
   } = useForm<TVideoDetailsForm>({
     disabled:
-      isEditing || !["DRAFT", "PROCESSING"].includes(previousData.videoStatus),
+      !isEditing || !["DRAFT", "PROCESSING"].includes(previousData.videoStatus),
   });
   const updateVideoDetailsMutation =
     backend.db.updateVideoDetails.useMutation();
@@ -186,7 +186,8 @@ export function VideoPage({
   return (
     <div
       className={`"p-6 max-w-4xl mx-auto ${
-        previousData.videoStatus !== "DRAFT" && "text-gray-500"
+        !["DRAFT", "PROCESSING"].includes(previousData.videoStatus) &&
+        "text-gray-500"
       }`}
     >
       <VideoComponent videoLink={getVideoLinkQuery.data?.result?.videoLink} />
@@ -199,10 +200,10 @@ export function VideoPage({
           status={previousData.videoStatus}
         />
       </div>
-      <form className="" onSubmit={handleSubmit(handleVideoSave)}>
+      <form onSubmit={handleSubmit(handleVideoSave)}>
         <li className="flex sm:items-center sm:justify-between sm:flex-row flex-col pl-1 gap-4">
           <ul className="flex gap-2 items-center">
-            <h1 className="text-3xl font-extrabold">Video Details</h1>
+            <h1 className={`text-3xl font-extrabold `}>Video Details</h1>
             <Tag text={previousData.videoStatus} className="self-end" />
           </ul>
           <div className="flex flex-row  sm:gap-4 gap-2 font-semibold ">
