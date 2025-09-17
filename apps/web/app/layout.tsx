@@ -22,6 +22,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+        <head>
+        <script
+  defer
+  data-website-id="68c67c6600282d9a8297"
+  data-domain="syncmate.xyz"
+  src="https://insightly-three.vercel.app/script.js">
+  </script>    
+        </head>
       <body className={` ${geistMono.variable}`}>
         <Providers>{children}</Providers>
         <Analytics/>
