@@ -80,6 +80,12 @@ const dynamicMulter = async (
   dynamicUpload(req, res, (err) => {
     console.log({ err });
 
+    if (req.file) {
+      console.log(
+        `Uploaded file: ${req.file.originalname}, Size: ${(req.file.size / (1024 * 1024)).toFixed(2)} MB`
+      );
+    }
+
     if (err instanceof multer.MulterError && err.code === "LIMIT_FILE_SIZE") {
       res.status(413).json({
         error: `File too large. Max allowed for ${userPlan} plan is ${maxSize / (1024 * 1024)}MB`,

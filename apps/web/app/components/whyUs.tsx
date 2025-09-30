@@ -49,6 +49,7 @@ export default function WhyUs() {
     <section
       id="whyUs"
       className="bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-20 px-4 md:px-20"
+      data-fast-scroll="why_us"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div

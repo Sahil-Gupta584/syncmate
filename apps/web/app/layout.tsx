@@ -1,4 +1,4 @@
-        import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -22,9 +22,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          defer
+          data-website-id="68dbe0193a2d26a29bf1926d"
+          data-domain="syncmate.xyz"
+          src="https://datafa.st/js/script.js"
+          data-allow-localhost="true"
+        ></script>
+      </head>
       <body className={` ${geistMono.variable}`}>
         <Providers>{children}</Providers>
-        <Analytics/>
+        <Analytics />
       </body>
     </html>
   );
