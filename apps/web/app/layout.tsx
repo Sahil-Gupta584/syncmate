@@ -25,6 +25,14 @@ export default function RootLayout({
       <head>
         <script
           defer
+          data-website-id="68d2611f0011c3785cb2"
+          data-domain="insightly-three.vercel.app"
+          data-allow-localhost={true}
+          src=" https://insightly-three.vercel.app/script.js"
+          // src=" http://localhost:3000/script.js"
+        />
+        <script
+          defer
           data-website-id="68dbe0193a2d26a29bf1926d"
           data-domain="syncmate.xyz"
           src="https://datafa.st/js/script.js"

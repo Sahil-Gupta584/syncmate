@@ -2,11 +2,11 @@ import { Card, CardBody } from "@heroui/react";
 import { motion } from "framer-motion";
 import {
   FaBell,
+  FaClock,
   FaCloudUploadAlt,
+  FaShieldAlt,
   FaUsers,
   FaYoutube,
-  FaShieldAlt,
-  FaClock,
 } from "react-icons/fa";
 
 export default function Features() {
@@ -114,6 +114,7 @@ export default function Features() {
   return (
     <section
       id="features"
+      data-fast-scroll="features"
       className="py-20 bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
