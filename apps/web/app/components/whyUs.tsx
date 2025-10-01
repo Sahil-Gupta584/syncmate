@@ -47,7 +47,7 @@ const stats = [
 export default function WhyUs() {
   return (
     <section
-      id="whyUs"
+      id="scroll_to_why_us"
       className="bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-20 px-4 md:px-20"
       data-fast-scroll="why_us"
     >

@@ -8,7 +8,7 @@ export const appUrl = process.env.NEXT_PUBLIC_CREATOR_BASE_URL!;
 export default function Hero() {
   return (
     <section
-      data-fast-scroll="hero"
+      data-fast-scroll="enter_hero"
       className="pt-20 pb-20 lg:pt-36 lg:pb-28 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 relative overflow-hidden"
     >
       {/* Background decorative elements */}

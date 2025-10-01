@@ -28,7 +28,7 @@ export default function ContactForm({
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -152,7 +152,11 @@ export default function ContactForm({
   }
 
   return (
-    <section id="contact" className="py-20 bg-primary">
+    <section
+      id="contact"
+      className="py-20 bg-primary"
+      data-fast-scroll="scroll_to_features"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
           <motion.div
