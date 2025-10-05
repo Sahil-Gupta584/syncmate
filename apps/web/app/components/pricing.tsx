@@ -130,6 +130,8 @@ export default function Pricing() {
                     ? "border-3 border-blue-500 shadow-2xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20"
                     : "border-2 border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 }`}
+                insightly-goal-price={plan.price}
+                insightly-goal-plan-type={plan.name}
               >
                 <CardBody className="p-8 flex flex-col h-full">
                   <div className="text-center mb-6">

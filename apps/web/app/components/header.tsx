@@ -111,6 +111,7 @@ export default function Navbar() {
             href={appUrl}
             className="block bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 px-4 py-2 rounded-lg text-base font-medium mt-2 text-center transition-all duration-300"
             onClick={closeMobileMenu}
+            insightly-goal="click_start_free_trial"
           >
             Start Free Trial
           </a>
