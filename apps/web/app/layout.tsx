@@ -27,16 +27,7 @@ export default function RootLayout({
           defer
           data-website-id="68d124eb001034bd8493"
           data-domain="syncmate.xyz"
-          data-allow-localhost={true}
-          src=" https://insightly-three.vercel.app/script.js"
-          // src=" http://localhost:3000/script.js"
-        />
-        <script
-          defer
-          data-website-id="68dbe0193a2d26a29bf1926d"
-          data-domain="syncmate.xyz"
-          src="https://datafa.st/js/script.js"
-          data-allow-localhost="true"
+          src="http://localhost:3000/script.js"
         ></script>
       </head>
       <body className={` ${geistMono.variable}`}>
