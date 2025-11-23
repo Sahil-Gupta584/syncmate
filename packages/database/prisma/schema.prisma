@@ -102,12 +102,12 @@ model Video {
   tags          String
   categoryId    String
   ownerId       String
-  owner         User          @relation("VideoOwner", fields: [ownerId], references: [id])
+  owner         User          @relation("VideoOwner", fields: [ownerId], references: [id], onDelete: Cascade)
   importedById  String
-  importedBy    User          @relation("VideoImporter", fields: [importedById], references: [id])
+  importedBy    User          @relation("VideoImporter", fields: [importedById], references: [id], onDelete: Cascade)
   editors       VideoEditor[] // New field: list of editors for the video
   channelId     String?
-  channel       Channel?      @relation(fields: [channelId], references: [id])
+  channel       Channel?      @relation(fields: [channelId], references: [id], onDelete: Cascade)
   createdAt     String
 }
 

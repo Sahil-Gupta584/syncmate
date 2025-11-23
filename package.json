@@ -2,7 +2,7 @@
   "name": "syncmate",
   "private": true,
   "scripts": {
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --filter=web --filter=creator",
     "build": "turbo run build",
     "start": "turbo run start",
     "lint": "turbo run lint",
