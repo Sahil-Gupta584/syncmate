@@ -29,6 +29,9 @@ export default function RootLayout({
           data-domain="syncmate.xyz"
           src="http://localhost:3000/script.js"
         ></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6220719265390915"
+     crossorigin="anonymous"></script>
+        
       </head>
       <body className={` ${geistMono.variable}`}>
         <Providers>{children}</Providers>
