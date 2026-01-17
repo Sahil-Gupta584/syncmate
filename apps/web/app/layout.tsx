@@ -27,7 +27,7 @@ export default function RootLayout({
           defer
           data-website-id="68d124eb001034bd8493"
           data-domain="syncmate.xyz"
-          src="http://localhost:3000/script.js"
+          src="https://insightly.live/script.js"
         ></script>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6220719265390915"
      crossOrigin="anonymous"></script>
